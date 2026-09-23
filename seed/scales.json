@@ -1,0 +1,2831 @@
+{
+ "scales": [
+  {
+   "id": "general.agreeableness",
+   "name": "General Scale of Agreeableness",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Agreeableness 26cf9c7bde738059a332d2a25e4cd01f.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Antagonistic",
+      "Hostile",
+      "Combative"
+     ],
+     "adjectives": [
+      "Antagonistic",
+      "Hostile",
+      "Combative"
+     ],
+     "nuance": "The absolute limit of disagreeableness. This describes a person who actively seeks conflict, is openly unfriendly, and treats social interactions like a battle to be won. 😠",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Argumentative",
+      "Contrary",
+      "Quarrelsome"
+     ],
+     "adjectives": [
+      "Argumentative",
+      "Contrary",
+      "Quarrelsome"
+     ],
+     "nuance": "Describes a person who habitually opposes others and may enjoy debate or disagreement for its own sake. They are quick to challenge ideas and find flaws in arguments.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Critical",
+      "Skeptical",
+      "Blunt"
+     ],
+     "adjectives": [
+      "Critical",
+      "Skeptical",
+      "Blunt"
+     ],
+     "nuance": "Less about active fighting and more about being direct and distrustful. This person speaks their mind without social filtering, questions motives, and is often perceived as harsh or negative.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Detached",
+      "Aloof",
+      "Independent"
+     ],
+     "adjectives": [
+      "Detached",
+      "Aloof",
+      "Independent"
+     ],
+     "nuance": "The mildest form of disagreeableness. This person isn't necessarily unfriendly but is emotionally distant, reserved, and prioritizes their own independence over group harmony.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Objective",
+      "Impartial",
+      "Pragmatic"
+     ],
+     "adjectives": [
+      "Objective",
+      "Impartial",
+      "Pragmatic"
+     ],
+     "nuance": "The center point. This person approaches situations based on facts and logic rather than personal feelings or the desire to please. They are neither inherently cooperative nor confrontational, focusing instead on what is practical.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Polite",
+      "Considerate",
+      "Courteous"
+     ],
+     "adjectives": [
+      "Polite",
+      "Considerate",
+      "Courteous"
+     ],
+     "nuance": "The baseline for agreeableness. This describes adherence to social norms and showing basic respect and awareness for others' feelings and needs.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Friendly",
+      "Cooperative",
+      "Amicable"
+     ],
+     "adjectives": [
+      "Friendly",
+      "Cooperative",
+      "Amicable"
+     ],
+     "nuance": "The standard for being agreeable. This describes a person who is genuinely pleasant to be around, easy to work with, and actively seeks harmonious relationships.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Empathetic",
+      "Accommodating",
+      "Supportive"
+     ],
+     "adjectives": [
+      "Empathetic",
+      "Accommodating",
+      "Supportive"
+     ],
+     "nuance": "Goes beyond just being friendly. This person is highly sensitive to the emotions of others and actively changes their own behavior to help, support, and accommodate them. They feel what others feel.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Appeasing",
+      "Deferential",
+      "Submissive"
+     ],
+     "adjectives": [
+      "Appeasing",
+      "Deferential",
+      "Submissive"
+     ],
+     "nuance": "The conceptual extreme. This describes a person who avoids conflict at all costs, often by yielding their own needs, desires, and opinions to please others. Their desire for harmony completely overrides their own self-interest. 😊",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.distance",
+   "name": "General Scale of Distance",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Distance 26cf9c7bde738017a55ad60db1e6ea52.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Adjacent",
+      "Contiguous",
+      "Touching"
+     ],
+     "adjectives": [
+      "Adjacent",
+      "Contiguous",
+      "Touching"
+     ],
+     "nuance": "The absolute limit of closeness. Describes two or more things that are in direct physical contact or share a common border, leaving no space between them.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Arm's Reach",
+      "A Stone's Throw"
+     ],
+     "adjectives": [
+      "Arm's Reach",
+      "A Stone's Throw"
+     ],
+     "nuance": "Metaphorical terms for a distance so short it can be easily crossed with a simple physical action. Implies extreme accessibility.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Immediate Vicinity",
+      "Next-door"
+     ],
+     "adjectives": [
+      "Immediate Vicinity",
+      "Next-door"
+     ],
+     "nuance": "Very close, but not touching. **\"Immediate vicinity\"** refers to the area directly surrounding a point, while **\"next-door\"** is specific to adjacent properties or rooms.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Nearby",
+      "Close By",
+      "Neighboring"
+     ],
+     "adjectives": [
+      "Nearby",
+      "Close By",
+      "Neighboring"
+     ],
+     "nuance": "The neutral, baseline words for being near. Implies a short and easy travel distance without being directly beside something. 🚶",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "A Short Drive Away",
+      "Within Range"
+     ],
+     "adjectives": [
+      "A Short Drive Away",
+      "Within Range"
+     ],
+     "nuance": "The center point. A distance that is neither impressively near nor challengingly far. **\"Within range\"** suggests the location is reachable with moderate, but not insignificant, effort.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Distant",
+      "Far-off"
+     ],
+     "adjectives": [
+      "Distant",
+      "Far-off"
+     ],
+     "nuance": "The neutral, baseline words for being a significant distance away. The object is often visible but clearly not close.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Remote",
+      "Outlying"
+     ],
+     "adjectives": [
+      "Remote",
+      "Outlying"
+     ],
+     "nuance": "Describes a location that is not only far but also **isolated** from populated or central areas. **\"Outlying\"** is often used for the outskirts of a region, like a remote village.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Faraway",
+      "Far-flung"
+     ],
+     "adjectives": [
+      "Faraway",
+      "Far-flung"
+     ],
+     "nuance": "Conveys a greater sense of distance, often with an exotic, adventurous, or slightly magical connotation. **\"Far-flung\"** emphasizes locations that are spread out over a vast area (e.g., \"far-flung corners of the empire\").",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Inaccessible",
+      "Isolated"
+     ],
+     "adjectives": [
+      "Inaccessible",
+      "Isolated"
+     ],
+     "nuance": "The upper limit of practical distance. This implies a location so far, or in such difficult terrain, that it is extremely hard to reach, emphasizing the journey's difficulty.",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Astronomical",
+      "Otherworldly"
+     ],
+     "adjectives": [
+      "Astronomical",
+      "Otherworldly"
+     ],
+     "nuance": "The conceptual extreme. Describes distances on a cosmic scale, so vast they are difficult to comprehend in human terms, like the space between planets or galaxies. 🪐",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "shoes.heel_height",
+   "name": "Women's Shoes Heel Height",
+   "domain": "shoes",
+   "derived_from": "general.height",
+   "provenance": "converted from 'Women’s Shoes Heels Height 270f9c7bde738057b2b6dd1caf914ea5.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Flats",
+      "No Heel"
+     ],
+     "adjectives": [
+      "ground-level"
+     ],
+     "nuance": "The baseline of zero elevation. The foot is flat on the ground. This is the domain of comfortable *rasteirinhas* (sandals), perfect for a casual Tuesday morning walk to a juice bar here in Rio.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Kitten Heel"
+     ],
+     "adjectives": [
+      "kitten-height"
+     ],
+     "nuance": "A very low, slender heel (typically 1.5 - 2 inches / 4-5 cm). It provides a touch of elegance and formality without the difficulty of a true high heel, offering a slight lift.",
+     "anchors": [
+      "1.5 - 2 inches",
+      "4-5 cm"
+     ]
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Low Heel",
+      "Block Heel"
+     ],
+     "adjectives": [
+      "low"
+     ],
+     "nuance": "A comfortable and practical heel (around 2 - 2.5 inches / 5-6.5 cm). Often thicker, like a **block heel**, it provides stability for all-day wear, from the office to happy hour. 👠",
+     "anchors": [
+      "2 - 2.5 inches",
+      "5-6.5 cm"
+     ]
+    },
+    {
+     "rank": 4,
+     "zone": "neutral",
+     "phrases": [
+      "Mid-Heel",
+      "Classic Pump"
+     ],
+     "adjectives": [
+      "mid-height"
+     ],
+     "nuance": "The versatile sweet spot (around 3 inches / 7.5 cm). This is the quintessential \"business heel\" or \"cocktail heel\"—high enough to be elegant and confident, but still manageable for most wearers for several hours of socializing or work.",
+     "anchors": [
+      "3 inches",
+      "7.5 cm"
+     ]
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "High Heel",
+      "Stiletto"
+     ],
+     "adjectives": [
+      "high"
+     ],
+     "nuance": "The iconic high heel (around 4 inches / 10 cm) that dramatically alters posture, creating a pronounced arch and a powerful silhouette. The **\"stiletto\"** is specifically defined by its thin, sharp heel, perfect for a special night out.",
+     "anchors": [
+      "10 cm",
+      "4 inches"
+     ]
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Sky-High Heel"
+     ],
+     "adjectives": [
+      "sky-high"
+     ],
+     "nuance": "A very challenging height (5+ inches / 12.5+ cm). These heels make a dramatic statement and are often paired with a hidden platform to make them wearable. Walking is a deliberate act that commands attention.",
+     "anchors": [
+      "12.5+ cm",
+      "5+ inches"
+     ]
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Extreme Heel",
+      "Ballet Heel"
+     ],
+     "adjectives": [
+      "extreme",
+      "sky-high"
+     ],
+     "nuance": "The conceptual limit (6+ inches / 15+ cm, often without a platform). A heel so high it forces the foot into an extreme, almost vertical arch, similar to a ballet dancer's en pointe position. These are typically for photoshoots or elite performers, like the incredible *passistas* (samba dancers) who master their footwear for Carnaval. ✨",
+     "anchors": [
+      "15+ cm",
+      "6+ inches"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shoes.platform_height",
+   "name": "Women's Shoes Platform Height",
+   "domain": "shoes",
+   "derived_from": "general.height",
+   "provenance": "converted from 'Women’s Shoes Platform Height 270f9c7bde738013b3c9f2b963a8fbe4.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Flats",
+      "Zero-Drop"
+     ],
+     "adjectives": [
+      "ground-flush"
+     ],
+     "nuance": "The absolute absence of a platform. The foot is parallel to the ground, offering a natural feel. This is the essence of the classic *sapatilhas* (ballet flats) or the Havaianas flip-flops you see everywhere here in Rio.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Slight Lift",
+      "Demi-Platform"
+     ],
+     "adjectives": [
+      "subtly lifted"
+     ],
+     "nuance": "A subtle, often hidden lift within the sole. It provides a hint of height (typically under 1 inch / 2.5 cm) without the obvious look of a platform, focusing on a slight posture enhancement.",
+     "anchors": [
+      "1 inch",
+      "2.5 cm"
+     ]
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Flatform"
+     ],
+     "adjectives": [
+      "flatform"
+     ],
+     "nuance": "A low, uniform platform that runs the entire length of the shoe. It gives a modest, comfortable height boost while maintaining the easy-walking angle of a flat shoe. 👟",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "neutral",
+     "phrases": [
+      "Standard Platform",
+      "Classic Wedge"
+     ],
+     "adjectives": [
+      "standard"
+     ],
+     "nuance": "The go-to, everyday platform height (around 2-3 inches / 5-7.5 cm). It's noticeable, stylish, and provides a comfortable lift that's perfect for walking from the shops in Ipanema to a café. This is the versatile sweet spot.",
+     "anchors": [
+      "2-3 inches",
+      "5-7.5 cm"
+     ]
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "Chunky Platform",
+      "Statement Heel"
+     ],
+     "adjectives": [
+      "chunky"
+     ],
+     "nuance": "A bold, substantial platform that makes a clear fashion statement. The height is significant (around 3-5 inches / 7.5-12.5 cm) and commands attention, popular for a night out in Lapa or in the trendy boutiques of Leblon.",
+     "anchors": [
+      "3-5 inches",
+      "7.5-12.5 cm"
+     ]
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Elevated",
+      "Double-Stack Platform"
+     ],
+     "adjectives": [
+      "massive"
+     ],
+     "nuance": "A very high platform that dramatically alters stature and silhouette. Walking requires more care and balance. This is high-fashion territory, meant for making an entrance.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Sky-High",
+      "Runway Platform"
+     ],
+     "adjectives": [
+      "extremely towering",
+      "colossal mega"
+     ],
+     "nuance": "The conceptual extreme (6+ inches / 15+ cm). A platform so high it's often architectural, theatrical, and impractical for anything but performance. This is the magnitude you'd see on the incredible performers in the Sambadrome during Carnaval. 💃",
+     "anchors": [
+      "15+ cm",
+      "6+ inches"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "general.height",
+   "name": "General Scale of Height",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Height 26cf9c7bde7380129c69d32006e1c443.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Flat",
+      "Ground-level"
+     ],
+     "adjectives": [
+      "Flat",
+      "Ground-level"
+     ],
+     "nuance": "The lowest possible height, barely rising from a surface.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Low-profile",
+      "Low-lying"
+     ],
+     "adjectives": [
+      "Low-profile",
+      "Low-lying"
+     ],
+     "nuance": "Describes something that is intentionally short or sits close to the ground, often implying sleekness or unobtrusiveness.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Stunted",
+      "Dwarfed"
+     ],
+     "adjectives": [
+      "Stunted",
+      "Dwarfed"
+     ],
+     "nuance": "Implies that something is shorter than it should be, its growth held back. Excellent for comparison.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Short",
+      "Low"
+     ],
+     "adjectives": [
+      "Short",
+      "Low"
+     ],
+     "nuance": "The neutral, baseline words for being on the shorter side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Average Height",
+      "Mid-height"
+     ],
+     "adjectives": [
+      "Average Height",
+      "Mid-height"
+     ],
+     "nuance": "The center point for establishing a normal height.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Tall"
+     ],
+     "adjectives": [
+      "Tall"
+     ],
+     "nuance": "The neutral, baseline word for being on the taller side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "High",
+      "Elevated"
+     ],
+     "adjectives": [
+      "High",
+      "Elevated"
+     ],
+     "nuance": "Focuses more on position than stature. It means being positioned far above the ground.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Towering",
+      "Soaring"
+     ],
+     "adjectives": [
+      "Towering",
+      "Soaring"
+     ],
+     "nuance": "Conveys a sense of dominance and grandeur. The object extends impressively high, drawing the eye upward.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Lofty",
+      "Skyscraping"
+     ],
+     "adjectives": [
+      "Lofty",
+      "Skyscraping"
+     ],
+     "nuance": "The upper limit of height. \"Lofty\" suggests a noble or imposing height, while \"skyscraping\" is a modern term for structures that seem to touch the sky.",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.intensity",
+   "name": "General Scale of Intensity",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Intensity 26cf9c7bde7380ad853fdfad35279b97.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Imperceptible",
+      "Negligible"
+     ],
+     "adjectives": [
+      "Imperceptible",
+      "Negligible"
+     ],
+     "nuance": "The absolute lowest level. An intensity so faint it's undetectable or irrelevant.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Subtle",
+      "Faint",
+      "Hint of"
+     ],
+     "adjectives": [
+      "Subtle",
+      "Faint",
+      "Hint of"
+     ],
+     "nuance": "Barely detectable. Perfect for describing a delicate flavor, a quiet sound, or a slight emotion.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Mild",
+      "Gentle",
+      "Tame"
+     ],
+     "adjectives": [
+      "Mild",
+      "Gentle",
+      "Tame"
+     ],
+     "nuance": "A low, pleasant, and controlled level of intensity. Not harsh or jarring.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Subdued",
+      "Muted"
+     ],
+     "adjectives": [
+      "Subdued",
+      "Muted"
+     ],
+     "nuance": "Implies the intensity has been deliberately lessened or is naturally quiet. Often used for colors, light, or sound.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Moderate",
+      "Medium",
+      "Average"
+     ],
+     "adjectives": [
+      "Moderate",
+      "Medium",
+      "Average"
+     ],
+     "nuance": "The balanced center point. The standard level against which others are measured.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Steady",
+      "Firm"
+     ],
+     "adjectives": [
+      "Steady",
+      "Firm"
+     ],
+     "nuance": "A consistent and noticeable intensity that doesn't waver.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Strong",
+      "Potent"
+     ],
+     "adjectives": [
+      "Strong",
+      "Potent"
+     ],
+     "nuance": "The baseline for high intensity. Clearly powerful and effective.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Intense",
+      "Acute"
+     ],
+     "adjectives": [
+      "Intense",
+      "Acute"
+     ],
+     "nuance": "A very high level of intensity that commands attention. \"Acute\" is excellent for describing sharp, sudden sensations or emotions.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Severe",
+      "Extreme"
+     ],
+     "adjectives": [
+      "Severe",
+      "Extreme"
+     ],
+     "nuance": "A powerful intensity, often with a negative or serious connotation (e.g., \"a severe storm,\" \"extreme pressure\").",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Overwhelming",
+      "All-Consuming"
+     ],
+     "adjectives": [
+      "Overwhelming",
+      "All-Consuming"
+     ],
+     "nuance": "An intensity so powerful it dominates everything else, affecting all senses or thoughts.",
+     "anchors": []
+    },
+    {
+     "rank": 11,
+     "zone": "high",
+     "phrases": [
+      "Explosive",
+      "Volcanic"
+     ],
+     "adjectives": [
+      "Explosive",
+      "Volcanic"
+     ],
+     "nuance": "The absolute peak. Describes a sudden, violent, and dramatic release of force, energy, or emotion.",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.length",
+   "name": "General Scale of Length",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Length 26cf9c7bde73800aa184d404a5ecedfc.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Truncated",
+      "Stubby"
+     ],
+     "adjectives": [
+      "Truncated",
+      "Stubby"
+     ],
+     "nuance": "Describes something that has been abruptly cut short or is stout and thick for its length. \"Truncated\" implies an incomplete form, while \"stubby\" suggests a naturally short, thick shape.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Abbreviated",
+      "Condensed"
+     ],
+     "adjectives": [
+      "Abbreviated",
+      "Condensed"
+     ],
+     "nuance": "Specifically implies that a longer original has been shortened for efficiency. Excellent for describing text, routes, or processes that have been made more direct.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Brief",
+      "Fleeting"
+     ],
+     "adjectives": [
+      "Brief",
+      "Fleeting"
+     ],
+     "nuance": "While often used for time, these words can describe a physical length that is passed over quickly or is very limited in its extent (e.g., \"a brief, thin scar\").",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Short",
+      "Compact"
+     ],
+     "adjectives": [
+      "Short",
+      "Compact"
+     ],
+     "nuance": "The neutral, baseline words for being on the shorter side of average. **\"Compact\"** suggests the shortness is designed for neatness and efficiency.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Average Length",
+      "Medium Length"
+     ],
+     "adjectives": [
+      "Average Length",
+      "Medium Length"
+     ],
+     "nuance": "The center point. Use these words to establish a normal baseline for comparison in your prompt.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Elongated",
+      "Extended"
+     ],
+     "adjectives": [
+      "Elongated",
+      "Extended"
+     ],
+     "nuance": "Implies being stretched or made longer than is typical for that object. **\"Elongated\"** often results in a slender or graceful form, while **\"extended\"** suggests something has been actively pulled out to its full length.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Long"
+     ],
+     "adjectives": [
+      "Long"
+     ],
+     "nuance": "The neutral, baseline word for being on the longer side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Lengthy"
+     ],
+     "adjectives": [
+      "Lengthy"
+     ],
+     "nuance": "A more formal or emphatic way to say long. It often implies that the length is significant and takes time to traverse or get through (e.g., \"a lengthy report,\" \"a lengthy corridor\").",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Extensive",
+      "Sprawling"
+     ],
+     "adjectives": [
+      "Extensive",
+      "Sprawling"
+     ],
+     "nuance": "Describes length that also covers a significant distance or area. **\"Extensive\"** is perfect for networks, coastlines, or systems. **\"Sprawling\"** suggests a length that spreads out, often in a less organized way.",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Interminable",
+      "Endless"
+     ],
+     "adjectives": [
+      "Interminable",
+      "Endless"
+     ],
+     "nuance": "The upper limit. Describes a length so great it feels as if it will never end. Conveys a sense of immense scale, exhaustion, or boundlessness (e.g., \"an endless highway stretching to the horizon\").",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.magnitude",
+   "name": "General Scale of Magnitude",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Magnitude 26cf9c7bde7380a4a5c9decd847d7215.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Inconsequential",
+      "Negligible",
+      "Trivial"
+     ],
+     "adjectives": [
+      "Inconsequential",
+      "Negligible",
+      "Trivial"
+     ],
+     "nuance": "The absolute lowest level of importance or effect. This describes an impact so small that it can be safely ignored or disregarded without any meaningful consequence.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Minor",
+      "Slight",
+      "Minimal"
+     ],
+     "adjectives": [
+      "Minor",
+      "Slight",
+      "Minimal"
+     ],
+     "nuance": "A small, barely noticeable impact. While it technically exists, it doesn't significantly alter the overall situation or outcome. Think of a minor delay or a slight change in plans.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Modest",
+      "Moderate"
+     ],
+     "adjectives": [
+      "Modest",
+      "Moderate"
+     ],
+     "nuance": "The baseline for the lower end. A noticeable but contained impact that doesn't cause major changes. It's an effect that is recognized but not considered large.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "neutral",
+     "phrases": [
+      "Standard",
+      "Average",
+      "Typical"
+     ],
+     "adjectives": [
+      "Standard",
+      "Average",
+      "Typical"
+     ],
+     "nuance": "The center point. This represents a normal or expected level of impact or importance for a given event. It is the baseline against which other magnitudes are measured.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "Significant",
+      "Considerable",
+      "Substantial"
+     ],
+     "adjectives": [
+      "Significant",
+      "Considerable",
+      "Substantial"
+     ],
+     "nuance": "The first step into high importance. An impact that is large enough to matter and requires serious attention. **\"Significant\"** is the key word for this level, indicating a meaningful shift.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Major",
+      "Profound"
+     ],
+     "adjectives": [
+      "Major",
+      "Profound"
+     ],
+     "nuance": "A large-scale impact with far-reaching consequences. **\"Profound\"** suggests an effect that is not just large, but also deep, meaningful, and often emotional or intellectual (e.g., \"a profound discovery\").",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Immense",
+      "Massive"
+     ],
+     "adjectives": [
+      "Immense",
+      "Massive"
+     ],
+     "nuance": "Borrows from the scale of size to describe an impact of overwhelming force or scale. This implies a magnitude that affects a very large area or a great number of people.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Monumental",
+      "Seismic",
+      "Epochal"
+     ],
+     "adjectives": [
+      "Monumental",
+      "Seismic",
+      "Epochal"
+     ],
+     "nuance": "The conceptual extreme. An event or impact so large that it is history-defining. **\"Monumental\"** suggests a lasting and important legacy. **\"Seismic\"** implies a shock that fundamentally shakes the foundations of a system. **\"Epochal\"** describes something that defines an entire era. 🌋",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.openness",
+   "name": "General Scale of Openness",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Openess 26cf9c7bde7380e8a61ff73ee17566e5.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Hermetically Sealed",
+      "Airtight",
+      "Impenetrable"
+     ],
+     "adjectives": [
+      "Hermetically Sealed",
+      "Airtight",
+      "Impenetrable"
+     ],
+     "nuance": "The absolute limit of being closed. Implies a perfect, unbreakable seal that nothing—not even air—can get through. Think of a vacuum-sealed container or a submarine hatch. 🔒",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Encapsulated",
+      "Walled-off",
+      "Boxed-in"
+     ],
+     "adjectives": [
+      "Encapsulated",
+      "Walled-off",
+      "Boxed-in"
+     ],
+     "nuance": "Completely enclosed on all sides. Conveys a sense of being fully contained or trapped within clear, solid boundaries, like being inside a sealed room or a capsule.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Confined",
+      "Cramped"
+     ],
+     "adjectives": [
+      "Confined",
+      "Cramped"
+     ],
+     "nuance": "Describes a space that is not only enclosed but also uncomfortably small. This implies a restriction of movement and a feeling of being crowded.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Sheltered",
+      "Shielded",
+      "Secluded"
+     ],
+     "adjectives": [
+      "Sheltered",
+      "Shielded",
+      "Secluded"
+     ],
+     "nuance": "More about being protected from the outside than being trapped. This describes a space that is private, quiet, and set apart from its surroundings, like a hidden cove or a walled garden.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Defined",
+      "Semi-private"
+     ],
+     "adjectives": [
+      "Defined",
+      "Semi-private"
+     ],
+     "nuance": "The center point. This is a space with clear boundaries that establish its function without causing confinement. Think of a standard room, a fenced-in yard, or a restaurant booth.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Accessible",
+      "Unenclosed",
+      "Open-plan"
+     ],
+     "adjectives": [
+      "Accessible",
+      "Unenclosed",
+      "Open-plan"
+     ],
+     "nuance": "The baseline for openness. Describes a space with few or no internal barriers, encouraging easy movement and interaction. **\"Open-plan\"** is a key term in modern architecture.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Exposed",
+      "Uncovered"
+     ],
+     "adjectives": [
+      "Exposed",
+      "Uncovered"
+     ],
+     "nuance": "Implies a lack of protection from the elements or from view. The space is completely open to its environment, like an unsheltered hilltop or an open-air stage.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Spacious",
+      "Expansive",
+      "Wide-open"
+     ],
+     "adjectives": [
+      "Spacious",
+      "Expansive",
+      "Wide-open"
+     ],
+     "nuance": "Conveys a feeling of great size, freedom, and possibility. The area is not just open but also large in scale, with plenty of room to move. Think of a vast prairie or an enormous warehouse.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Boundless",
+      "Limitless",
+      "Infinite"
+     ],
+     "adjectives": [
+      "Boundless",
+      "Limitless",
+      "Infinite"
+     ],
+     "nuance": "The conceptual extreme. Describes an openness with no discernible boundaries or end. This applies to landscapes that seem to stretch on forever, like the open ocean, a vast desert, or the sky. 🌌",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.prominence",
+   "name": "General Scale of Prominence",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Prominence 26cf9c7bde738040b22fc6c85b89aed6.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Obscure",
+      "Hidden",
+      "Unseen"
+     ],
+     "adjectives": [
+      "Obscure",
+      "Hidden",
+      "Unseen"
+     ],
+     "nuance": "The absolute lowest level of prominence. This describes something that is completely unknown, forgotten, or concealed from view. It exists outside of public awareness.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Inconspicuous",
+      "Unnoticeable",
+      "Understated"
+     ],
+     "adjectives": [
+      "Inconspicuous",
+      "Unnoticeable",
+      "Understated"
+     ],
+     "nuance": "Describes something that is present but intentionally blends in with its surroundings. It's designed *not* to attract attention, prioritizing subtlety and discretion.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Background",
+      "Secondary",
+      "Peripheral"
+     ],
+     "adjectives": [
+      "Background",
+      "Secondary",
+      "Peripheral"
+     ],
+     "nuance": "Describes a feature that is visible but is clearly not the main focus. It exists on the sidelines, playing a supporting role to more important elements in the scene.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "neutral",
+     "phrases": [
+      "Standard Feature",
+      "Part of the Scenery"
+     ],
+     "adjectives": [
+      "Standard Feature",
+      "Part of the Scenery"
+     ],
+     "nuance": "The center point. A feature that is present and visible but is neither a standout focal point nor intentionally hidden. It's just an expected part of the environment.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "Noticeable",
+      "Distinct",
+      "Eye-catching"
+     ],
+     "adjectives": [
+      "Noticeable",
+      "Distinct",
+      "Eye-catching"
+     ],
+     "nuance": "The first step into high prominence. An element that is different enough from its surroundings to attract a second glance and be easily identified.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Prominent",
+      "Standout",
+      "Focal Point"
+     ],
+     "adjectives": [
+      "Prominent",
+      "Standout",
+      "Focal Point"
+     ],
+     "nuance": "A key feature that immediately draws and holds the viewer's attention. The eye naturally goes to it first. This is the main subject of a scene or discussion.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Renowned",
+      "Celebrated",
+      "Preeminent"
+     ],
+     "adjectives": [
+      "Renowned",
+      "Celebrated",
+      "Preeminent"
+     ],
+     "nuance": "Applies prominence to people, places, or things that are widely known, respected, and acclaimed within a specific field. **\"Preeminent\"** suggests being the most outstanding or superior among all others.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Iconic",
+      "Legendary",
+      "Landmark"
+     ],
+     "adjectives": [
+      "Iconic",
+      "Legendary",
+      "Landmark"
+     ],
+     "nuance": "The conceptual extreme. A level of prominence so great that the person, place, or thing has become a powerful symbol. **\"Landmark\"** is used for defining physical locations (like Christ the Redeemer here in Rio), while **\"iconic\"** and **\"legendary\"** describe a status that is instantly recognizable and culturally significant. 🏆",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.size",
+   "name": "General Scale of Size",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Size 278f9c7bde73804294a6fc093fcd621f.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Subatomic",
+      "Quantum"
+     ],
+     "adjectives": [
+      "Subatomic",
+      "Quantum"
+     ],
+     "nuance": "The theoretical limit of smallness, existing on a scale smaller than an atom. This is the realm of physics, unseeable by any conventional means.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Microscopic",
+      "Infinitesimal"
+     ],
+     "adjectives": [
+      "Microscopic",
+      "Infinitesimal"
+     ],
+     "nuance": "So small that it requires a microscope to be seen. This is the scale of cells, bacteria, and other microorganisms.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Speck",
+      "Mote",
+      "Pinpoint"
+     ],
+     "adjectives": [
+      "Speck",
+      "Mote",
+      "Pinpoint"
+     ],
+     "nuance": "Describes a size at the very edge of unaided human vision, like a mote of dust floating in a sunbeam or a distant star in the night sky over Rio.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Tiny",
+      "Minuscule"
+     ],
+     "adjectives": [
+      "Tiny",
+      "Minuscule"
+     ],
+     "nuance": "The classic words for something that is clearly visible but extremely small, like a single grain of sand.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "low",
+     "phrases": [
+      "Miniature",
+      "Pocket-sized"
+     ],
+     "adjectives": [
+      "Miniature",
+      "Pocket-sized"
+     ],
+     "nuance": "Specifically describes a small version of something that is normally larger, like a miniature replica of a Sugarloaf Mountain cable car.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "low",
+     "phrases": [
+      "Compact",
+      "Petite"
+     ],
+     "adjectives": [
+      "Compact",
+      "Petite"
+     ],
+     "nuance": "Implies that something is small in a neat, efficient, or delicate way. **\"Petite\"** is often used to describe a living thing that is small and well-proportioned.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "neutral",
+     "phrases": [
+      "Average",
+      "Medium-sized",
+      "Standard"
+     ],
+     "adjectives": [
+      "Average",
+      "Medium-sized",
+      "Standard"
+     ],
+     "nuance": "The center point. This is the normal, expected size against which all other scales are judged.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Substantial",
+      "Sizable"
+     ],
+     "adjectives": [
+      "Substantial",
+      "Sizable"
+     ],
+     "nuance": "The first step up from average. Noticeably larger than normal, implying a certain weight or significance.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Large",
+      "Big"
+     ],
+     "adjectives": [
+      "Large",
+      "Big"
+     ],
+     "nuance": "The neutral, baseline words for being on the larger side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Grand",
+      "Oversized",
+      "Imposing"
+     ],
+     "adjectives": [
+      "Grand",
+      "Oversized",
+      "Imposing"
+     ],
+     "nuance": "Describes something that is not just large, but also impressive, often larger than its typical form. An **\"imposing\"** object commands attention.",
+     "anchors": []
+    },
+    {
+     "rank": 11,
+     "zone": "high",
+     "phrases": [
+      "Huge",
+      "Enormous",
+      "Massive"
+     ],
+     "adjectives": [
+      "Huge",
+      "Enormous",
+      "Massive"
+     ],
+     "nuance": "The first major step into being \"very large.\" **\"Massive\"** uniquely conveys not just great size but also immense weight and solidity, like the massive granite monolith of Sugarloaf Mountain itself.",
+     "anchors": []
+    },
+    {
+     "rank": 12,
+     "zone": "high",
+     "phrases": [
+      "Gigantic",
+      "Gargantuan"
+     ],
+     "adjectives": [
+      "Gigantic",
+      "Gargantuan"
+     ],
+     "nuance": "Classic \"giant\" words that evoke a sense of mythical or prehistoric size, perfect for describing enormous creatures or objects.",
+     "anchors": []
+    },
+    {
+     "rank": 13,
+     "zone": "high",
+     "phrases": [
+      "Colossal",
+      "Monumental"
+     ],
+     "adjectives": [
+      "Colossal",
+      "Monumental"
+     ],
+     "nuance": "Describes something of an epic, architectural scale, often built to inspire awe. The *Cristo Redentor* statue is a perfect example of a **monumental**, **colossal** figure watching over the city on this late Tuesday night.",
+     "anchors": []
+    },
+    {
+     "rank": 14,
+     "zone": "high",
+     "phrases": [
+      "Vast",
+      "Immense",
+      "Astronomical"
+     ],
+     "adjectives": [
+      "Vast",
+      "Immense",
+      "Astronomical"
+     ],
+     "nuance": "The upper limit. These words describe a scale so great it's difficult to measure or comprehend, like the **vast** expanse of Guanabara Bay or the **immense**, star-filled cosmos above. 🌌",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.smoothness",
+   "name": "General Scale of Smoothness",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Smoothness 293f9c7bde738060b786c1be37d0b665.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Abrasive",
+      "Jagged",
+      "Barbed"
+     ],
+     "adjectives": [
+      "Abrasive",
+      "Jagged",
+      "Barbed"
+     ],
+     "nuance": "The absolute peak of roughness. A surface that is actively harsh, sharp, and would cause damage or pain on contact. Think of a serrated edge, a thorny bush, or the sharp, broken rocks at the base of a cliff.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Coarse",
+      "Craggy",
+      "Gnarled"
+     ],
+     "adjectives": [
+      "Coarse",
+      "Craggy",
+      "Gnarled"
+     ],
+     "nuance": "Extremely uneven and rough, but not necessarily sharp. Conveys a sense of rugged, deep texture. This is the feel of the natural, weathered granite face of Sugarloaf Mountain.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Rough",
+      "Bumpy",
+      "Textured"
+     ],
+     "adjectives": [
+      "Rough",
+      "Bumpy",
+      "Textured"
+     ],
+     "nuance": "Clearly uneven to the touch and eye. Provides significant friction and tactile feedback. The historic cobblestone streets (*paralelepípedos*) of Santa Teresa are a perfect example of this.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Matte",
+      "Brushed",
+      "Fine-Grained"
+     ],
+     "adjectives": [
+      "Matte",
+      "Brushed",
+      "Fine-Grained"
+     ],
+     "nuance": "A subtle, non-reflective texture. This surface has a very slight \"tooth\" or grain. It's the opposite of glossy, like the feel of unglazed pottery, a sheet of high-quality drawing paper, or the surface of brushed metal.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Standard Finish",
+      "Unpolished"
+     ],
+     "adjectives": [
+      "Standard Finish",
+      "Unpolished"
+     ],
+     "nuance": "The center point. The surface feels generally smooth to a casual touch but lacks a specific refined quality. This is the texture of a standard painted wall, a piece of copy paper, or a simple, unvarnished wooden table.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Smooth",
+      "Even"
+     ],
+     "adjectives": [
+      "Smooth",
+      "Even"
+     ],
+     "nuance": "The baseline for smoothness. A pleasant, continuous surface with no noticeable bumps, grit, or interruptions.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Silky",
+      "Satin",
+      "Sleek"
+     ],
+     "adjectives": [
+      "Silky",
+      "Satin",
+      "Sleek"
+     ],
+     "nuance": "A superior, luxurious smoothness. **\"Silky\"** and **\"satin\"** are soft and flow over the skin, like fine fabric. **\"Sleek\"** implies a streamlined, aerodynamic smoothness, like the hull of a racing boat.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Polished",
+      "Glossy",
+      "Lustrous"
+     ],
+     "adjectives": [
+      "Polished",
+      "Glossy",
+      "Lustrous"
+     ],
+     "nuance": "A highly refined smoothness that reflects light. **\"Polished\"** implies active buffing (like polished marble), while **\"glossy\"** refers to a high-shine coating (like a glossy photograph).",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Glassy",
+      "Mirror-like",
+      "Frictionless"
+     ],
+     "adjectives": [
+      "Glassy",
+      "Mirror-like",
+      "Frictionless"
+     ],
+     "nuance": "The conceptual extreme. A perfect, flawless surface with no discernible texture. It's so smooth that it offers almost no resistance and reflects images perfectly, like the still surface of the Rodrigo de Freitas Lagoon on a windless night.",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.temperature",
+   "name": "General Scale of Temperature",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Temperature 26cf9c7bde7380cca92cf4e40be39b3b.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Frigid",
+      "Glacial",
+      "Arctic"
+     ],
+     "adjectives": [
+      "Frigid",
+      "Glacial",
+      "Arctic"
+     ],
+     "nuance": "The absolute limit of cold. Describes a dangerously low temperature associated with deep ice and polar regions. **\"Frigid\"** is a powerful general term, while **\"glacial\"** and **\"arctic\"** provide specific, vivid imagery. 🥶",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Freezing",
+      "Icy"
+     ],
+     "adjectives": [
+      "Freezing",
+      "Icy"
+     ],
+     "nuance": "Specifically describes conditions at or below the freezing point of water (0∘C or 32∘F). **\"Icy\"** implies a surface covered in ice, while **\"freezing\"** describes the overall thermal state.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Wintry",
+      "Frosty"
+     ],
+     "adjectives": [
+      "Wintry",
+      "Frosty"
+     ],
+     "nuance": "Evokes the feeling of a classic winter's day. **\"Wintry\"** is about the general atmosphere (e.g., \"wintry mix\"), while **\"frosty\"** points to the specific presence of frost on surfaces.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Chilly",
+      "Crisp"
+     ],
+     "adjectives": [
+      "Chilly",
+      "Crisp"
+     ],
+     "nuance": "Noticeably cold. **\"Chilly\"** often implies a damp, unpleasant cold that makes you shiver. **\"Crisp,\"** however, describes a cold that feels clean, dry, and invigorating.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "low",
+     "phrases": [
+      "Cool"
+     ],
+     "adjectives": [
+      "Cool"
+     ],
+     "nuance": "The neutral, baseline word for being on the colder side of average. It's often pleasant and refreshing.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "neutral",
+     "phrases": [
+      "Tepid",
+      "Lukewarm"
+     ],
+     "adjectives": [
+      "Tepid",
+      "Lukewarm"
+     ],
+     "nuance": "Neither hot nor cold, almost exclusively used for liquids. Both can have a slightly negative connotation of being unpleasantly in-between.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "neutral",
+     "phrases": [
+      "Room Temperature",
+      "Temperate",
+      "Mild"
+     ],
+     "adjectives": [
+      "Room Temperature",
+      "Temperate",
+      "Mild"
+     ],
+     "nuance": "The comfortable center point. **\"Room temperature\"** is a specific baseline. **\"Temperate\"** and **\"mild\"** describe pleasant, moderate weather conditions that are considered ideal. 😎",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Warm"
+     ],
+     "adjectives": [
+      "Warm"
+     ],
+     "nuance": "The neutral, baseline word for being on the hotter side of average. It's typically pleasant and comfortable.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Heated",
+      "Hot"
+     ],
+     "adjectives": [
+      "Heated",
+      "Hot"
+     ],
+     "nuance": "The standard words for a high temperature. **\"Heated\"** specifically implies the temperature was raised by an external source (e.g., \"a heated pool\").",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Sweltering",
+      "Sultry"
+     ],
+     "adjectives": [
+      "Sweltering",
+      "Sultry"
+     ],
+     "nuance": "Describes oppressive heat, almost always combined with high humidity, making the air feel heavy, sticky, and difficult to breathe.",
+     "anchors": []
+    },
+    {
+     "rank": 11,
+     "zone": "high",
+     "phrases": [
+      "Boiling",
+      "Tropical"
+     ],
+     "adjectives": [
+      "Boiling",
+      "Tropical"
+     ],
+     "nuance": "A very high level of heat. **\"Boiling\"** is a reference to the state change of water, often used hyperbolically for extreme heat. **\"Tropical\"** connects the heat to the climate of regions near the equator.",
+     "anchors": []
+    },
+    {
+     "rank": 12,
+     "zone": "high",
+     "phrases": [
+      "Scorching",
+      "Searing",
+      "Blistering"
+     ],
+     "adjectives": [
+      "Scorching",
+      "Searing",
+      "Blistering"
+     ],
+     "nuance": "The upper limit of physical heat. This is a painful, damaging heat that burns. **\"Scorching\"** and **\"searing\"** suggest direct burning contact, while **\"blistering\"** implies heat so intense it could raise blisters on the skin.",
+     "anchors": []
+    },
+    {
+     "rank": 13,
+     "zone": "high",
+     "phrases": [
+      "Infernal",
+      "Incendiary"
+     ],
+     "adjectives": [
+      "Infernal",
+      "Incendiary"
+     ],
+     "nuance": "The conceptual extreme. **\"Infernal\"** likens the heat to a mythical hell, conveying an oppressive and inescapable quality. **\"Incendiary\"** describes heat so extreme it is capable of causing fire. 🔥",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.volume",
+   "name": "General Scale of Volume",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Volume 26cf9c7bde7380a387bdfc8ee2b9c54a.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Void",
+      "Vacuum",
+      "Devoid"
+     ],
+     "adjectives": [
+      "Void",
+      "Vacuum",
+      "Devoid"
+     ],
+     "nuance": "The absolute limit of emptiness. Describes a space containing nothing at all. **\"Void\"** and **\"vacuum\"** are conceptual and scientific terms, while **\"devoid\"** is used to emphasize what is missing (e.g., \"a landscape devoid of life\").",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Hollow",
+      "Vacant"
+     ],
+     "adjectives": [
+      "Hollow",
+      "Vacant"
+     ],
+     "nuance": "Describes an object or space that lacks substance or an occupant on the inside. **\"Hollow\"** refers to objects (a hollow tree), while **\"vacant\"** refers to spaces meant for occupation (a vacant apartment).",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Sparse",
+      "Scant"
+     ],
+     "adjectives": [
+      "Sparse",
+      "Scant"
+     ],
+     "nuance": "Implies that there is *some* content, but it's very thin and spread out. The volume is mostly empty space, with only a few items scattered about.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Partially Empty",
+      "Underfilled"
+     ],
+     "adjectives": [
+      "Partially Empty",
+      "Underfilled"
+     ],
+     "nuance": "The neutral, baseline words for being on the emptier side. Clearly indicates that the container is below its intended or full capacity.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Half-Full",
+      "Adequately Filled"
+     ],
+     "adjectives": [
+      "Half-Full",
+      "Adequately Filled"
+     ],
+     "nuance": "The center point. A state of balance that is neither lacking nor excessive. It holds a moderate amount of its total possible volume.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Full",
+      "Filled to Capacity"
+     ],
+     "adjectives": [
+      "Full",
+      "Filled to Capacity"
+     ],
+     "nuance": "The neutral, baseline words for being full. The container holds precisely as much as it is designed to hold without any issue or strain.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Abundant",
+      "Plentiful",
+      "Voluminous"
+     ],
+     "adjectives": [
+      "Abundant",
+      "Plentiful",
+      "Voluminous"
+     ],
+     "nuance": "Suggests a generous or large quantity of content. **\"Voluminous\"** is excellent for describing things that take up a lot of space, often in a flowing or expansive way (e.g., \"voluminous clouds,\" \"a voluminous manuscript\").",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Packed",
+      "Dense",
+      "Teeming"
+     ],
+     "adjectives": [
+      "Packed",
+      "Dense",
+      "Teeming"
+     ],
+     "nuance": "The volume is so full that the contents are tightly compressed. **\"Dense\"** implies heavy content in a small space, while **\"packed\"** and **\"teeming\"** suggest a high number of individual items or living beings (e.g., \"a teeming city\").",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Crammed",
+      "Overstuffed"
+     ],
+     "adjectives": [
+      "Crammed",
+      "Overstuffed"
+     ],
+     "nuance": "Describes a state where more has been forced into the volume than can comfortably fit. This implies pressure, disorganization, and strain on the container's boundaries.",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Overflowing",
+      "Bursting",
+      "Brimming"
+     ],
+     "adjectives": [
+      "Overflowing",
+      "Bursting",
+      "Brimming"
+     ],
+     "nuance": "The conceptual extreme. The volume has exceeded its container's capacity. **\"Brimming\"** suggests being full to the very top edge, while **\"overflowing\"** and **\"bursting\"** imply the contents are actively spilling out or breaking the container. 💥",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.weight",
+   "name": "General Scale of Weight",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Weight 26cf9c7bde7380bf96b2cabe52d9b01b.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Weightless",
+      "Ethereal"
+     ],
+     "adjectives": [
+      "Weightless",
+      "Ethereal"
+     ],
+     "nuance": "The absolute limit. Seemingly having no mass at all. \"Ethereal\" adds a delicate, otherworldly quality.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Feather-light",
+      "Airy"
+     ],
+     "adjectives": [
+      "Feather-light",
+      "Airy"
+     ],
+     "nuance": "Extremely light and delicate, easily moved or lifted.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Flimsy"
+     ],
+     "adjectives": [
+      "Flimsy"
+     ],
+     "nuance": "Light in a way that suggests weakness or poor construction.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Lightweight",
+      "Light"
+     ],
+     "adjectives": [
+      "Lightweight",
+      "Light"
+     ],
+     "nuance": "The neutral, baseline words for being on the lighter side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Medium-weight",
+      "Average Weight"
+     ],
+     "adjectives": [
+      "Medium-weight",
+      "Average Weight"
+     ],
+     "nuance": "The center point for establishing a normal weight.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Hefty",
+      "Substantial"
+     ],
+     "adjectives": [
+      "Hefty",
+      "Substantial"
+     ],
+     "nuance": "The first step into being noticeably heavy, implying solidity and significance.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Heavy"
+     ],
+     "adjectives": [
+      "Heavy"
+     ],
+     "nuance": "The neutral, baseline word for being on the heavier side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Ponderous",
+      "Leaden"
+     ],
+     "adjectives": [
+      "Ponderous",
+      "Leaden"
+     ],
+     "nuance": "Describes a heavy weight that is awkward, slow-moving, and difficult to manage.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Massive",
+      "Dense"
+     ],
+     "adjectives": [
+      "Massive",
+      "Dense"
+     ],
+     "nuance": "Conveys great weight combined with great size and bulk. \"Dense\" is perfect for describing something that is heavy for its size.",
+     "anchors": []
+    },
+    {
+     "rank": 10,
+     "zone": "high",
+     "phrases": [
+      "Burdensome",
+      "Crushing"
+     ],
+     "adjectives": [
+      "Burdensome",
+      "Crushing"
+     ],
+     "nuance": "Describes a weight that is oppressive and difficult to bear, either literally or figuratively.",
+     "anchors": []
+    },
+    {
+     "rank": 11,
+     "zone": "high",
+     "phrases": [
+      "Immovable"
+     ],
+     "adjectives": [
+      "Immovable"
+     ],
+     "nuance": "The conceptual upper limit. A weight so immense that it cannot be moved by any force.",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.width",
+   "name": "General Scale of Width",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'General Scale of Width 26cf9c7bde73808b9d23fa299f45ce84.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Hairline",
+      "Razor-thin"
+     ],
+     "adjectives": [
+      "Hairline",
+      "Razor-thin"
+     ],
+     "nuance": "The absolute limit of narrowness, so thin it's almost a one-dimensional line.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Slender",
+      "Slim"
+     ],
+     "adjectives": [
+      "Slender",
+      "Slim"
+     ],
+     "nuance": "Narrow in a way that is often seen as elegant, graceful, or efficient.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Constricted",
+      "Cramped"
+     ],
+     "adjectives": [
+      "Constricted",
+      "Cramped"
+     ],
+     "nuance": "Implies that the narrowness is restrictive or uncomfortable.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Narrow"
+     ],
+     "adjectives": [
+      "Narrow"
+     ],
+     "nuance": "The neutral, baseline word for being on the thinner side of average.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Standard Width",
+      "Average Width"
+     ],
+     "adjectives": [
+      "Standard Width",
+      "Average Width"
+     ],
+     "nuance": "The center point for establishing a normal width.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Wide",
+      "Broad"
+     ],
+     "adjectives": [
+      "Wide",
+      "Broad"
+     ],
+     "nuance": "The neutral, baseline words for being on the wider side of average. \"Broad\" often suggests a more open, continuous surface (e.g., \"broad shoulders\").",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Roomy",
+      "Spacious"
+     ],
+     "adjectives": [
+      "Roomy",
+      "Spacious"
+     ],
+     "nuance": "Describes an interior width that provides ample space and comfort.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Expansive",
+      "Sprawling"
+     ],
+     "adjectives": [
+      "Expansive",
+      "Sprawling"
+     ],
+     "nuance": "Suggests width that spreads out over a large area, often in a slightly irregular way. Perfect for landscapes or large complexes.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Vast"
+     ],
+     "adjectives": [
+      "Vast"
+     ],
+     "nuance": "The upper limit. Describes a width so great that it feels boundless or is difficult to see across, like an ocean or desert.",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "general.thickness",
+   "name": "Scale of Thickness (Fine-Grained)",
+   "domain": "general",
+   "derived_from": null,
+   "provenance": "converted from 'The Scale of Thickness Words (Fine-Grained) 2aff9c7bde7380ad9cd2d5ddf8bd7d1d.md' (guide_to_dimensions)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "Subatomic",
+      "Microscopic"
+     ],
+     "adjectives": [
+      "Subatomic",
+      "Microscopic"
+     ],
+     "nuance": "The theoretical limit of thinness, existing on a scale smaller than a single cell or even an atom. This dimension is invisible and only measurable by scientific means.",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "Razor-thin",
+      "Wafer-thin",
+      "Film-like"
+     ],
+     "adjectives": [
+      "Razor-thin",
+      "Wafer-thin",
+      "Film-like"
+     ],
+     "nuance": "Extremely thin and delicate, visible but lacking any real mass or substance. Think of a sheet of gold leaf, a layer of transparent film, or a delicate pastry wafer.",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "Slender",
+      "Delicate",
+      "Slight"
+     ],
+     "adjectives": [
+      "Slender",
+      "Delicate",
+      "Slight"
+     ],
+     "nuance": "Describes things that are thin and often graceful or fragile. The thinness is noticeable but not extreme, suggesting elegance rather than sturdiness.",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "low",
+     "phrases": [
+      "Narrow",
+      "Lean"
+     ],
+     "adjectives": [
+      "Narrow",
+      "Lean"
+     ],
+     "nuance": "The final step before reaching average. A straightforward, simple dimension that is clearly below the standard thickness for that object.",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "neutral",
+     "phrases": [
+      "Standard Gauge",
+      "Medium Thickness",
+      "Typical"
+     ],
+     "adjectives": [
+      "Standard Gauge",
+      "Medium Thickness",
+      "Typical"
+     ],
+     "nuance": "The center point. This is the normal, expected dimension, providing adequate strength without being bulky. Think of the thickness of a typical piece of paperboard or a standard door.",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "Substantial",
+      "Wide"
+     ],
+     "adjectives": [
+      "Substantial",
+      "Wide"
+     ],
+     "nuance": "The first step up from average. Noticeably thicker than normal, often implying good quality and importance.",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "Thick",
+      "Chunky",
+      "Robust"
+     ],
+     "adjectives": [
+      "Thick",
+      "Chunky",
+      "Robust"
+     ],
+     "nuance": "The standard description for something thick. Implies solidity, sturdiness, and reliability. **\"Chunky\"** suggests a blocky, obvious thickness.",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "Bulky",
+      "Dense",
+      "Heavy-Gauge"
+     ],
+     "adjectives": [
+      "Bulky",
+      "Dense",
+      "Heavy-Gauge"
+     ],
+     "nuance": "Suggests great mass, weight, and compression due to the thickness. **\"Heavy-gauge\"** is specific to materials like metal or wire, indicating superior structural capacity.",
+     "anchors": []
+    },
+    {
+     "rank": 9,
+     "zone": "high",
+     "phrases": [
+      "Impenetrable",
+      "Monolithic",
+      "Monumental"
+     ],
+     "adjectives": [
+      "Impenetrable",
+      "Monolithic",
+      "Monumental"
+     ],
+     "nuance": "Extreme thickness that suggests defense, immense structural capacity, or unyielding solidity. Think of the **impenetrable**, **monolithic** walls of an ancient fortress or the thick stone defenses of the Forte de Copacabana.",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "shoes.pitch",
+   "name": "Shoe Heel Pitch",
+   "domain": "shoes",
+   "derived_from": "general.height",
+   "provenance": "authored 2026-09-18 from magnitude codex (visual-consistency-engine §4c)",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "flat",
+      "zero incline"
+     ],
+     "adjectives": [
+      "flat",
+      "zero incline"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "minimal incline"
+     ],
+     "adjectives": [
+      "minimal incline"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "low",
+     "phrases": [
+      "gentle, gradual incline"
+     ],
+     "adjectives": [
+      "gentle, gradual incline"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "neutral",
+     "phrases": [
+      "moderate incline"
+     ],
+     "adjectives": [
+      "moderate incline"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "steep incline"
+     ],
+     "adjectives": [
+      "steep incline"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "very steep"
+     ],
+     "adjectives": [
+      "very steep"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "extremely steep"
+     ],
+     "adjectives": [
+      "extremely steep"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 8,
+     "zone": "high",
+     "phrases": [
+      "near-vertical, en pointe"
+     ],
+     "adjectives": [
+      "near-vertical, en pointe"
+     ],
+     "nuance": "",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "shoes.toe_spring",
+   "name": "Shoe Toe Spring",
+   "domain": "shoes",
+   "derived_from": "general.height",
+   "provenance": "authored 2026-09-18 from corpus prompts",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "nearly flat sole"
+     ],
+     "adjectives": [
+      "nearly flat sole"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "subtle toe spring"
+     ],
+     "adjectives": [
+      "subtle toe spring"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "neutral",
+     "phrases": [
+      "gentle toe spring"
+     ],
+     "adjectives": [
+      "gentle toe spring"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "high",
+     "phrases": [
+      "pronounced toe spring"
+     ],
+     "adjectives": [
+      "pronounced toe spring"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "steep toe spring"
+     ],
+     "adjectives": [
+      "steep toe spring"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "extremely steep toe spring"
+     ],
+     "adjectives": [
+      "extremely steep toe spring"
+     ],
+     "nuance": "",
+     "anchors": []
+    }
+   ]
+  },
+  {
+   "id": "shoes.shaft_height",
+   "name": "Boot Shaft Height",
+   "domain": "shoes",
+   "derived_from": "general.height",
+   "provenance": "authored 2026-09-18 from taxonomy template shaft heights",
+   "steps": [
+    {
+     "rank": 1,
+     "zone": "low",
+     "phrases": [
+      "ankle-height",
+      "at the ankle bone"
+     ],
+     "adjectives": [
+      "ankle-height",
+      "at the ankle bone"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 2,
+     "zone": "low",
+     "phrases": [
+      "mid-calf"
+     ],
+     "adjectives": [
+      "mid-calf"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 3,
+     "zone": "neutral",
+     "phrases": [
+      "below-knee"
+     ],
+     "adjectives": [
+      "below-knee"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 4,
+     "zone": "high",
+     "phrases": [
+      "knee-high"
+     ],
+     "adjectives": [
+      "knee-high"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 5,
+     "zone": "high",
+     "phrases": [
+      "over-the-knee"
+     ],
+     "adjectives": [
+      "over-the-knee"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 6,
+     "zone": "high",
+     "phrases": [
+      "thigh-high"
+     ],
+     "adjectives": [
+      "thigh-high"
+     ],
+     "nuance": "",
+     "anchors": []
+    },
+    {
+     "rank": 7,
+     "zone": "high",
+     "phrases": [
+      "crotch-high"
+     ],
+     "adjectives": [
+      "crotch-high"
+     ],
+     "nuance": "",
+     "anchors": []
+    }
+   ]
+  }
+ ]
+}

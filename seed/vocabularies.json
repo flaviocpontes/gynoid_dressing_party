@@ -1,0 +1,3683 @@
+{
+ "vocabularies": [
+  {
+   "id": "upper_family",
+   "name": "Upper Family",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "pump"
+    },
+    {
+     "value": "mary-jane"
+    },
+    {
+     "value": "t-strap"
+    },
+    {
+     "value": "slingback"
+    },
+    {
+     "value": "mule"
+    },
+    {
+     "value": "sandal"
+    },
+    {
+     "value": "loafer"
+    },
+    {
+     "value": "oxford"
+    },
+    {
+     "value": "derby"
+    },
+    {
+     "value": "brogue"
+    },
+    {
+     "value": "clog"
+    },
+    {
+     "value": "boot"
+    },
+    {
+     "value": "bootie"
+    },
+    {
+     "value": "shootie"
+    },
+    {
+     "value": "sneaker"
+    },
+    {
+     "value": "d'orsay"
+    },
+    {
+     "value": "spectator"
+    }
+   ]
+  },
+  {
+   "id": "toe_shape",
+   "name": "Toe Shape",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "sharp-point"
+    },
+    {
+     "value": "standard-point"
+    },
+    {
+     "value": "softened-point"
+    },
+    {
+     "value": "snip-toe"
+    },
+    {
+     "value": "dagger-point"
+    },
+    {
+     "value": "almond"
+    },
+    {
+     "value": "narrow-almond"
+    },
+    {
+     "value": "wide-almond"
+    },
+    {
+     "value": "elongated-almond"
+    },
+    {
+     "value": "round"
+    },
+    {
+     "value": "wide-round"
+    },
+    {
+     "value": "square"
+    },
+    {
+     "value": "softened-square"
+    },
+    {
+     "value": "chisel"
+    },
+    {
+     "value": "moc-toe"
+    },
+    {
+     "value": "tabi-split"
+    },
+    {
+     "value": "peep-toe"
+    },
+    {
+     "value": "open-toe"
+    },
+    {
+     "value": "keyhole-peep-toe"
+    },
+    {
+     "value": "heart-peep-toe"
+    }
+   ]
+  },
+  {
+   "id": "vamp_coverage",
+   "name": "Vamp Coverage",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "full-coverage"
+    },
+    {
+     "value": "high-vamp"
+    },
+    {
+     "value": "extra-high-vamp"
+    },
+    {
+     "value": "mid-vamp"
+    },
+    {
+     "value": "three-quarter-vamp"
+    },
+    {
+     "value": "low-vamp"
+    },
+    {
+     "value": "deep-v-cut"
+    },
+    {
+     "value": "sweetheart-cut"
+    },
+    {
+     "value": "scalloped-cut"
+    },
+    {
+     "value": "cutout-vamp"
+    },
+    {
+     "value": "cage-vamp"
+    },
+    {
+     "value": "lattice-vamp"
+    },
+    {
+     "value": "single-strap"
+    },
+    {
+     "value": "minimal-straps"
+    },
+    {
+     "value": "thong"
+    },
+    {
+     "value": "open-front-slide"
+    }
+   ]
+  },
+  {
+   "id": "fastening",
+   "name": "Fastening",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "slip-on"
+    },
+    {
+     "value": "pull-on"
+    },
+    {
+     "value": "side-zip"
+    },
+    {
+     "value": "back-zip"
+    },
+    {
+     "value": "front-zip"
+    },
+    {
+     "value": "concealed-zip"
+    },
+    {
+     "value": "front-lace-up"
+    },
+    {
+     "value": "side-lace-up"
+    },
+    {
+     "value": "back-lace-up"
+    },
+    {
+     "value": "corset-lace-up"
+    },
+    {
+     "value": "ankle-strap-buckle"
+    },
+    {
+     "value": "mary-jane-strap"
+    },
+    {
+     "value": "t-strap"
+    },
+    {
+     "value": "slingback-strap"
+    },
+    {
+     "value": "slingback-elastic"
+    },
+    {
+     "value": "monk-buckle"
+    },
+    {
+     "value": "double-monk-buckle"
+    },
+    {
+     "value": "elastic-gusset"
+    },
+    {
+     "value": "button-row"
+    },
+    {
+     "value": "toggle"
+    },
+    {
+     "value": "magnetic-closure"
+    },
+    {
+     "value": "hook-and-eye"
+    }
+   ]
+  },
+  {
+   "id": "heel_type",
+   "name": "Heel Type",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "stiletto"
+    },
+    {
+     "value": "italian-stiletto"
+    },
+    {
+     "value": "curved-stiletto"
+    },
+    {
+     "value": "waisted-stiletto"
+    },
+    {
+     "value": "pin-heel"
+    },
+    {
+     "value": "dagger-heel"
+    },
+    {
+     "value": "kitten"
+    },
+    {
+     "value": "setback-kitten"
+    },
+    {
+     "value": "cone"
+    },
+    {
+     "value": "inverted-cone"
+    },
+    {
+     "value": "spool"
+    },
+    {
+     "value": "louis"
+    },
+    {
+     "value": "block"
+    },
+    {
+     "value": "chunky"
+    },
+    {
+     "value": "column"
+    },
+    {
+     "value": "flared"
+    },
+    {
+     "value": "trumpet"
+    },
+    {
+     "value": "comma"
+    },
+    {
+     "value": "banana"
+    },
+    {
+     "value": "blade"
+    },
+    {
+     "value": "dagger-blade"
+    },
+    {
+     "value": "sculpted"
+    },
+    {
+     "value": "architectural"
+    },
+    {
+     "value": "twisted-spiral"
+    },
+    {
+     "value": "geometric-cube"
+    },
+    {
+     "value": "geometric-sphere"
+    },
+    {
+     "value": "stacked-leather"
+    },
+    {
+     "value": "cuban"
+    },
+    {
+     "value": "wedge"
+    },
+    {
+     "value": "cutout-wedge"
+    },
+    {
+     "value": "espadrille-wedge"
+    },
+    {
+     "value": "flatform"
+    },
+    {
+     "value": "lucite"
+    },
+    {
+     "value": "hollow-lucite"
+    },
+    {
+     "value": "metal"
+    },
+    {
+     "value": "leather-wrapped"
+    },
+    {
+     "value": "heel-less"
+    },
+    {
+     "value": "cantilever"
+    },
+    {
+     "value": "ballet-heel"
+    },
+    {
+     "value": "pony-heel"
+    }
+   ]
+  },
+  {
+   "id": "platform_shape",
+   "name": "Platform Shape",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "flat-even"
+    },
+    {
+     "value": "graduated-tapered"
+    },
+    {
+     "value": "reverse-graduated"
+    },
+    {
+     "value": "sculpted-contoured"
+    },
+    {
+     "value": "wave-s-curve"
+    },
+    {
+     "value": "angular-stepped"
+    },
+    {
+     "value": "terraced"
+    },
+    {
+     "value": "faceted"
+    },
+    {
+     "value": "prismatic"
+    },
+    {
+     "value": "split-level"
+    },
+    {
+     "value": "two-tier"
+    },
+    {
+     "value": "convex"
+    },
+    {
+     "value": "concave"
+    },
+    {
+     "value": "barrel"
+    },
+    {
+     "value": "wedge-integrated"
+    },
+    {
+     "value": "sole-integrated"
+    },
+    {
+     "value": "cutout-window"
+    },
+    {
+     "value": "floating"
+    },
+    {
+     "value": "cantilever"
+    },
+    {
+     "value": "asymmetric"
+    }
+   ]
+  },
+  {
+   "id": "platform_edge",
+   "name": "Platform Edge Profile",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "straight-vertical"
+    },
+    {
+     "value": "slightly-beveled"
+    },
+    {
+     "value": "heavily-beveled"
+    },
+    {
+     "value": "rounded"
+    },
+    {
+     "value": "bullnose"
+    },
+    {
+     "value": "stacked-layers"
+    },
+    {
+     "value": "sculpted"
+    },
+    {
+     "value": "wavy"
+    },
+    {
+     "value": "stepped-tiered"
+    },
+    {
+     "value": "concave"
+    },
+    {
+     "value": "convex"
+    },
+    {
+     "value": "faceted"
+    },
+    {
+     "value": "scalloped"
+    },
+    {
+     "value": "channeled"
+    },
+    {
+     "value": "fluted"
+    },
+    {
+     "value": "knife-edge"
+    },
+    {
+     "value": "flared"
+    },
+    {
+     "value": "inverted"
+    }
+   ]
+  },
+  {
+   "id": "primary_material",
+   "name": "Primary Material",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "Full-grain leather"
+    },
+    {
+     "value": "top-grain leather"
+    },
+    {
+     "value": "corrected-grain leather"
+    },
+    {
+     "value": "nappa leather"
+    },
+    {
+     "value": "calfskin"
+    },
+    {
+     "value": "lambskin"
+    },
+    {
+     "value": "kidskin"
+    },
+    {
+     "value": "goatskin"
+    },
+    {
+     "value": "horsehide"
+    },
+    {
+     "value": "cordovan"
+    },
+    {
+     "value": "vegetable-tanned leather"
+    },
+    {
+     "value": "chrome-tanned leather"
+    },
+    {
+     "value": "aniline leather"
+    },
+    {
+     "value": "semi-aniline leather"
+    },
+    {
+     "value": "buffed leather"
+    },
+    {
+     "value": "burnished leather"
+    },
+    {
+     "value": "antiqued leather"
+    },
+    {
+     "value": "hand-stained leather"
+    },
+    {
+     "value": "hand-painted leather"
+    },
+    {
+     "value": "brushed leather"
+    },
+    {
+     "value": "Patent leather"
+    },
+    {
+     "value": "semi-patent"
+    },
+    {
+     "value": "brush-off patent"
+    },
+    {
+     "value": "mirror-patent"
+    },
+    {
+     "value": "soft patent"
+    },
+    {
+     "value": "crinkle patent"
+    },
+    {
+     "value": "matte patent"
+    },
+    {
+     "value": "colored patent"
+    },
+    {
+     "value": "metallic patent"
+    },
+    {
+     "value": "Suede"
+    },
+    {
+     "value": "fine suede"
+    },
+    {
+     "value": "heavy suede"
+    },
+    {
+     "value": "split suede"
+    },
+    {
+     "value": "nubuck"
+    },
+    {
+     "value": "chamois"
+    },
+    {
+     "value": "roughout leather"
+    },
+    {
+     "value": "peach-skin leather"
+    },
+    {
+     "value": "moleskin leather"
+    },
+    {
+     "value": "Crocodile"
+    },
+    {
+     "value": "alligator"
+    },
+    {
+     "value": "snakeskin/python"
+    },
+    {
+     "value": "lizard"
+    },
+    {
+     "value": "ostrich"
+    },
+    {
+     "value": "ostrich leg"
+    },
+    {
+     "value": "shark"
+    },
+    {
+     "value": "stingray/galuchat"
+    },
+    {
+     "value": "eel"
+    },
+    {
+     "value": "peccary"
+    },
+    {
+     "value": "water buffalo"
+    },
+    {
+     "value": "faux exotic"
+    },
+    {
+     "value": "embossed floral"
+    },
+    {
+     "value": "embossed geometric"
+    },
+    {
+     "value": "embossed basket-weave"
+    },
+    {
+     "value": "embossed pebble-grain"
+    },
+    {
+     "value": "embossed saffiano"
+    },
+    {
+     "value": "embossed woven"
+    },
+    {
+     "value": "Metallic smooth leather"
+    },
+    {
+     "value": "metallic saffiano"
+    },
+    {
+     "value": "metallic crinkle"
+    },
+    {
+     "value": "foil leather"
+    },
+    {
+     "value": "mirror leather"
+    },
+    {
+     "value": "holographic leather"
+    },
+    {
+     "value": "pearlized leather"
+    },
+    {
+     "value": "iridescent leather"
+    },
+    {
+     "value": "laminated leather"
+    },
+    {
+     "value": "Satin"
+    },
+    {
+     "value": "silk satin"
+    },
+    {
+     "value": "duchesse satin"
+    },
+    {
+     "value": "peau de soie"
+    },
+    {
+     "value": "silk"
+    },
+    {
+     "value": "raw silk"
+    },
+    {
+     "value": "silk shantung"
+    },
+    {
+     "value": "taffeta"
+    },
+    {
+     "value": "faille"
+    },
+    {
+     "value": "grosgrain"
+    },
+    {
+     "value": "brocade"
+    },
+    {
+     "value": "jacquard"
+    },
+    {
+     "value": "damask"
+    },
+    {
+     "value": "organza"
+    },
+    {
+     "value": "georgette"
+    },
+    {
+     "value": "chiffon"
+    },
+    {
+     "value": "velvet"
+    },
+    {
+     "value": "silk velvet"
+    },
+    {
+     "value": "crushed velvet"
+    },
+    {
+     "value": "panne velvet"
+    },
+    {
+     "value": "devoré/burnout velvet"
+    },
+    {
+     "value": "velveteen"
+    },
+    {
+     "value": "corduroy"
+    },
+    {
+     "value": "canvas"
+    },
+    {
+     "value": "heavy canvas"
+    },
+    {
+     "value": "denim"
+    },
+    {
+     "value": "chambray"
+    },
+    {
+     "value": "tweed"
+    },
+    {
+     "value": "bouclé"
+    },
+    {
+     "value": "wool"
+    },
+    {
+     "value": "flannel"
+    },
+    {
+     "value": "gabardine"
+    },
+    {
+     "value": "herringbone"
+    },
+    {
+     "value": "houndstooth"
+    },
+    {
+     "value": "tartan/plaid"
+    },
+    {
+     "value": "twill"
+    },
+    {
+     "value": "ottoman"
+    },
+    {
+     "value": "bengaline"
+    },
+    {
+     "value": "moiré"
+    },
+    {
+     "value": "dupioni"
+    },
+    {
+     "value": "Lace (Chantilly"
+    },
+    {
+     "value": "guipure"
+    },
+    {
+     "value": "corded"
+    },
+    {
+     "value": "French"
+    },
+    {
+     "value": "Alençon"
+    },
+    {
+     "value": "re-embroidered"
+    },
+    {
+     "value": "stretch)"
+    },
+    {
+     "value": "mesh (fine"
+    },
+    {
+     "value": "coarse"
+    },
+    {
+     "value": "power"
+    },
+    {
+     "value": "sport)"
+    },
+    {
+     "value": "tulle"
+    },
+    {
+     "value": "net"
+    },
+    {
+     "value": "point d'esprit"
+    },
+    {
+     "value": "crochet"
+    },
+    {
+     "value": "macramé"
+    },
+    {
+     "value": "knit/flyknit"
+    },
+    {
+     "value": "rib-knit"
+    },
+    {
+     "value": "bamboo weave"
+    },
+    {
+     "value": "woven leather"
+    },
+    {
+     "value": "woven raffia"
+    },
+    {
+     "value": "woven straw"
+    },
+    {
+     "value": "woven jute"
+    },
+    {
+     "value": "woven cotton rope"
+    },
+    {
+     "value": "tapestry"
+    },
+    {
+     "value": "needlepoint"
+    },
+    {
+     "value": "embroidered fabric"
+    },
+    {
+     "value": "Sequin fabric (flat"
+    },
+    {
+     "value": "cupped"
+    },
+    {
+     "value": "holographic)"
+    },
+    {
+     "value": "glitter fabric (fine"
+    },
+    {
+     "value": "chunky"
+    },
+    {
+     "value": "beaded fabric"
+    },
+    {
+     "value": "rhinestone-encrusted mesh"
+    },
+    {
+     "value": "pearl-encrusted fabric"
+    },
+    {
+     "value": "crystal-studded fabric"
+    },
+    {
+     "value": "mirror-work fabric"
+    },
+    {
+     "value": "metallic mesh/chainmail"
+    },
+    {
+     "value": "feathered fabric"
+    },
+    {
+     "value": "fringed fabric"
+    },
+    {
+     "value": "PVC (clear"
+    },
+    {
+     "value": "colored"
+    },
+    {
+     "value": "opaque"
+    },
+    {
+     "value": "frosted)"
+    },
+    {
+     "value": "vinyl"
+    },
+    {
+     "value": "patent vinyl"
+    },
+    {
+     "value": "latex (natural"
+    },
+    {
+     "value": "synthetic"
+    },
+    {
+     "value": "chlorinated)"
+    },
+    {
+     "value": "rubber (natural"
+    },
+    {
+     "value": "vulcanized)"
+    },
+    {
+     "value": "neoprene"
+    },
+    {
+     "value": "scuba"
+    },
+    {
+     "value": "TPU"
+    },
+    {
+     "value": "silicone"
+    },
+    {
+     "value": "synthetic leather/pleather"
+    },
+    {
+     "value": "faux suede/microsuede"
+    },
+    {
+     "value": "faux nubuck"
+    },
+    {
+     "value": "vegan leather"
+    },
+    {
+     "value": "Alcantara"
+    },
+    {
+     "value": "Ultrasuede"
+    },
+    {
+     "value": "tech-fabric"
+    },
+    {
+     "value": "Acrylic/Lucite (clear"
+    },
+    {
+     "value": "resin (clear"
+    },
+    {
+     "value": "embedded objects)"
+    },
+    {
+     "value": "glass"
+    },
+    {
+     "value": "polycarbonate"
+    },
+    {
+     "value": "clear PVC"
+    },
+    {
+     "value": "clear TPU"
+    },
+    {
+     "value": "transparent mesh"
+    },
+    {
+     "value": "see-through vinyl"
+    },
+    {
+     "value": "Cork (natural"
+    },
+    {
+     "value": "printed"
+    },
+    {
+     "value": "coated)"
+    },
+    {
+     "value": "wood (solid"
+    },
+    {
+     "value": "veneer"
+    },
+    {
+     "value": "bent)"
+    },
+    {
+     "value": "bamboo"
+    },
+    {
+     "value": "raffia"
+    },
+    {
+     "value": "straw"
+    },
+    {
+     "value": "seagrass"
+    },
+    {
+     "value": "jute"
+    },
+    {
+     "value": "hemp"
+    },
+    {
+     "value": "sisal"
+    },
+    {
+     "value": "coconut fiber"
+    },
+    {
+     "value": "bark cloth"
+    },
+    {
+     "value": "paper/washi"
+    },
+    {
+     "value": "felt (wool"
+    },
+    {
+     "value": "synthetic)"
+    },
+    {
+     "value": "leather patchwork"
+    },
+    {
+     "value": "mixed-media collage"
+    },
+    {
+     "value": "Faux fur (short pile"
+    },
+    {
+     "value": "long pile"
+    },
+    {
+     "value": "shaggy)"
+    },
+    {
+     "value": "faux mink"
+    },
+    {
+     "value": "faux fox"
+    },
+    {
+     "value": "faux chinchilla"
+    },
+    {
+     "value": "faux shearling"
+    },
+    {
+     "value": "teddy/sherpa"
+    },
+    {
+     "value": "synthetic fleece"
+    },
+    {
+     "value": "faux astrakhan/Persian lamb"
+    },
+    {
+     "value": "Lucite/acrylic (clear"
+    },
+    {
+     "value": "frosted"
+    },
+    {
+     "value": "bubble-filled)"
+    },
+    {
+     "value": "tempered glass"
+    },
+    {
+     "value": "clear resin"
+    },
+    {
+     "value": "transparent PVC"
+    }
+   ]
+  },
+  {
+   "id": "upper_color",
+   "name": "Upper Color",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "Black"
+    },
+    {
+     "value": "Off-Black"
+    },
+    {
+     "value": "Charcoal"
+    },
+    {
+     "value": "Slate"
+    },
+    {
+     "value": "Dark Gray"
+    },
+    {
+     "value": "Medium Gray"
+    },
+    {
+     "value": "Light Gray"
+    },
+    {
+     "value": "Silver Gray"
+    },
+    {
+     "value": "Heather Gray"
+    },
+    {
+     "value": "Ash"
+    },
+    {
+     "value": "White"
+    },
+    {
+     "value": "Off-White"
+    },
+    {
+     "value": "Ivory"
+    },
+    {
+     "value": "Cream"
+    },
+    {
+     "value": "Ecru"
+    },
+    {
+     "value": "Eggshell"
+    },
+    {
+     "value": "Alabaster"
+    },
+    {
+     "value": "Pearl"
+    },
+    {
+     "value": "Bone"
+    },
+    {
+     "value": "Oyster"
+    },
+    {
+     "value": "Champagne"
+    },
+    {
+     "value": "Fair Nude"
+    },
+    {
+     "value": "Light Nude"
+    },
+    {
+     "value": "Medium Nude"
+    },
+    {
+     "value": "Tan Nude"
+    },
+    {
+     "value": "Deep Nude"
+    },
+    {
+     "value": "Warm Nude"
+    },
+    {
+     "value": "Cool Nude"
+    },
+    {
+     "value": "Rosy Nude"
+    },
+    {
+     "value": "Peachy Nude"
+    },
+    {
+     "value": "Golden Nude"
+    },
+    {
+     "value": "Almond"
+    },
+    {
+     "value": "Fawn"
+    },
+    {
+     "value": "Bisque"
+    },
+    {
+     "value": "Tan"
+    },
+    {
+     "value": "Light Tan"
+    },
+    {
+     "value": "Sand"
+    },
+    {
+     "value": "Camel"
+    },
+    {
+     "value": "Cognac"
+    },
+    {
+     "value": "Saddle"
+    },
+    {
+     "value": "Toffee"
+    },
+    {
+     "value": "Caramel"
+    },
+    {
+     "value": "Amber"
+    },
+    {
+     "value": "Honey"
+    },
+    {
+     "value": "Butterscotch"
+    },
+    {
+     "value": "Whiskey"
+    },
+    {
+     "value": "Cinnamon"
+    },
+    {
+     "value": "Mahogany"
+    },
+    {
+     "value": "Chestnut"
+    },
+    {
+     "value": "Walnut"
+    },
+    {
+     "value": "Chocolate"
+    },
+    {
+     "value": "Dark Chocolate"
+    },
+    {
+     "value": "Espresso"
+    },
+    {
+     "value": "Mocha"
+    },
+    {
+     "value": "Coffee"
+    },
+    {
+     "value": "Umber"
+    },
+    {
+     "value": "Sepia"
+    },
+    {
+     "value": "Hickory"
+    },
+    {
+     "value": "Cocoa"
+    },
+    {
+     "value": "Mink"
+    },
+    {
+     "value": "Scarlet"
+    },
+    {
+     "value": "Crimson"
+    },
+    {
+     "value": "Cherry"
+    },
+    {
+     "value": "Ruby"
+    },
+    {
+     "value": "Garnet"
+    },
+    {
+     "value": "Vermillion"
+    },
+    {
+     "value": "Fire Red"
+    },
+    {
+     "value": "Lipstick Red"
+    },
+    {
+     "value": "Ferrari Red"
+    },
+    {
+     "value": "Candy Apple"
+    },
+    {
+     "value": "Blood Red"
+    },
+    {
+     "value": "Oxblood"
+    },
+    {
+     "value": "Burgundy"
+    },
+    {
+     "value": "Maroon"
+    },
+    {
+     "value": "Wine"
+    },
+    {
+     "value": "Claret"
+    },
+    {
+     "value": "Bordeaux"
+    },
+    {
+     "value": "Cranberry"
+    },
+    {
+     "value": "Brick Red"
+    },
+    {
+     "value": "Rust"
+    },
+    {
+     "value": "Terracotta"
+    },
+    {
+     "value": "Persimmon"
+    },
+    {
+     "value": "Tomato"
+    },
+    {
+     "value": "Pale Pink"
+    },
+    {
+     "value": "Baby Pink"
+    },
+    {
+     "value": "Pastel Pink"
+    },
+    {
+     "value": "Blush"
+    },
+    {
+     "value": "Rose"
+    },
+    {
+     "value": "Dusty Rose"
+    },
+    {
+     "value": "Mauve"
+    },
+    {
+     "value": "Old Rose"
+    },
+    {
+     "value": "Salmon"
+    },
+    {
+     "value": "Peach"
+    },
+    {
+     "value": "Coral"
+    },
+    {
+     "value": "Flamingo"
+    },
+    {
+     "value": "Bubblegum"
+    },
+    {
+     "value": "Candy Pink"
+    },
+    {
+     "value": "Hot Pink"
+    },
+    {
+     "value": "Fuchsia"
+    },
+    {
+     "value": "Magenta"
+    },
+    {
+     "value": "Neon Pink"
+    },
+    {
+     "value": "Cerise"
+    },
+    {
+     "value": "Raspberry"
+    },
+    {
+     "value": "Deep Rose"
+    },
+    {
+     "value": "Watermelon"
+    },
+    {
+     "value": "Carnation"
+    },
+    {
+     "value": "Pale Orange"
+    },
+    {
+     "value": "Apricot"
+    },
+    {
+     "value": "Melon"
+    },
+    {
+     "value": "Tangerine"
+    },
+    {
+     "value": "Orange"
+    },
+    {
+     "value": "Neon Orange"
+    },
+    {
+     "value": "Burnt Orange"
+    },
+    {
+     "value": "Sienna"
+    },
+    {
+     "value": "Rust Orange"
+    },
+    {
+     "value": "Pumpkin"
+    },
+    {
+     "value": "Papaya"
+    },
+    {
+     "value": "Mango"
+    },
+    {
+     "value": "Marigold"
+    },
+    {
+     "value": "Ginger"
+    },
+    {
+     "value": "Amber Orange"
+    },
+    {
+     "value": "Pastel Yellow"
+    },
+    {
+     "value": "Butter"
+    },
+    {
+     "value": "Lemon"
+    },
+    {
+     "value": "Canary"
+    },
+    {
+     "value": "Sunflower"
+    },
+    {
+     "value": "Golden Yellow"
+    },
+    {
+     "value": "Marigold Yellow"
+    },
+    {
+     "value": "Mustard"
+    },
+    {
+     "value": "Ochre"
+    },
+    {
+     "value": "Goldenrod"
+    },
+    {
+     "value": "Saffron"
+    },
+    {
+     "value": "Amber Yellow"
+    },
+    {
+     "value": "Neon Yellow"
+    },
+    {
+     "value": "Chartreuse Yellow"
+    },
+    {
+     "value": "Mint"
+    },
+    {
+     "value": "Seafoam"
+    },
+    {
+     "value": "Pistachio"
+    },
+    {
+     "value": "Celadon"
+    },
+    {
+     "value": "Sage"
+    },
+    {
+     "value": "Fern"
+    },
+    {
+     "value": "Moss"
+    },
+    {
+     "value": "Olive"
+    },
+    {
+     "value": "Army Green"
+    },
+    {
+     "value": "Hunter Green"
+    },
+    {
+     "value": "Forest Green"
+    },
+    {
+     "value": "Emerald"
+    },
+    {
+     "value": "Jade"
+    },
+    {
+     "value": "Kelly Green"
+    },
+    {
+     "value": "Grass Green"
+    },
+    {
+     "value": "Lime"
+    },
+    {
+     "value": "Chartreuse"
+    },
+    {
+     "value": "Neon Green"
+    },
+    {
+     "value": "Teal Green"
+    },
+    {
+     "value": "Verdigris"
+    },
+    {
+     "value": "Bottle Green"
+    },
+    {
+     "value": "Pine"
+    },
+    {
+     "value": "Malachite"
+    },
+    {
+     "value": "Viridian"
+    },
+    {
+     "value": "Juniper"
+    },
+    {
+     "value": "Basil"
+    },
+    {
+     "value": "Ivy"
+    },
+    {
+     "value": "Ice Blue"
+    },
+    {
+     "value": "Powder Blue"
+    },
+    {
+     "value": "Baby Blue"
+    },
+    {
+     "value": "Sky Blue"
+    },
+    {
+     "value": "Periwinkle"
+    },
+    {
+     "value": "Cornflower"
+    },
+    {
+     "value": "Steel Blue"
+    },
+    {
+     "value": "Slate Blue"
+    },
+    {
+     "value": "Cerulean"
+    },
+    {
+     "value": "Azure"
+    },
+    {
+     "value": "French Blue"
+    },
+    {
+     "value": "Wedgwood Blue"
+    },
+    {
+     "value": "Cobalt"
+    },
+    {
+     "value": "Royal Blue"
+    },
+    {
+     "value": "Electric Blue"
+    },
+    {
+     "value": "Sapphire"
+    },
+    {
+     "value": "Ultramarine"
+    },
+    {
+     "value": "Navy"
+    },
+    {
+     "value": "Dark Navy"
+    },
+    {
+     "value": "Midnight Blue"
+    },
+    {
+     "value": "Prussian Blue"
+    },
+    {
+     "value": "Oxford Blue"
+    },
+    {
+     "value": "Indigo"
+    },
+    {
+     "value": "Teal"
+    },
+    {
+     "value": "Peacock"
+    },
+    {
+     "value": "Lagoon"
+    },
+    {
+     "value": "Aegean"
+    },
+    {
+     "value": "Neon Blue"
+    },
+    {
+     "value": "Lavender"
+    },
+    {
+     "value": "Lilac"
+    },
+    {
+     "value": "Wisteria"
+    },
+    {
+     "value": "Orchid"
+    },
+    {
+     "value": "Heliotrope"
+    },
+    {
+     "value": "Amethyst"
+    },
+    {
+     "value": "Violet"
+    },
+    {
+     "value": "Purple"
+    },
+    {
+     "value": "Grape"
+    },
+    {
+     "value": "Plum"
+    },
+    {
+     "value": "Royal Purple"
+    },
+    {
+     "value": "Deep Purple"
+    },
+    {
+     "value": "Aubergine/Eggplant"
+    },
+    {
+     "value": "Mulberry"
+    },
+    {
+     "value": "Boysenberry"
+    },
+    {
+     "value": "Iris"
+    },
+    {
+     "value": "Magenta Purple"
+    },
+    {
+     "value": "Neon Purple"
+    },
+    {
+     "value": "Ultra Violet"
+    },
+    {
+     "value": "Gold"
+    },
+    {
+     "value": "Pale Gold"
+    },
+    {
+     "value": "Rich Gold"
+    },
+    {
+     "value": "Rose Gold"
+    },
+    {
+     "value": "Copper"
+    },
+    {
+     "value": "Bronze"
+    },
+    {
+     "value": "Brass"
+    },
+    {
+     "value": "Antique Gold"
+    },
+    {
+     "value": "Champagne Gold"
+    },
+    {
+     "value": "Silver"
+    },
+    {
+     "value": "Polished Silver"
+    },
+    {
+     "value": "Antique Silver"
+    },
+    {
+     "value": "Pewter"
+    },
+    {
+     "value": "Gunmetal"
+    },
+    {
+     "value": "Chrome"
+    },
+    {
+     "value": "Platinum"
+    },
+    {
+     "value": "Titanium"
+    },
+    {
+     "value": "Mirrored"
+    },
+    {
+     "value": "Holographic Silver"
+    },
+    {
+     "value": "Holographic Gold"
+    },
+    {
+     "value": "Liquid Metal"
+    },
+    {
+     "value": "Mercury"
+    },
+    {
+     "value": "Iridescent"
+    },
+    {
+     "value": "Holographic"
+    },
+    {
+     "value": "Color-Shifting/Duochrome"
+    },
+    {
+     "value": "Prismatic"
+    },
+    {
+     "value": "Rainbow"
+    },
+    {
+     "value": "Ombré"
+    },
+    {
+     "value": "Two-Tone"
+    },
+    {
+     "value": "Three-Tone"
+    },
+    {
+     "value": "Transparent/Clear"
+    },
+    {
+     "value": "Frosted/Translucent"
+    },
+    {
+     "value": "Glow-in-the-Dark"
+    },
+    {
+     "value": "UV-Reactive"
+    },
+    {
+     "value": "Thermochromic"
+    }
+   ]
+  },
+  {
+   "id": "outsole_lacquer_color",
+   "name": "Outsole Lacquer Color",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "Black"
+    },
+    {
+     "value": "Off-Black"
+    },
+    {
+     "value": "Charcoal"
+    },
+    {
+     "value": "Slate"
+    },
+    {
+     "value": "Dark Gray"
+    },
+    {
+     "value": "Medium Gray"
+    },
+    {
+     "value": "Light Gray"
+    },
+    {
+     "value": "Silver Gray"
+    },
+    {
+     "value": "Heather Gray"
+    },
+    {
+     "value": "Ash"
+    },
+    {
+     "value": "White"
+    },
+    {
+     "value": "Off-White"
+    },
+    {
+     "value": "Ivory"
+    },
+    {
+     "value": "Cream"
+    },
+    {
+     "value": "Ecru"
+    },
+    {
+     "value": "Eggshell"
+    },
+    {
+     "value": "Alabaster"
+    },
+    {
+     "value": "Pearl"
+    },
+    {
+     "value": "Bone"
+    },
+    {
+     "value": "Oyster"
+    },
+    {
+     "value": "Champagne"
+    },
+    {
+     "value": "Fair Nude"
+    },
+    {
+     "value": "Light Nude"
+    },
+    {
+     "value": "Medium Nude"
+    },
+    {
+     "value": "Tan Nude"
+    },
+    {
+     "value": "Deep Nude"
+    },
+    {
+     "value": "Warm Nude"
+    },
+    {
+     "value": "Cool Nude"
+    },
+    {
+     "value": "Rosy Nude"
+    },
+    {
+     "value": "Peachy Nude"
+    },
+    {
+     "value": "Golden Nude"
+    },
+    {
+     "value": "Almond"
+    },
+    {
+     "value": "Fawn"
+    },
+    {
+     "value": "Bisque"
+    },
+    {
+     "value": "Tan"
+    },
+    {
+     "value": "Light Tan"
+    },
+    {
+     "value": "Sand"
+    },
+    {
+     "value": "Camel"
+    },
+    {
+     "value": "Cognac"
+    },
+    {
+     "value": "Saddle"
+    },
+    {
+     "value": "Toffee"
+    },
+    {
+     "value": "Caramel"
+    },
+    {
+     "value": "Amber"
+    },
+    {
+     "value": "Honey"
+    },
+    {
+     "value": "Butterscotch"
+    },
+    {
+     "value": "Whiskey"
+    },
+    {
+     "value": "Cinnamon"
+    },
+    {
+     "value": "Mahogany"
+    },
+    {
+     "value": "Chestnut"
+    },
+    {
+     "value": "Walnut"
+    },
+    {
+     "value": "Chocolate"
+    },
+    {
+     "value": "Dark Chocolate"
+    },
+    {
+     "value": "Espresso"
+    },
+    {
+     "value": "Mocha"
+    },
+    {
+     "value": "Coffee"
+    },
+    {
+     "value": "Umber"
+    },
+    {
+     "value": "Sepia"
+    },
+    {
+     "value": "Hickory"
+    },
+    {
+     "value": "Cocoa"
+    },
+    {
+     "value": "Mink"
+    },
+    {
+     "value": "Scarlet"
+    },
+    {
+     "value": "Crimson"
+    },
+    {
+     "value": "Cherry"
+    },
+    {
+     "value": "Ruby"
+    },
+    {
+     "value": "Garnet"
+    },
+    {
+     "value": "Vermillion"
+    },
+    {
+     "value": "Fire Red"
+    },
+    {
+     "value": "Lipstick Red"
+    },
+    {
+     "value": "Ferrari Red"
+    },
+    {
+     "value": "Candy Apple"
+    },
+    {
+     "value": "Blood Red"
+    },
+    {
+     "value": "Oxblood"
+    },
+    {
+     "value": "Burgundy"
+    },
+    {
+     "value": "Maroon"
+    },
+    {
+     "value": "Wine"
+    },
+    {
+     "value": "Claret"
+    },
+    {
+     "value": "Bordeaux"
+    },
+    {
+     "value": "Cranberry"
+    },
+    {
+     "value": "Brick Red"
+    },
+    {
+     "value": "Rust"
+    },
+    {
+     "value": "Terracotta"
+    },
+    {
+     "value": "Persimmon"
+    },
+    {
+     "value": "Tomato"
+    },
+    {
+     "value": "Pale Pink"
+    },
+    {
+     "value": "Baby Pink"
+    },
+    {
+     "value": "Pastel Pink"
+    },
+    {
+     "value": "Blush"
+    },
+    {
+     "value": "Rose"
+    },
+    {
+     "value": "Dusty Rose"
+    },
+    {
+     "value": "Mauve"
+    },
+    {
+     "value": "Old Rose"
+    },
+    {
+     "value": "Salmon"
+    },
+    {
+     "value": "Peach"
+    },
+    {
+     "value": "Coral"
+    },
+    {
+     "value": "Flamingo"
+    },
+    {
+     "value": "Bubblegum"
+    },
+    {
+     "value": "Candy Pink"
+    },
+    {
+     "value": "Hot Pink"
+    },
+    {
+     "value": "Fuchsia"
+    },
+    {
+     "value": "Magenta"
+    },
+    {
+     "value": "Neon Pink"
+    },
+    {
+     "value": "Cerise"
+    },
+    {
+     "value": "Raspberry"
+    },
+    {
+     "value": "Deep Rose"
+    },
+    {
+     "value": "Watermelon"
+    },
+    {
+     "value": "Carnation"
+    },
+    {
+     "value": "Pale Orange"
+    },
+    {
+     "value": "Apricot"
+    },
+    {
+     "value": "Melon"
+    },
+    {
+     "value": "Tangerine"
+    },
+    {
+     "value": "Orange"
+    },
+    {
+     "value": "Neon Orange"
+    },
+    {
+     "value": "Burnt Orange"
+    },
+    {
+     "value": "Sienna"
+    },
+    {
+     "value": "Rust Orange"
+    },
+    {
+     "value": "Pumpkin"
+    },
+    {
+     "value": "Papaya"
+    },
+    {
+     "value": "Mango"
+    },
+    {
+     "value": "Marigold"
+    },
+    {
+     "value": "Ginger"
+    },
+    {
+     "value": "Amber Orange"
+    },
+    {
+     "value": "Pastel Yellow"
+    },
+    {
+     "value": "Butter"
+    },
+    {
+     "value": "Lemon"
+    },
+    {
+     "value": "Canary"
+    },
+    {
+     "value": "Sunflower"
+    },
+    {
+     "value": "Golden Yellow"
+    },
+    {
+     "value": "Marigold Yellow"
+    },
+    {
+     "value": "Mustard"
+    },
+    {
+     "value": "Ochre"
+    },
+    {
+     "value": "Goldenrod"
+    },
+    {
+     "value": "Saffron"
+    },
+    {
+     "value": "Amber Yellow"
+    },
+    {
+     "value": "Neon Yellow"
+    },
+    {
+     "value": "Chartreuse Yellow"
+    },
+    {
+     "value": "Mint"
+    },
+    {
+     "value": "Seafoam"
+    },
+    {
+     "value": "Pistachio"
+    },
+    {
+     "value": "Celadon"
+    },
+    {
+     "value": "Sage"
+    },
+    {
+     "value": "Fern"
+    },
+    {
+     "value": "Moss"
+    },
+    {
+     "value": "Olive"
+    },
+    {
+     "value": "Army Green"
+    },
+    {
+     "value": "Hunter Green"
+    },
+    {
+     "value": "Forest Green"
+    },
+    {
+     "value": "Emerald"
+    },
+    {
+     "value": "Jade"
+    },
+    {
+     "value": "Kelly Green"
+    },
+    {
+     "value": "Grass Green"
+    },
+    {
+     "value": "Lime"
+    },
+    {
+     "value": "Chartreuse"
+    },
+    {
+     "value": "Neon Green"
+    },
+    {
+     "value": "Teal Green"
+    },
+    {
+     "value": "Verdigris"
+    },
+    {
+     "value": "Bottle Green"
+    },
+    {
+     "value": "Pine"
+    },
+    {
+     "value": "Malachite"
+    },
+    {
+     "value": "Viridian"
+    },
+    {
+     "value": "Juniper"
+    },
+    {
+     "value": "Basil"
+    },
+    {
+     "value": "Ivy"
+    },
+    {
+     "value": "Ice Blue"
+    },
+    {
+     "value": "Powder Blue"
+    },
+    {
+     "value": "Baby Blue"
+    },
+    {
+     "value": "Sky Blue"
+    },
+    {
+     "value": "Periwinkle"
+    },
+    {
+     "value": "Cornflower"
+    },
+    {
+     "value": "Steel Blue"
+    },
+    {
+     "value": "Slate Blue"
+    },
+    {
+     "value": "Cerulean"
+    },
+    {
+     "value": "Azure"
+    },
+    {
+     "value": "French Blue"
+    },
+    {
+     "value": "Wedgwood Blue"
+    },
+    {
+     "value": "Cobalt"
+    },
+    {
+     "value": "Royal Blue"
+    },
+    {
+     "value": "Electric Blue"
+    },
+    {
+     "value": "Sapphire"
+    },
+    {
+     "value": "Ultramarine"
+    },
+    {
+     "value": "Navy"
+    },
+    {
+     "value": "Dark Navy"
+    },
+    {
+     "value": "Midnight Blue"
+    },
+    {
+     "value": "Prussian Blue"
+    },
+    {
+     "value": "Oxford Blue"
+    },
+    {
+     "value": "Indigo"
+    },
+    {
+     "value": "Teal"
+    },
+    {
+     "value": "Peacock"
+    },
+    {
+     "value": "Lagoon"
+    },
+    {
+     "value": "Aegean"
+    },
+    {
+     "value": "Neon Blue"
+    },
+    {
+     "value": "Lavender"
+    },
+    {
+     "value": "Lilac"
+    },
+    {
+     "value": "Wisteria"
+    },
+    {
+     "value": "Orchid"
+    },
+    {
+     "value": "Heliotrope"
+    },
+    {
+     "value": "Amethyst"
+    },
+    {
+     "value": "Violet"
+    },
+    {
+     "value": "Purple"
+    },
+    {
+     "value": "Grape"
+    },
+    {
+     "value": "Plum"
+    },
+    {
+     "value": "Royal Purple"
+    },
+    {
+     "value": "Deep Purple"
+    },
+    {
+     "value": "Aubergine/Eggplant"
+    },
+    {
+     "value": "Mulberry"
+    },
+    {
+     "value": "Boysenberry"
+    },
+    {
+     "value": "Iris"
+    },
+    {
+     "value": "Magenta Purple"
+    },
+    {
+     "value": "Neon Purple"
+    },
+    {
+     "value": "Ultra Violet"
+    },
+    {
+     "value": "Gold"
+    },
+    {
+     "value": "Pale Gold"
+    },
+    {
+     "value": "Rich Gold"
+    },
+    {
+     "value": "Rose Gold"
+    },
+    {
+     "value": "Copper"
+    },
+    {
+     "value": "Bronze"
+    },
+    {
+     "value": "Brass"
+    },
+    {
+     "value": "Antique Gold"
+    },
+    {
+     "value": "Champagne Gold"
+    },
+    {
+     "value": "Silver"
+    },
+    {
+     "value": "Polished Silver"
+    },
+    {
+     "value": "Antique Silver"
+    },
+    {
+     "value": "Pewter"
+    },
+    {
+     "value": "Gunmetal"
+    },
+    {
+     "value": "Chrome"
+    },
+    {
+     "value": "Platinum"
+    },
+    {
+     "value": "Titanium"
+    },
+    {
+     "value": "Mirrored"
+    },
+    {
+     "value": "Holographic Silver"
+    },
+    {
+     "value": "Holographic Gold"
+    },
+    {
+     "value": "Liquid Metal"
+    },
+    {
+     "value": "Mercury"
+    },
+    {
+     "value": "Iridescent"
+    },
+    {
+     "value": "Holographic"
+    },
+    {
+     "value": "Color-Shifting/Duochrome"
+    },
+    {
+     "value": "Prismatic"
+    },
+    {
+     "value": "Rainbow"
+    },
+    {
+     "value": "Ombré"
+    },
+    {
+     "value": "Two-Tone"
+    },
+    {
+     "value": "Three-Tone"
+    },
+    {
+     "value": "Transparent/Clear"
+    },
+    {
+     "value": "Frosted/Translucent"
+    },
+    {
+     "value": "Glow-in-the-Dark"
+    },
+    {
+     "value": "UV-Reactive"
+    },
+    {
+     "value": "Thermochromic"
+    }
+   ]
+  },
+  {
+   "id": "hardware_finish",
+   "name": "Hardware Finish",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "Polished Gold"
+    },
+    {
+     "value": "Satin/Brushed Gold"
+    },
+    {
+     "value": "Matte Gold"
+    },
+    {
+     "value": "Rose Gold"
+    },
+    {
+     "value": "Antique Gold"
+    },
+    {
+     "value": "Florentine Gold"
+    },
+    {
+     "value": "Champagne Gold"
+    },
+    {
+     "value": "Yellow Gold"
+    },
+    {
+     "value": "White Gold"
+    },
+    {
+     "value": "Polished Silver"
+    },
+    {
+     "value": "Satin/Brushed Silver"
+    },
+    {
+     "value": "Matte Silver"
+    },
+    {
+     "value": "Antique Silver"
+    },
+    {
+     "value": "Oxidized Silver"
+    },
+    {
+     "value": "Tarnished Silver"
+    },
+    {
+     "value": "Rhodium"
+    },
+    {
+     "value": "Polished Chrome"
+    },
+    {
+     "value": "Matte Chrome"
+    },
+    {
+     "value": "Satin Chrome"
+    },
+    {
+     "value": "Matte Black"
+    },
+    {
+     "value": "Shiny Black Nickel"
+    },
+    {
+     "value": "Gunmetal"
+    },
+    {
+     "value": "Hematite"
+    },
+    {
+     "value": "Brass"
+    },
+    {
+     "value": "Antique Brass"
+    },
+    {
+     "value": "Patinated Brass"
+    },
+    {
+     "value": "Copper"
+    },
+    {
+     "value": "Antique Copper"
+    },
+    {
+     "value": "Verdigris Copper"
+    },
+    {
+     "value": "Bronze"
+    },
+    {
+     "value": "Antique Bronze"
+    },
+    {
+     "value": "Oil-Rubbed Bronze"
+    },
+    {
+     "value": "Nickel"
+    },
+    {
+     "value": "Brushed Nickel"
+    },
+    {
+     "value": "Pewter"
+    },
+    {
+     "value": "Platinum"
+    },
+    {
+     "value": "Palladium"
+    },
+    {
+     "value": "Titanium"
+    },
+    {
+     "value": "Iridescent"
+    },
+    {
+     "value": "Rainbow/Anodized"
+    },
+    {
+     "value": "Crystal/Rhinestone-Encrusted"
+    },
+    {
+     "value": "Pearl"
+    },
+    {
+     "value": "Mother-of-Pearl"
+    },
+    {
+     "value": "Enamel"
+    },
+    {
+     "value": "Lacquered"
+    },
+    {
+     "value": "Two-Tone"
+    },
+    {
+     "value": "Tortoiseshell"
+    },
+    {
+     "value": "Wood-Inlay"
+    },
+    {
+     "value": "Resin"
+    },
+    {
+     "value": "Mixed Metals"
+    },
+    {
+     "value": "None"
+    },
+    {
+     "value": "* [Same options as Color Palette > Hardware Finish above]"
+    }
+   ]
+  },
+  {
+   "id": "embellishment",
+   "name": "Embellishment",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "rhinestone"
+    },
+    {
+     "value": "crystal-pave"
+    },
+    {
+     "value": "pearl"
+    },
+    {
+     "value": "sequin"
+    },
+    {
+     "value": "glitter"
+    },
+    {
+     "value": "beading"
+    },
+    {
+     "value": "embroidery"
+    },
+    {
+     "value": "applique"
+    },
+    {
+     "value": "3d-floral-applique"
+    },
+    {
+     "value": "ostrich-feather"
+    },
+    {
+     "value": "marabou"
+    },
+    {
+     "value": "peacock-eye"
+    },
+    {
+     "value": "feather-fringe"
+    },
+    {
+     "value": "bow"
+    },
+    {
+     "value": "oversized-bow"
+    },
+    {
+     "value": "mini-bow"
+    },
+    {
+     "value": "rosette"
+    },
+    {
+     "value": "fabric-flower"
+    },
+    {
+     "value": "ruffle"
+    },
+    {
+     "value": "fringe"
+    },
+    {
+     "value": "tassel"
+    },
+    {
+     "value": "chain"
+    },
+    {
+     "value": "charm"
+    },
+    {
+     "value": "coin"
+    },
+    {
+     "value": "stud"
+    },
+    {
+     "value": "pyramid-stud"
+    },
+    {
+     "value": "spike"
+    },
+    {
+     "value": "cone-stud"
+    },
+    {
+     "value": "gem-cabochon"
+    },
+    {
+     "value": "mirror-tile"
+    },
+    {
+     "value": "crystal-butterfly"
+    },
+    {
+     "value": "heart-buckle"
+    }
+   ]
+  },
+  {
+   "id": "adornment_placement",
+   "name": "Adornment Placement",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "vamp"
+    },
+    {
+     "value": "toe-cap"
+    },
+    {
+     "value": "t-junction"
+    },
+    {
+     "value": "ankle-strap"
+    },
+    {
+     "value": "back-collar"
+    },
+    {
+     "value": "heel-counter"
+    },
+    {
+     "value": "heel-stem"
+    },
+    {
+     "value": "platform-edge"
+    },
+    {
+     "value": "throat"
+    },
+    {
+     "value": "quarter"
+    },
+    {
+     "value": "shaft-top"
+    },
+    {
+     "value": "instep"
+    }
+   ]
+  },
+  {
+   "id": "occasion",
+   "name": "Occasion",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "Everyday"
+    },
+    {
+     "value": "Weekend"
+    },
+    {
+     "value": "Daytime Social"
+    },
+    {
+     "value": "Running Errands"
+    },
+    {
+     "value": "Brunch"
+    },
+    {
+     "value": "Farmers Market"
+    },
+    {
+     "value": "Picnic"
+    },
+    {
+     "value": "Casual Friday"
+    },
+    {
+     "value": "Dog Walking"
+    },
+    {
+     "value": "Shopping"
+    },
+    {
+     "value": "Coffee Date"
+    },
+    {
+     "value": "Beach"
+    },
+    {
+     "value": "Boardwalk"
+    },
+    {
+     "value": "Resort/Vacation"
+    },
+    {
+     "value": "Pool Party"
+    },
+    {
+     "value": "BBQ/Cookout"
+    },
+    {
+     "value": "Theme Park"
+    },
+    {
+     "value": "Corporate Office"
+    },
+    {
+     "value": "Business Meeting"
+    },
+    {
+     "value": "Conference"
+    },
+    {
+     "value": "Presentation"
+    },
+    {
+     "value": "Client Dinner"
+    },
+    {
+     "value": "Networking Event"
+    },
+    {
+     "value": "Business Casual"
+    },
+    {
+     "value": "Smart Casual"
+    },
+    {
+     "value": "Power Meeting"
+    },
+    {
+     "value": "Boardroom"
+    },
+    {
+     "value": "Law Office"
+    },
+    {
+     "value": "Medical"
+    },
+    {
+     "value": "Interview"
+    },
+    {
+     "value": "Co-Working"
+    },
+    {
+     "value": "Cocktail Party"
+    },
+    {
+     "value": "Dinner Party"
+    },
+    {
+     "value": "Date Night"
+    },
+    {
+     "value": "Theater/Opera"
+    },
+    {
+     "value": "Ballet"
+    },
+    {
+     "value": "Art Gallery Opening"
+    },
+    {
+     "value": "Museum Gala"
+    },
+    {
+     "value": "Wine Tasting"
+    },
+    {
+     "value": "Charity Luncheon"
+    },
+    {
+     "value": "Holiday Party"
+    },
+    {
+     "value": "Graduation"
+    },
+    {
+     "value": "Anniversary"
+    },
+    {
+     "value": "Engagement Party"
+    },
+    {
+     "value": "Rehearsal Dinner"
+    },
+    {
+     "value": "Afternoon Tea"
+    },
+    {
+     "value": "Red Carpet"
+    },
+    {
+     "value": "Formal Gala"
+    },
+    {
+     "value": "Charity Ball"
+    },
+    {
+     "value": "Awards Ceremony"
+    },
+    {
+     "value": "State Dinner"
+    },
+    {
+     "value": "Embassy Reception"
+    },
+    {
+     "value": "Debutante Ball"
+    },
+    {
+     "value": "Coronation"
+    },
+    {
+     "value": "Opera Premiere"
+    },
+    {
+     "value": "Film Premiere"
+    },
+    {
+     "value": "Met Gala"
+    },
+    {
+     "value": "White Tie"
+    },
+    {
+     "value": "Black Tie Optional"
+    },
+    {
+     "value": "Wedding"
+    },
+    {
+     "value": "Bridesmaid"
+    },
+    {
+     "value": "Mother of the Bride"
+    },
+    {
+     "value": "Wedding Guest"
+    },
+    {
+     "value": "Flower Girl"
+    },
+    {
+     "value": "Bridal Shower"
+    },
+    {
+     "value": "Bachelorette Party"
+    },
+    {
+     "value": "Nightclub"
+    },
+    {
+     "value": "VIP Lounge"
+    },
+    {
+     "value": "After-Party"
+    },
+    {
+     "value": "Casino Night"
+    },
+    {
+     "value": "Jazz Club"
+    },
+    {
+     "value": "Rooftop Bar"
+    },
+    {
+     "value": "Speakeasy"
+    },
+    {
+     "value": "Concert"
+    },
+    {
+     "value": "Music Festival"
+    },
+    {
+     "value": "Strip Club"
+    },
+    {
+     "value": "Burlesque Show"
+    },
+    {
+     "value": "Prom"
+    },
+    {
+     "value": "Homecoming"
+    },
+    {
+     "value": "Winter Formal"
+    },
+    {
+     "value": "Spring Fling"
+    },
+    {
+     "value": "Cotillion"
+    },
+    {
+     "value": "Quinceañera"
+    },
+    {
+     "value": "Sweet Sixteen"
+    },
+    {
+     "value": "Military Ball"
+    },
+    {
+     "value": "Masquerade Ball"
+    },
+    {
+     "value": "Dance (ballroom"
+    },
+    {
+     "value": "Latin"
+    },
+    {
+     "value": "contemporary"
+    },
+    {
+     "value": "ballet)"
+    },
+    {
+     "value": "Drag Performance"
+    },
+    {
+     "value": "Pageant"
+    },
+    {
+     "value": "Runway"
+    },
+    {
+     "value": "Cabaret"
+    },
+    {
+     "value": "Fashion Show"
+    },
+    {
+     "value": "Stage Performance"
+    },
+    {
+     "value": "Music Video"
+    },
+    {
+     "value": "Film/TV Wardrobe"
+    },
+    {
+     "value": "Fashion Editorial"
+    },
+    {
+     "value": "Lookbook"
+    },
+    {
+     "value": "Catalog"
+    },
+    {
+     "value": "Advertising Campaign"
+    },
+    {
+     "value": "Social Media Content"
+    },
+    {
+     "value": "E-Commerce"
+    },
+    {
+     "value": "Product Photography"
+    },
+    {
+     "value": "Behind-the-Scenes"
+    },
+    {
+     "value": "Costume/Theme Party"
+    },
+    {
+     "value": "Cosplay"
+    },
+    {
+     "value": "Fetish/Kink"
+    },
+    {
+     "value": "BDSM"
+    },
+    {
+     "value": "Burlesque"
+    },
+    {
+     "value": "Pin-Up"
+    },
+    {
+     "value": "Vintage/Retro Event"
+    },
+    {
+     "value": "Renaissance Faire"
+    },
+    {
+     "value": "Steampunk"
+    },
+    {
+     "value": "Goth/Industrial"
+    },
+    {
+     "value": "Rave/EDM Festival"
+    },
+    {
+     "value": "Carnival"
+    },
+    {
+     "value": "School Uniform"
+    },
+    {
+     "value": "University"
+    },
+    {
+     "value": "Private School"
+    },
+    {
+     "value": "Academy"
+    },
+    {
+     "value": "Boarding School"
+    },
+    {
+     "value": "Prep School"
+    }
+   ]
+  },
+  {
+   "id": "style_family",
+   "name": "Style Family",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "Stiletto"
+    },
+    {
+     "value": "Pump"
+    },
+    {
+     "value": "Court Shoe"
+    },
+    {
+     "value": "Kitten Heel"
+    },
+    {
+     "value": "Spool/Louis Heel"
+    },
+    {
+     "value": "Cone Heel"
+    },
+    {
+     "value": "Block Heel"
+    },
+    {
+     "value": "Column Heel"
+    },
+    {
+     "value": "Flared Heel"
+    },
+    {
+     "value": "Comma Heel"
+    },
+    {
+     "value": "Blade Heel"
+    },
+    {
+     "value": "Pin Heel"
+    },
+    {
+     "value": "Dagger Heel"
+    },
+    {
+     "value": "Sculptural/Architectural Heel"
+    },
+    {
+     "value": "Tapered Heel"
+    },
+    {
+     "value": "Cuban Heel"
+    },
+    {
+     "value": "Platform Pump"
+    },
+    {
+     "value": "Platform Stiletto"
+    },
+    {
+     "value": "Platform Block Heel"
+    },
+    {
+     "value": "Platform Sandal"
+    },
+    {
+     "value": "Platform Wedge"
+    },
+    {
+     "value": "Flatform"
+    },
+    {
+     "value": "Platform Mule"
+    },
+    {
+     "value": "Platform Slingback"
+    },
+    {
+     "value": "Platform Ankle Strap"
+    },
+    {
+     "value": "Mega-Platform"
+    },
+    {
+     "value": "Ultra-Platform"
+    },
+    {
+     "value": "Mule"
+    },
+    {
+     "value": "Slingback"
+    },
+    {
+     "value": "D'Orsay"
+    },
+    {
+     "value": "Half-D'Orsay"
+    },
+    {
+     "value": "Peep-Toe"
+    },
+    {
+     "value": "Open-Toe"
+    },
+    {
+     "value": "Slide"
+    },
+    {
+     "value": "Sandal"
+    },
+    {
+     "value": "Strappy Sandal"
+    },
+    {
+     "value": "Gladiator Heel"
+    },
+    {
+     "value": "Cage Heel"
+    },
+    {
+     "value": "Lace-Up Heel"
+    },
+    {
+     "value": "Ghillie"
+    },
+    {
+     "value": "Ankle-Wrap"
+    },
+    {
+     "value": "Ankle Strap"
+    },
+    {
+     "value": "T-Strap"
+    },
+    {
+     "value": "Mary Jane"
+    },
+    {
+     "value": "Cross-Strap"
+    },
+    {
+     "value": "Multi-Strap"
+    },
+    {
+     "value": "Criss-Cross Strap"
+    },
+    {
+     "value": "Wrap-Around Strap"
+    },
+    {
+     "value": "Chain Strap"
+    },
+    {
+     "value": "Jeweled Strap"
+    },
+    {
+     "value": "Ribbon Strap"
+    },
+    {
+     "value": "Harness Strap"
+    },
+    {
+     "value": "Wedge"
+    },
+    {
+     "value": "Cork Wedge"
+    },
+    {
+     "value": "Espadrille Wedge"
+    },
+    {
+     "value": "Sculpted Wedge"
+    },
+    {
+     "value": "Cutout Wedge"
+    },
+    {
+     "value": "Wrapped Wedge"
+    },
+    {
+     "value": "Transparent Wedge"
+    },
+    {
+     "value": "Ankle Bootie"
+    },
+    {
+     "value": "Ankle Boot"
+    },
+    {
+     "value": "Mid-Calf Boot"
+    },
+    {
+     "value": "Below-Knee Boot"
+    },
+    {
+     "value": "Knee-High Boot"
+    },
+    {
+     "value": "Over-the-Knee Boot"
+    },
+    {
+     "value": "Thigh-High Boot"
+    },
+    {
+     "value": "Crotch-High Boot"
+    },
+    {
+     "value": "Sock Boot"
+    },
+    {
+     "value": "Chelsea Boot"
+    },
+    {
+     "value": "Lace-Up Boot"
+    },
+    {
+     "value": "Western Boot"
+    },
+    {
+     "value": "Cowboy Boot"
+    },
+    {
+     "value": "Combat Boot"
+    },
+    {
+     "value": "Riding Boot"
+    },
+    {
+     "value": "Slouch Boot"
+    },
+    {
+     "value": "Peep-Toe Bootie"
+    },
+    {
+     "value": "Open-Toe Boot"
+    },
+    {
+     "value": "Cut-Out Boot"
+    },
+    {
+     "value": "Ballet Flat"
+    },
+    {
+     "value": "Pointed-Toe Flat"
+    },
+    {
+     "value": "Loafer"
+    },
+    {
+     "value": "Penny Loafer"
+    },
+    {
+     "value": "Bit Loafer"
+    },
+    {
+     "value": "Tassel Loafer"
+    },
+    {
+     "value": "Oxford"
+    },
+    {
+     "value": "Derby"
+    },
+    {
+     "value": "Brogue"
+    },
+    {
+     "value": "Monk Strap"
+    },
+    {
+     "value": "Double Monk Strap"
+    },
+    {
+     "value": "Clog"
+    },
+    {
+     "value": "Moccasin"
+    },
+    {
+     "value": "Driving Shoe"
+    },
+    {
+     "value": "Espadrille"
+    },
+    {
+     "value": "Slip-On"
+    },
+    {
+     "value": "Sneaker"
+    },
+    {
+     "value": "Fashion Sneaker"
+    },
+    {
+     "value": "High-Top"
+    },
+    {
+     "value": "Platform Sneaker"
+    },
+    {
+     "value": "Sculptural"
+    },
+    {
+     "value": "Architectural"
+    },
+    {
+     "value": "Fetish"
+    },
+    {
+     "value": "Ballet Boot"
+    },
+    {
+     "value": "Pony Boot"
+    },
+    {
+     "value": "Heel-Less/Anti-Gravity"
+    },
+    {
+     "value": "Invisible Heel"
+    },
+    {
+     "value": "Cantilever"
+    },
+    {
+     "value": "Extreme Platform"
+    },
+    {
+     "value": "Armadillo"
+    },
+    {
+     "value": "Claw"
+    },
+    {
+     "value": "Alien"
+    },
+    {
+     "value": "Runway Concept"
+    },
+    {
+     "value": "Art Piece"
+    },
+    {
+     "value": "Kinetic/Moving Elements"
+    }
+   ]
+  },
+  {
+   "id": "appearance_tier",
+   "name": "Appearance Tier",
+   "provenance": "curated 2026-09-18 + shoe_sheet_template.md extraction",
+   "terms": [
+    {
+     "value": "source"
+    },
+    {
+     "value": "public"
+    },
+    {
+     "value": "private"
+    }
+   ]
+  }
+ ]
+}
