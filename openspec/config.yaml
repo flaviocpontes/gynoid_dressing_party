@@ -1,13 +1,46 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+# Project context (shown to AI when creating artifacts)
+context: |
+  Mission: single-user local web studio ("gynoid dressing party") for authoring gynoid
+  wardrobe/scene assets as structured sheets and rendering them consistently across as
+  many AI image models as possible. Shoes are the first vertical slice; clothes, outfits,
+  characters, and scenes follow the same sheet/scale/compiler pattern.
+
+  Tech stack: Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4, Drizzle ORM
+  + better-sqlite3 (data/app.db), Zod at every boundary, Vitest for domain tests.
+
+  Workflow: spec-driven (this system). Create an OpenSpec change and its artifacts
+  before writing code; pure docs/tooling changes set skip_specs: true; archive
+  completed changes; run npm test before considering any src/ change complete.
+
+  Domain glossary:
+  - Sheet: structured asset definition (currently shoes); every detail field optional.
+  - Ordinal scales: magnitude fields are scale steps (ids like "shoes.heel_height:7")
+    carrying prompt phrases and human-only anchors. Numbers never appear in prompts.
+  - Vocabularies: controlled terms for enum fields; custom values always allowed.
+  - Value states: null omits the clause; string[] compiles disjunctive choice-sets;
+    { absent: true } compiles absence clauses (only on ABSENCE_ALLOWED paths).
+  - Sparse compiler: emits only filled fields; always emits the house signature
+    (contrasting lacquered outsole clause); prompts snapshotted verbatim when used.
+  - Lint: warns on contradictions (e.g. kitten heel at sky-high height) without blocking.
+  - Image artifacts: product shots with kind/pass/approved flags, rendered overlays,
+    canonical prose.
+
+  Design principles (inherited from the legacy "People for IA" filesystem system):
+  structure over discipline; rules become data; the app is the database; eval is a
+  product feature. The legacy knowledge base (read-only, outside the repo) holds
+  validated learnings for the upcoming generation pipeline: model adapter rules with
+  evidence, judge bake-off policy, rubric v3, calibration dev log.
+
+  North star (next milestone): multi-model generation — model-specific versioned
+  adapter deltas, generation targeting Gemini/Venice remote APIs and local Lemonade
+  models (Flux-2-Klein, Krea, Qwen, Z-Image at 192.168.0.20:13305), VLM judge
+  policies, per-model pass-rate standings from logged runs.
+
+  Constraints: single-user local deployment, no auth, no external services at runtime;
+  no numeric measurements in any compiled prompt (structural rule, never violate);
+  never bypass src/domain/compile.ts when building prompts.
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.
@@ -30,3 +63,14 @@ schema: spec-driven
 #     archive:
 #       guidance:
 #         - Summarize the archive outcome before finishing
+operations:
+  propose:
+    guidance:
+      - MANDATORY: change proposals (openspec/changes/<change-name>/ artifacts) are always created and committed on the main branch, before any feature branch for the change exists. Never create proposal artifacts on a feature branch.
+  apply:
+    guidance:
+      - MANDATORY: before starting any task, create (or switch to) a feature branch named after the change (kebab-case, e.g. "openspec/<change-name>"). Never work on the default branch.
+      - MANDATORY: after each completed task, commit the changes with a message referencing the task, and push the branch to the remote before moving to the next task.
+  archive:
+    guidance:
+      - MANDATORY: after archiving a change, push the final commits, open a pull request for the change's feature branch, and merge it into the default branch before finishing.
