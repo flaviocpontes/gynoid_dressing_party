@@ -111,3 +111,37 @@ export const shoePrompts = sqliteTable(
   },
   (t) => [index("shoe_prompts_shoe_idx").on(t.shoeId, t.createdAt)],
 );
+
+export const importRuns = sqliteTable(
+  "import_runs",
+  {
+    id: text("id").primaryKey(),
+    sourceType: text("source_type").notNull(), // "image" | "intent"
+    sourceImagePath: text("source_image_path"), // relative under data/images/
+    sourceIntentText: text("source_intent_text"),
+    family: text("family"), // confirmed upper family (human checkpoint)
+    workingSheet: text("working_sheet").notNull().default("{}"), // JSON WorkingSheet
+    resultShoeId: text("result_shoe_id"),
+    status: text("status").notNull().default("open"), // open | accepted | discarded
+    createdAt: integer("created_at").notNull(),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (t) => [index("import_runs_status_idx").on(t.status, t.updatedAt)],
+);
+
+export const importPasses = sqliteTable(
+  "import_passes",
+  {
+    id: text("id").primaryKey(),
+    runId: text("run_id")
+      .notNull()
+      .references(() => importRuns.id, { onDelete: "cascade" }),
+    passKey: text("pass_key").notNull(), // family | vibe | section key | re-ask:<path>
+    templateVersion: text("template_version").notNull(),
+    promptText: text("prompt_text").notNull(), // verbatim snapshot
+    responseText: text("response_text"), // verbatim model response (or error record)
+    proposedFields: text("proposed_fields"), // JSON Proposal[]
+    createdAt: integer("created_at").notNull(),
+  },
+  (t) => [index("import_passes_run_idx").on(t.runId, t.createdAt)],
+);
