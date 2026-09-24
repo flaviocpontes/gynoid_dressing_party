@@ -60,6 +60,7 @@ export const shoes = sqliteTable(
     outsoleLacquerName: text("outsole_lacquer_name"),
     styleFamily: text("style_family"), // JSON string[]
     appearanceTier: text("appearance_tier"),
+    sheetKind: text("sheet_kind").notNull().default("authored"), // authored | imported
     // full stratified sheet, validated by zod at the boundary
     details: text("details"), // JSON ShoeDetails
     notes: text("notes"),

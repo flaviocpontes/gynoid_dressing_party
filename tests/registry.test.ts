@@ -8,7 +8,7 @@ import type { StepRec } from "@/domain/registry";
 function registryFromSeed(): ReturnType<typeof emptyRegistry> {
   const reg = emptyRegistry();
   const seed = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, "../../seed/scales.json"), "utf-8"),
+    fs.readFileSync(path.resolve(__dirname, "../seed/scales.json"), "utf-8"),
   );
   for (const s of seed.scales) {
     const steps: StepRec[] = s.steps.map((st: Record<string, unknown>, i: number) => ({

@@ -1,0 +1,1350 @@
+{
+ "vocabularies": [
+  {
+   "id": "throat",
+   "name": "Throat",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "shallow-v"
+    },
+    {
+     "value": "standard-v"
+    },
+    {
+     "value": "deep-v"
+    },
+    {
+     "value": "plunging-v"
+    },
+    {
+     "value": "asymmetric-v"
+    },
+    {
+     "value": "off-center-v"
+    },
+    {
+     "value": "double-v"
+    },
+    {
+     "value": "rounded-u-shaped"
+    },
+    {
+     "value": "wide-u"
+    },
+    {
+     "value": "narrow-u"
+    },
+    {
+     "value": "horseshoe"
+    },
+    {
+     "value": "bellied-convex"
+    },
+    {
+     "value": "concave-scoop"
+    },
+    {
+     "value": "straight-cut-horizontal"
+    },
+    {
+     "value": "square-cut"
+    },
+    {
+     "value": "diagonal-asymmetric"
+    },
+    {
+     "value": "notched"
+    },
+    {
+     "value": "stepped"
+    },
+    {
+     "value": "inverted-notch"
+    },
+    {
+     "value": "zigzag"
+    },
+    {
+     "value": "scalloped"
+    },
+    {
+     "value": "peaked-pointed"
+    },
+    {
+     "value": "heart-shaped"
+    },
+    {
+     "value": "crown-shaped"
+    },
+    {
+     "value": "castellated"
+    },
+    {
+     "value": "wave-shaped"
+    },
+    {
+     "value": "petal-shaped"
+    },
+    {
+     "value": "high-cut-choked"
+    },
+    {
+     "value": "standard-cut"
+    },
+    {
+     "value": "low-cut-decollet"
+    },
+    {
+     "value": "plunging"
+    },
+    {
+     "value": "envelope"
+    }
+   ]
+  },
+  {
+   "id": "quarter_style",
+   "name": "Quarter Style",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "full-quarter"
+    },
+    {
+     "value": "three-quarter"
+    },
+    {
+     "value": "half-quarter"
+    },
+    {
+     "value": "open-cutaway"
+    },
+    {
+     "value": "lattice-cage"
+    },
+    {
+     "value": "wrap-around"
+    },
+    {
+     "value": "panel-construction"
+    },
+    {
+     "value": "seamless-whole-cut"
+    },
+    {
+     "value": "floating-quarter"
+    },
+    {
+     "value": "scooped-quarter"
+    },
+    {
+     "value": "asymmetric-quarter"
+    },
+    {
+     "value": "deconstructed-quarter"
+    }
+   ]
+  },
+  {
+   "id": "topline_finish",
+   "name": "Topline Finish",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "piped"
+    },
+    {
+     "value": "raw-unfinished"
+    },
+    {
+     "value": "folded-edge"
+    },
+    {
+     "value": "topstitched"
+    },
+    {
+     "value": "double-topstitched"
+    },
+    {
+     "value": "scalloped"
+    },
+    {
+     "value": "bound"
+    },
+    {
+     "value": "elastic-bound"
+    },
+    {
+     "value": "padded-cushioned"
+    },
+    {
+     "value": "rolled"
+    },
+    {
+     "value": "serrated"
+    },
+    {
+     "value": "laser-cut"
+    },
+    {
+     "value": "pinked"
+    },
+    {
+     "value": "grosgrain-bound"
+    },
+    {
+     "value": "satin-bound"
+    },
+    {
+     "value": "chain-linked"
+    },
+    {
+     "value": "beaded"
+    },
+    {
+     "value": "crystal-studded"
+    },
+    {
+     "value": "feather-trimmed"
+    },
+    {
+     "value": "fringe-trimmed"
+    },
+    {
+     "value": "lace-trimmed"
+    },
+    {
+     "value": "ribbon-edged"
+    }
+   ]
+  },
+  {
+   "id": "toe_box_structure",
+   "name": "Toe Box Structure",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "reinforced-stiff"
+    },
+    {
+     "value": "semi-structured"
+    },
+    {
+     "value": "lightly-structured"
+    },
+    {
+     "value": "soft-unstructured"
+    },
+    {
+     "value": "platform-toe-box"
+    },
+    {
+     "value": "padded"
+    },
+    {
+     "value": "transparent"
+    }
+   ]
+  },
+  {
+   "id": "heel_seat",
+   "name": "Heel Seat",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "seamless-flush-transition"
+    },
+    {
+     "value": "recessed"
+    },
+    {
+     "value": "stepped"
+    },
+    {
+     "value": "visible-hardware-bolted"
+    },
+    {
+     "value": "wrapped"
+    },
+    {
+     "value": "sculpted-transition"
+    },
+    {
+     "value": "floating"
+    },
+    {
+     "value": "socket"
+    },
+    {
+     "value": "pinned"
+    },
+    {
+     "value": "bracketed"
+    }
+   ]
+  },
+  {
+   "id": "heel_breast_finish",
+   "name": "Heel Breast Finish",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "matching-upper"
+    },
+    {
+     "value": "contrast-finish"
+    },
+    {
+     "value": "lacquered"
+    },
+    {
+     "value": "matte"
+    },
+    {
+     "value": "metallic"
+    },
+    {
+     "value": "logo-branded"
+    },
+    {
+     "value": "exposed-construction"
+    },
+    {
+     "value": "leather-wrapped"
+    },
+    {
+     "value": "suede-covered"
+    },
+    {
+     "value": "mirrored"
+    },
+    {
+     "value": "holographic"
+    },
+    {
+     "value": "glitter-coated"
+    },
+    {
+     "value": "rhinestone-encrusted"
+    },
+    {
+     "value": "hand-painted"
+    },
+    {
+     "value": "engraved"
+    },
+    {
+     "value": "etched"
+    }
+   ]
+  },
+  {
+   "id": "heel_breast_profile",
+   "name": "Heel Breast Profile",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "straight"
+    },
+    {
+     "value": "concave"
+    },
+    {
+     "value": "convex"
+    },
+    {
+     "value": "s-curve"
+    },
+    {
+     "value": "angular"
+    },
+    {
+     "value": "sculpted"
+    },
+    {
+     "value": "waisted"
+    },
+    {
+     "value": "stepped"
+    },
+    {
+     "value": "fluted"
+    },
+    {
+     "value": "textured"
+    },
+    {
+     "value": "channeled"
+    }
+   ]
+  },
+  {
+   "id": "welt_type",
+   "name": "Welt Type",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "none-cemented"
+    },
+    {
+     "value": "goodyear-welt"
+    },
+    {
+     "value": "blake-stitch"
+    },
+    {
+     "value": "blake-rapid"
+    },
+    {
+     "value": "norwegian-welt"
+    },
+    {
+     "value": "storm-welt"
+    },
+    {
+     "value": "stitch-down"
+    },
+    {
+     "value": "veldtschoen"
+    },
+    {
+     "value": "san-crispino"
+    },
+    {
+     "value": "ideal-stitch"
+    },
+    {
+     "value": "bologna-construction"
+    },
+    {
+     "value": "california-construction"
+    },
+    {
+     "value": "opanka"
+    },
+    {
+     "value": "decorative-faux-welt"
+    },
+    {
+     "value": "contrast-welt"
+    },
+    {
+     "value": "brass-nailed-pegged"
+    },
+    {
+     "value": "hand-welted"
+    }
+   ]
+  },
+  {
+   "id": "welt_visibility",
+   "name": "Welt Visibility",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "hidden-flush"
+    },
+    {
+     "value": "visible-stitching"
+    },
+    {
+     "value": "pronounced-raised"
+    },
+    {
+     "value": "decorative"
+    },
+    {
+     "value": "contrast-stitched"
+    },
+    {
+     "value": "hand-stitched"
+    },
+    {
+     "value": "double-stitched"
+    },
+    {
+     "value": "chain-stitched"
+    },
+    {
+     "value": "saddle-stitched"
+    },
+    {
+     "value": "decorative-nail-peg-visible"
+    },
+    {
+     "value": "welt-painted-stained"
+    }
+   ]
+  },
+  {
+   "id": "outsole_style",
+   "name": "Outsole Style",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "smooth"
+    },
+    {
+     "value": "lightly-textured"
+    },
+    {
+     "value": "diamond-pattern"
+    },
+    {
+     "value": "herringbone"
+    },
+    {
+     "value": "lug"
+    },
+    {
+     "value": "waffle"
+    },
+    {
+     "value": "grooved"
+    },
+    {
+     "value": "studded"
+    },
+    {
+     "value": "branded-tread-pattern"
+    },
+    {
+     "value": "patterned-grip"
+    },
+    {
+     "value": "cross-hatch"
+    },
+    {
+     "value": "chevron"
+    },
+    {
+     "value": "hexagonal"
+    },
+    {
+     "value": "circular"
+    },
+    {
+     "value": "star-pattern"
+    },
+    {
+     "value": "bar-tread"
+    },
+    {
+     "value": "siped"
+    },
+    {
+     "value": "pebbled"
+    },
+    {
+     "value": "channel-grooved"
+    },
+    {
+     "value": "random-organic-texture"
+    },
+    {
+     "value": "ribbed"
+    },
+    {
+     "value": "fish-scale"
+    },
+    {
+     "value": "micro-dot-grip"
+    }
+   ]
+  },
+  {
+   "id": "outsole_finish",
+   "name": "Outsole Finish",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "natural-raw"
+    },
+    {
+     "value": "dyed"
+    },
+    {
+     "value": "lacquered-glossy"
+    },
+    {
+     "value": "matte"
+    },
+    {
+     "value": "satin-finish"
+    },
+    {
+     "value": "painted"
+    },
+    {
+     "value": "contrast-red"
+    },
+    {
+     "value": "contrast-blue"
+    },
+    {
+     "value": "contrast"
+    },
+    {
+     "value": "rubber-coated"
+    },
+    {
+     "value": "clear-coated"
+    },
+    {
+     "value": "waxed"
+    },
+    {
+     "value": "burnished"
+    },
+    {
+     "value": "metallic"
+    },
+    {
+     "value": "antiqued-distressed"
+    },
+    {
+     "value": "hand-painted"
+    },
+    {
+     "value": "stained"
+    },
+    {
+     "value": "logo-stamped"
+    },
+    {
+     "value": "monogrammed"
+    }
+   ]
+  },
+  {
+   "id": "insole_cushioning",
+   "name": "Insole Cushioning",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "minimal-none"
+    },
+    {
+     "value": "light"
+    },
+    {
+     "value": "medium"
+    },
+    {
+     "value": "heavy"
+    },
+    {
+     "value": "ergonomic-contoured"
+    },
+    {
+     "value": "orthopedic"
+    },
+    {
+     "value": "shock-absorbing"
+    },
+    {
+     "value": "variable-density"
+    },
+    {
+     "value": "gel-zone"
+    },
+    {
+     "value": "memory-adaptive"
+    }
+   ]
+  },
+  {
+   "id": "counter_rigidity",
+   "name": "Counter Rigidity",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "rigid-stiff"
+    },
+    {
+     "value": "semi-rigid"
+    },
+    {
+     "value": "flexible"
+    },
+    {
+     "value": "lightly-structured"
+    },
+    {
+     "value": "reinforced"
+    },
+    {
+     "value": "external-visible-counter"
+    },
+    {
+     "value": "decorative-counter"
+    },
+    {
+     "value": "extended-counter"
+    }
+   ]
+  },
+  {
+   "id": "counter_grip",
+   "name": "Counter Grip",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "suede-lined"
+    },
+    {
+     "value": "leather-lined"
+    },
+    {
+     "value": "foam-padded"
+    },
+    {
+     "value": "gel-padded"
+    },
+    {
+     "value": "fabric-lined"
+    },
+    {
+     "value": "rubberized-non-slip"
+    },
+    {
+     "value": "achilles-notch-scallop"
+    },
+    {
+     "value": "padded-and-suede-lined"
+    },
+    {
+     "value": "sheepskin-lined"
+    },
+    {
+     "value": "slip-resistant-coating"
+    }
+   ]
+  },
+  {
+   "id": "hardware_type",
+   "name": "Hardware Type",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "pin-buckle"
+    },
+    {
+     "value": "roller-buckle"
+    },
+    {
+     "value": "snap-buckle"
+    },
+    {
+     "value": "slide-buckle"
+    },
+    {
+     "value": "cam-buckle"
+    },
+    {
+     "value": "lever-buckle"
+    },
+    {
+     "value": "ratchet-buckle"
+    },
+    {
+     "value": "magnetic-buckle"
+    },
+    {
+     "value": "toggle-buckle"
+    },
+    {
+     "value": "locking-buckle"
+    },
+    {
+     "value": "decorative-non-functional-buckle"
+    },
+    {
+     "value": "covered-buckle"
+    },
+    {
+     "value": "jeweled-buckle"
+    },
+    {
+     "value": "oversized-statement-buckle"
+    },
+    {
+     "value": "micro-delicate-buckle"
+    },
+    {
+     "value": "d-rings"
+    },
+    {
+     "value": "o-rings"
+    },
+    {
+     "value": "square-rings"
+    },
+    {
+     "value": "triangle-rings"
+    },
+    {
+     "value": "half-rings"
+    },
+    {
+     "value": "swivel-rings"
+    },
+    {
+     "value": "welded-rings"
+    },
+    {
+     "value": "split-rings"
+    },
+    {
+     "value": "decorative-rings"
+    },
+    {
+     "value": "flat-head-studs"
+    },
+    {
+     "value": "dome-studs"
+    },
+    {
+     "value": "cone-spike-studs"
+    },
+    {
+     "value": "pyramid-studs"
+    },
+    {
+     "value": "star-studs"
+    },
+    {
+     "value": "flower-studs"
+    },
+    {
+     "value": "skull-studs"
+    },
+    {
+     "value": "heart-studs"
+    },
+    {
+     "value": "square-studs"
+    },
+    {
+     "value": "hexagonal-studs"
+    },
+    {
+     "value": "micro-studs"
+    },
+    {
+     "value": "oversized-studs"
+    },
+    {
+     "value": "mixed-pattern-studs"
+    },
+    {
+     "value": "decorative-nail-heads"
+    },
+    {
+     "value": "flat-rivets"
+    },
+    {
+     "value": "domed-rivets"
+    },
+    {
+     "value": "decorative-rivets"
+    },
+    {
+     "value": "cap-rivets"
+    },
+    {
+     "value": "crystal-rivets"
+    },
+    {
+     "value": "colored-rivets"
+    },
+    {
+     "value": "large-head-rivets"
+    },
+    {
+     "value": "standard-eyelets"
+    },
+    {
+     "value": "oversized-grommets"
+    },
+    {
+     "value": "micro-eyelets"
+    },
+    {
+     "value": "shaped-eyelets"
+    },
+    {
+     "value": "colored-eyelets"
+    },
+    {
+     "value": "hidden-eyelets"
+    },
+    {
+     "value": "reinforced-grommets"
+    },
+    {
+     "value": "embroidered-eyelets"
+    },
+    {
+     "value": "curb-chain"
+    },
+    {
+     "value": "cable-chain"
+    },
+    {
+     "value": "box-chain"
+    },
+    {
+     "value": "rope-chain"
+    },
+    {
+     "value": "figaro-chain"
+    },
+    {
+     "value": "ball-bead-chain"
+    },
+    {
+     "value": "snake-chain"
+    },
+    {
+     "value": "wheat-chain"
+    },
+    {
+     "value": "byzantine-chain"
+    },
+    {
+     "value": "link-chain"
+    },
+    {
+     "value": "draped-chain"
+    },
+    {
+     "value": "dangling-chain"
+    },
+    {
+     "value": "ankle-chain"
+    },
+    {
+     "value": "instep-chain"
+    },
+    {
+     "value": "connecting-chain"
+    },
+    {
+     "value": "safety-chain"
+    },
+    {
+     "value": "lobster-clasp"
+    },
+    {
+     "value": "spring-ring"
+    },
+    {
+     "value": "snap-hook"
+    },
+    {
+     "value": "swivel-snap"
+    },
+    {
+     "value": "carabiner"
+    },
+    {
+     "value": "toggle-clasp"
+    },
+    {
+     "value": "magnetic-clasp"
+    },
+    {
+     "value": "s-hook"
+    },
+    {
+     "value": "parrot-clip"
+    },
+    {
+     "value": "bulldog-clip"
+    },
+    {
+     "value": "alligator-clip"
+    },
+    {
+     "value": "logo-plate"
+    },
+    {
+     "value": "name-plate"
+    },
+    {
+     "value": "medallion"
+    },
+    {
+     "value": "coin-charms"
+    },
+    {
+     "value": "pendant"
+    },
+    {
+     "value": "monogram-tag"
+    },
+    {
+     "value": "serial-number-plate"
+    },
+    {
+     "value": "brand-plaque"
+    },
+    {
+     "value": "emblem"
+    },
+    {
+     "value": "crest"
+    },
+    {
+     "value": "heraldic-device"
+    },
+    {
+     "value": "exposed-decorative-zipper"
+    },
+    {
+     "value": "oversized-zipper-pull"
+    },
+    {
+     "value": "jeweled-zipper-pull"
+    },
+    {
+     "value": "custom-zipper-pull"
+    },
+    {
+     "value": "contrasting-zipper-tape"
+    },
+    {
+     "value": "padlock"
+    },
+    {
+     "value": "key-charm"
+    },
+    {
+     "value": "locket"
+    },
+    {
+     "value": "turn-lock"
+    },
+    {
+     "value": "twist-lock"
+    },
+    {
+     "value": "combination-lock"
+    },
+    {
+     "value": "metal-aglets"
+    },
+    {
+     "value": "jeweled-aglets"
+    },
+    {
+     "value": "branded-aglets"
+    },
+    {
+     "value": "shaped-aglets"
+    },
+    {
+     "value": "wrapped-aglets"
+    }
+   ]
+  },
+  {
+   "id": "strap_type",
+   "name": "Strap Type",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "ankle-strap"
+    },
+    {
+     "value": "t-strap"
+    },
+    {
+     "value": "mary-jane"
+    },
+    {
+     "value": "cross-strap"
+    },
+    {
+     "value": "multi-strap"
+    },
+    {
+     "value": "criss-cross-strap"
+    },
+    {
+     "value": "wrap-around-strap"
+    },
+    {
+     "value": "chain-strap"
+    },
+    {
+     "value": "jeweled-strap"
+    },
+    {
+     "value": "ribbon-strap"
+    },
+    {
+     "value": "harness-strap"
+    },
+    {
+     "value": "ankle-strap-with-buckle"
+    },
+    {
+     "value": "ankle-strap-with-hook-peg"
+    },
+    {
+     "value": "ankle-strap-with-button"
+    },
+    {
+     "value": "ankle-strap-with-magnetic-closure"
+    },
+    {
+     "value": "mary-jane-strap"
+    },
+    {
+     "value": "criss-cross-straps"
+    },
+    {
+     "value": "gladiator-straps"
+    },
+    {
+     "value": "cage-straps"
+    },
+    {
+     "value": "slingback-strap"
+    },
+    {
+     "value": "wrap-around-ankle-tie"
+    },
+    {
+     "value": "wrap-around-calf-tie"
+    },
+    {
+     "value": "ribbon-ankle-tie"
+    },
+    {
+     "value": "chain-ankle-strap"
+    },
+    {
+     "value": "velcro-strap"
+    },
+    {
+     "value": "elasticized-strap"
+    },
+    {
+     "value": "convertible-detachable-strap"
+    }
+   ]
+  },
+  {
+   "id": "strap_closure",
+   "name": "Strap Closure",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "single-buckle"
+    },
+    {
+     "value": "double-buckle"
+    },
+    {
+     "value": "triple-multiple-buckle"
+    },
+    {
+     "value": "monk-strap-buckle"
+    },
+    {
+     "value": "roller-buckle"
+    },
+    {
+     "value": "pin-buckle"
+    },
+    {
+     "value": "snap-buckle"
+    },
+    {
+     "value": "slide-buckle"
+    },
+    {
+     "value": "oversized-statement-buckle"
+    },
+    {
+     "value": "micro-delicate-buckle"
+    },
+    {
+     "value": "harness-buckle"
+    },
+    {
+     "value": "military-buckle"
+    },
+    {
+     "value": "jeweled-buckle"
+    },
+    {
+     "value": "snap-button"
+    },
+    {
+     "value": "toggle-closure"
+    },
+    {
+     "value": "hook-and-eye"
+    },
+    {
+     "value": "magnetic-closure"
+    },
+    {
+     "value": "drawstring"
+    },
+    {
+     "value": "wrap-around-tie"
+    },
+    {
+     "value": "button"
+    },
+    {
+     "value": "hook-and-loop-velcro"
+    },
+    {
+     "value": "twist-lock"
+    },
+    {
+     "value": "press-stud"
+    },
+    {
+     "value": "ring-and-bar"
+    }
+   ]
+  },
+  {
+   "id": "transition_edge",
+   "name": "Transition Edge",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "straight-vertical"
+    },
+    {
+     "value": "slightly-beveled"
+    },
+    {
+     "value": "heavily-beveled"
+    },
+    {
+     "value": "rounded"
+    },
+    {
+     "value": "bullnose"
+    },
+    {
+     "value": "stacked-layers"
+    },
+    {
+     "value": "sculpted"
+    },
+    {
+     "value": "wavy"
+    },
+    {
+     "value": "stepped-tiered"
+    },
+    {
+     "value": "concave"
+    },
+    {
+     "value": "convex"
+    },
+    {
+     "value": "faceted"
+    },
+    {
+     "value": "scalloped"
+    },
+    {
+     "value": "channeled"
+    },
+    {
+     "value": "fluted"
+    },
+    {
+     "value": "textured"
+    },
+    {
+     "value": "knife-edge"
+    },
+    {
+     "value": "flared"
+    },
+    {
+     "value": "inverted"
+    },
+    {
+     "value": "asymmetric"
+    }
+   ]
+  },
+  {
+   "id": "strap_anchor",
+   "name": "Strap Anchor",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "ankle"
+    },
+    {
+     "value": "instep"
+    },
+    {
+     "value": "vamp"
+    },
+    {
+     "value": "throat"
+    },
+    {
+     "value": "quarter"
+    },
+    {
+     "value": "heel-collar"
+    },
+    {
+     "value": "back-collar"
+    },
+    {
+     "value": "topline"
+    },
+    {
+     "value": "shaft-top"
+    },
+    {
+     "value": "toe-post"
+    }
+   ]
+  },
+  {
+   "id": "transition_wrap",
+   "name": "Transition Wrap",
+   "provenance": "harvested from legacy shoe_sheet_template.md (People for IA KB) 2026-09-23",
+   "terms": [
+    {
+     "value": "monolithic-seamless-wrap"
+    },
+    {
+     "value": "wrapped-seamless"
+    },
+    {
+     "value": "integrated-flush"
+    },
+    {
+     "value": "overlapped-seam"
+    },
+    {
+     "value": "butt-joint"
+    },
+    {
+     "value": "welted-junction"
+    }
+   ]
+  }
+ ]
+}

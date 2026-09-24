@@ -75,7 +75,9 @@ export const shoeDetails = z
         pitchStep: z.string().optional(), // shoes.pitch:N
         heelSeat: fieldValue.optional(),
         breastFinish: fieldValue.optional(),
+        breastProfile: fieldValue.optional(),
         liftExternal: fieldValue.optional(),
+        liftInternal: fieldValue.optional(),
         topPiece: z
           .object({
             material: fieldValue.optional(),
@@ -94,6 +96,24 @@ export const shoeDetails = z
         construction: fieldValue.optional(),
       })
       .optional(),
+    transition: z
+      .object({
+        wrap: fieldValue.optional(),
+        edge: fieldValue.optional(),
+      })
+      .optional(),
+    counter: z
+      .object({
+        rigidity: fieldValue.optional(),
+        grip: fieldValue.optional(),
+      })
+      .optional(),
+    hardware: z
+      .object({
+        type: fieldValue.optional(),
+        finish: fieldValue.optional(),
+      })
+      .optional(),
     adornments: z
       .array(
         z.object({
@@ -102,18 +122,36 @@ export const shoeDetails = z
           note: z.string().optional(),
         }),
       )
-      .optional(),
+      .optional()
+      .transform((v) => (v && v.length ? v : undefined)), // empty array == unfilled
+    straps: z
+      .array(
+        z.object({
+          type: fieldValue,
+          widthStep: z.string().optional(), // general.width:N
+          material: fieldValue.optional(),
+          hardwareFinish: fieldValue.optional(),
+          anchor: fieldValue.optional(),
+          closure: fieldValue.optional(),
+          note: z.string().optional(),
+        }),
+      )
+      .optional()
+      .transform((v) => (v && v.length ? v : undefined)), // empty array == unfilled
     adornmentDensity: z.string().optional(), // general.intensity:N
     construction: z
       .object({
         welt: fieldValue.optional(),
+        weltVisibility: fieldValue.optional(),
         ornamentation: fieldValue.optional(),
         shank: fieldValue.optional(),
         insoleMaterial: fieldValue.optional(),
+        cushioning: fieldValue.optional(),
         insoleBranding: fieldValue.optional(),
         outsoleMaterial: fieldValue.optional(),
+        outsoleStyle: fieldValue.optional(),
+        outsoleFinish: fieldValue.optional(),
         outsoleTexture: fieldValue.optional(),
-        counterRigidity: fieldValue.optional(),
       })
       .optional(),
     sensory: z
@@ -153,6 +191,7 @@ export const shoeCreateInput = z.object({
     .regex(/^[a-z0-9][a-z0-9-]*$/, "slug must be kebab-case"),
   displayName: z.string().min(1),
   upperFamily: z.string().optional().nullable(),
+  sheetKind: z.enum(["authored", "imported"]).optional(),
   originCharacter: z.string().optional().nullable(),
   styleFamily: z.array(z.string()).optional(),
   appearanceTier: z.enum(["source", "public", "private"]).optional().nullable(),

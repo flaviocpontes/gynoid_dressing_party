@@ -32,7 +32,11 @@ function load<T>(file: string): T {
 function main() {
   const db = getDb();
   const { scales: scaleList } = load<{ scales: ScaleSeed[] }>("scales.json");
-  const { vocabularies: vocabList } = load<{ vocabularies: VocabSeed[] }>("vocabularies.json");
+  const { vocabularies: baseVocabs } = load<{ vocabularies: VocabSeed[] }>("vocabularies.json");
+  // deep vocabularies ride alongside; dedupe by vocabulary id (first file wins)
+  const { vocabularies: deepVocabs } = load<{ vocabularies: VocabSeed[] }>("vocabularies_deep.json");
+  const seen = new Set(baseVocabs.map((v) => v.id));
+  const vocabList = [...baseVocabs, ...deepVocabs.filter((v) => !seen.has(v.id))];
 
   db.transaction((tx) => {
     for (const s of scaleList) {

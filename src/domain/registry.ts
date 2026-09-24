@@ -65,6 +65,39 @@ export function getScaleSteps(reg: Registry, scaleId: string): StepRec[] {
   return reg.stepsByScale.get(scaleId) ?? [];
 }
 
+/** Type-to-filter over vocabulary terms; every whitespace token must match (case-insensitive). */
+export function filterTerms(terms: string[], query: string): string[] {
+  const tokens = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return terms;
+  return terms.filter((t) => {
+    const lower = t.toLowerCase();
+    return tokens.every((tok) => lower.includes(tok));
+  });
+}
+
+// ---- serialization (server -> client prop -> Registry) -----------------------
+
+export type SerializedStep = Pick<StepRec, "id" | "rank" | "zone" | "phrases" | "adjectives" | "nuance" | "anchors">;
+
+export type SerializedRegistry = {
+  vocabTerms: Record<string, string[]>;
+  scales: Record<string, SerializedStep[]>;
+};
+
+/** Rebuild a Registry from its serialized prop form (client-side compile/lint). */
+export function registryFromSerialized(ser: SerializedRegistry): Registry {
+  const reg = emptyRegistry();
+  for (const [vocabId, terms] of Object.entries(ser.vocabTerms)) {
+    reg.vocabTerms.set(vocabId, terms);
+  }
+  for (const [scaleId, steps] of Object.entries(ser.scales)) {
+    const recs = steps.map((s) => ({ ...s, scaleId }));
+    recs.forEach((r) => reg.steps.set(r.id, r));
+    reg.stepsByScale.set(scaleId, recs);
+  }
+  return reg;
+}
+
 /** True when the step sits in the top zone of its scale (intensifier stacking). */
 export function isTopZone(reg: Registry, stepId: string | undefined | null): boolean {
   const step = getStep(reg, stepId);

@@ -5,10 +5,7 @@ import path from "node:path";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getDb } from "@/db/db";
-import { loadRegistrySync } from "@/domain/registry";
 import { shoeCreateInput, shoeUpdateInput, shoeDetails } from "@/domain/shoe";
-import { compileShoePrompt } from "@/domain/compile";
-import { lintShoe } from "@/domain/lint";
 import {
   createShoe, updateShoe, getShoeBySlug, addImage, approveImage, unapproveImage,
   setImageOverlay, snapshotPrompt, setProse,
@@ -36,6 +33,7 @@ async function parseUpdate(formData: FormData) {
     slug: String(formData.get("slug") ?? "").trim(),
     displayName: String(formData.get("displayName") ?? "").trim(),
     upperFamily: String(formData.get("upperFamily") ?? "").trim() || null,
+    sheetKind: String(formData.get("sheetKind") ?? "").trim() || "authored",
     originCharacter: String(formData.get("originCharacter") ?? "").trim() || null,
     appearanceTier: String(formData.get("appearanceTier") ?? "").trim() || null,
     notes: String(formData.get("notes") ?? "").trim() || null,
@@ -55,15 +53,6 @@ export async function updateShoeAction(formData: FormData): Promise<{ ok: boolea
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
-}
-
-export async function compilePromptAction(slug: string): Promise<string> {
-  const db = appDb();
-  const row = await getShoeBySlug(db, slug);
-  if (!row) return "";
-  const reg = loadRegistrySync(db);
-  const details = row.details ? shoeDetails.parse(JSON.parse(row.details)) : {};
-  return compileShoePrompt({ upperFamily: row.upperFamily, details }, reg);
 }
 
 export async function snapshotPromptAction(slug: string, text: string): Promise<{ ok: boolean }> {
@@ -123,13 +112,4 @@ export async function setProseAction(slug: string, text: string): Promise<{ ok: 
   await setProse(db, row.id, text);
   revalidatePath(`/shoes/${slug}`);
   return { ok: true };
-}
-
-export async function lintShoeAction(slug: string) {
-  const db = appDb();
-  const row = await getShoeBySlug(db, slug);
-  if (!row) return [];
-  const reg = loadRegistrySync(db);
-  const details = row.details ? shoeDetails.parse(JSON.parse(row.details)) : {};
-  return lintShoe({ upperFamily: row.upperFamily, details }, reg);
 }

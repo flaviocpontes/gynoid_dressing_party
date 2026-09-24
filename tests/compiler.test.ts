@@ -204,6 +204,153 @@ describe("compiler: corpus fixtures", () => {
   });
 });
 
+describe("compiler: deep sheet clauses", () => {
+  it("emits straps in sheet order and drops the clause when removed", () => {
+    const withStraps: CompileSheet = {
+      upperFamily: "sandal",
+      details: {
+        straps: [
+          { type: "mary-jane", widthStep: "general.width:8", material: "patent leather" },
+          { type: "ankle-strap", anchor: "ankle", closure: "buckle", hardwareFinish: "polished gold" },
+        ],
+      },
+    };
+    const text = compileShoePrompt(withStraps, reg);
+    const mj = text.indexOf("mary jane");
+    const ankle = text.indexOf("ankle strap");
+    expect(text).toContain("Strapped with");
+    expect(mj).toBeGreaterThan(-1);
+    expect(ankle).toBeGreaterThan(mj); // sheet order preserved
+    expect(text).toContain("expansive, sprawling mary jane"); // top-zone width stacking
+    expect(text).toContain("anchored at the ankle");
+    expect(text).toContain("closing with a polished gold buckle");
+
+    const without = compileShoePrompt(
+      { upperFamily: "sandal", details: { straps: [{ type: "mary-jane" }] } },
+      reg,
+    );
+    expect(without).toContain("Strapped with");
+    const bare = compileShoePrompt({ upperFamily: "sandal", details: {} }, reg);
+    expect(bare).not.toContain("Strapped with");
+  });
+
+  it("razor-thin bottom-zone width also reads naturally", () => {
+    const text = compileShoePrompt(
+      {
+        upperFamily: "sandal",
+        details: { straps: [{ type: "toe-post", widthStep: "general.width:1" }] },
+      },
+      reg,
+    );
+    expect(text).toContain("hairline, razor-thin toe post");
+  });
+
+  it("emits transition clause only when filled", () => {
+    const filled = compileShoePrompt(
+      {
+        upperFamily: "pump",
+        details: { transition: { wrap: "monolithic-seamless-wrap", edge: "knife-edge" } },
+      },
+      reg,
+    );
+    expect(filled).toContain("The upper meets the platform in a monolithic seamless wrap, finished with a knife edge transition.");
+    const empty = compileShoePrompt({ upperFamily: "pump", details: {} }, reg);
+    expect(empty).not.toContain("upper meets the platform");
+  });
+
+  it("folds deep heel detail into the heel narrative", () => {
+    const text = compileShoePrompt(
+      {
+        upperFamily: "pump",
+        details: {
+          heel: { breastFinish: "lacquered", breastProfile: "concave", liftInternal: "steel-reinforced" },
+        },
+      },
+      reg,
+    );
+    expect(text).toContain("The heel breast is lacquered, concave in profile.");
+    expect(text).toContain("The heel lift is steel reinforced within.");
+  });
+
+  it("emits counter and hardware clauses only when filled", () => {
+    const text = compileShoePrompt(
+      {
+        upperFamily: "pump",
+        details: { counter: { rigidity: "rigid-stiff", grip: "suede-lined" }, hardware: { type: "pin-buckle", finish: "polished-gold" } },
+      },
+      reg,
+    );
+    expect(text).toContain("The heel counter is rigid stiff, suede lined.");
+    expect(text).toContain("The hardware is pin buckle in polished gold.");
+    const empty = compileShoePrompt({ upperFamily: "pump", details: { counter: {} } }, reg);
+    expect(empty).not.toContain("heel counter");
+    expect(empty).not.toContain("hardware");
+  });
+
+  it("folds outsole material, style and finish into the outsole narrative", () => {
+    const text = compileShoePrompt(
+      {
+        upperFamily: "pump",
+        details: { construction: { outsoleMaterial: "leather", outsoleStyle: "diamond-pattern", outsoleFinish: "lacquered-glossy" } },
+      },
+      reg,
+    );
+    expect(text).toContain("The outsole is cut from leather, a diamond pattern tread, a lacquered glossy finish.");
+  });
+
+  it("compiles a pre-change sheet byte-identically", () => {
+    // snapshot captured from the compiler before deep clauses were added
+    const sheet: CompileSheet = {
+      upperFamily: "mary-jane",
+      details: {
+        silhouette: { toeShape: "peep-toe", vampCoverage: "full-coverage", fastening: "mary-jane-strap" },
+        upper: { primaryMaterial: "patent leather", upperPrimaryColor: "Jet Black" },
+        heel: { type: "stiletto", heightStep: "shoes.heel_height:7", breastFinish: "baby pink", liftExternal: "polished gold", topPiece: { sizeStep: "general.width:2" } },
+        platform: { heightStep: "shoes.platform_height:7", shape: "block", material: "patent leather", edgeProfile: "straight-vertical", toeSpringStep: "shoes.toe_spring:6" },
+        outsole: { lacquerColor: "baby pink", lacquerGloss: "general.smoothness:8" },
+        construction: { welt: { absent: true }, ornamentation: { absent: true }, insoleMaterial: "leather", outsoleMaterial: "leather" },
+        adornments: [{ type: "satin-bow", placement: "vamp" }],
+        sensory: { lightBehavior: "sharp, high-specular reflections", stepSound: "staccato tap" },
+      },
+    };
+    const expected =
+      "Product shot. 1:1 aspect. 3/4 shot. Light studio cyclorama.\n\n" +
+      "A pair of towering jet-black patent leather mary janes with an extreme, sky-high stiletto heel and an extremely towering, colossal mega, block-shaped patent leather platform with an extremely steep toe spring.\n\n" +
+      "The upper is constructed in Jet Black patent leather.\n\n" +
+      "Fastened with a mary jane strap.\n\n" +
+      "The polished gold stiletto heel is ultra-long and needle-thin, rising far above the platform height.\n\n" +
+      "Adorned with satin-bow at the vamp.\n\n" +
+      "The entire outsole and the inner heel breast are finished in a highly visible, polished, baby pink lacquer, serving as a clean high-contrast mechanical chassis signature.\n\n" +
+      "No visible welt, stitching, or ornamentation — the silhouette is monolithic and sculptural.\n\n" +
+      "The patent-leather surface produces sharp, high-specular reflections under studio lighting.";
+    expect(compileShoePrompt(sheet, reg)).toBe(expected);
+  });
+
+  it("randomized deep-field combinations stay digit-free", () => {
+    const families = ["pump", "sandal", "mule", "boot", "mary-jane"];
+    const widthSteps = ["general.width:1", "general.width:4", "general.width:8", undefined];
+    const straps = [undefined, [{ type: "ankle-strap" }], [{ type: "mary-jane", widthStep: "general.width:8", material: "patent leather", hardwareFinish: "polished gold", anchor: "ankle", closure: "single-buckle" }]];
+    const wraps = [undefined, "monolithic-seamless-wrap", "butt-joint"];
+    const edges = [undefined, "knife-edge", "scalloped"];
+    const rigidities = [undefined, "rigid-stiff", "flexible"];
+    const outsoleStyles = [undefined, "diamond-pattern", "lug"];
+    let seed = 7;
+    const rand = <T,>(arr: T[]): T => arr[(seed = (seed * 1103515245 + 12345) % 2 ** 31) % arr.length];
+    for (let i = 0; i < 200; i++) {
+      const details: ShoeDetails = {
+        straps: rand(straps),
+        transition: { wrap: rand(wraps), edge: rand(edges) },
+        counter: { rigidity: rand(rigidities) },
+        hardware: { type: "pin-buckle", finish: "polished-gold" },
+        heel: { breastProfile: "concave", liftInternal: "steel-reinforced" },
+        construction: { outsoleStyle: rand(outsoleStyles), outsoleFinish: "waxed" },
+      };
+      const text = compileShoePrompt({ upperFamily: rand(families), details }, reg);
+      expect(containsDigits(text.slice(PREAMBLE.length))).toBe(false);
+    }
+  });
+});
+
 describe("compiler: numeric ban and anchor exclusion", () => {
   it("contains no digits across fixtures", () => {
     for (const f of fixtures) {

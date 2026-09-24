@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* clause/warning/search jump target flash (EditorWorkspace) */
+.flash-highlight {
+  animation: flash-bg 1.8s ease-out;
+}
+
+@keyframes flash-bg {
+  0% { background-color: rgb(253 224 71 / 0.35); }
+  100% { background-color: transparent; }
+}
