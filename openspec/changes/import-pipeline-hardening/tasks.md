@@ -36,4 +36,28 @@
 ## 7. Verification
 
 - [x] 7.1 Run `npm test` and `npx tsc --noEmit`, and confirm both pass.
-- [ ] 7.2 End-to-end against the real Lemonade server: run one image import of a pump through the gate and battery, and record the fill rate, the failed-pass count and the finish reasons in the change's archive notes. The fill rate is compared against the 10/~60 baseline. The finish reasons answer design.md's open question.
+- [x] 7.2 End-to-end against the real Lemonade server: run one image import of a pump through the gate and battery, and record the fill rate, the failed-pass count and the finish reasons in the change's archive notes. The fill rate is compared against the 10/~60 baseline. The finish reasons answer design.md's open question.
+
+## Verification notes (7.2)
+
+End-to-end run on 2026-09-25 against Lemonade (`Gemma-4-31B-it-GGUF`, ROCm, `--parallel 1`, ctx 121777). It used the same pump photo as the baseline run and a scratch copy of `app.db`, with the family confirmed as `pump`.
+
+| Pass | Wall time | Outcome | Finish | Proposals |
+|---|---|---|---|---|
+| family | 34 s | ok | stop | 1 (pump) |
+| silhouette | 127 s | ok | stop | 7 |
+| upper | 607 s | **failed** `error: fetch failed` | — | 0 |
+| platform | 607 s | **failed** `error: fetch failed` | — | 0 |
+| heel | 607 s | **failed** `error: fetch failed` | — | 0 |
+| transition | 525 s | ok | stop | 2 |
+| straps | 36 s | ok, but the response answers `transition.wrap` | stop | 0 |
+| counter | 112 s | ok | stop | 1 |
+| adornments | 68 s | ok (`"adornments": "not-present"`) | stop | 0 |
+| construction | 88 s | ok | stop | 5 |
+| sensory | 97 s | ok | stop | 1 |
+
+- **Fill rate:** 16 of 53 applicable top-level fields, against a baseline of 10. No choice-sets remained. Silhouette (7) and construction (5) account for most of the gain.
+- **Failed passes:** 3. These are the three largest prompts and the only ones listing scale steps. Each took 607 s, which is 2 × ~300 s plus the 5 s retry delay. That matches Node fetch's (undici) default 300 s headers timeout on a non-streaming request. So this is a client-side timeout, not a server outage.
+- **Queue blocking:** `transition` took 525 s even though its prompt is small. The server keeps generating the abandoned heel request after the client times out, and with `--parallel 1` the next request waits behind it.
+- **Possible cross-request leakage:** the `straps` response answers the previous (`transition`) prompt's field. This repeats the earlier pattern where the vibe pass returned the preceding re-ask's answer byte-for-byte. Not diagnosed.
+- **Open question (finish reasons):** still unanswered for the slow passes, because they timed out before any finish reason came back. Raising `max_tokens` to 4096 plausibly turned the earlier fast empty `length` responses into generations longer than 5 minutes.
