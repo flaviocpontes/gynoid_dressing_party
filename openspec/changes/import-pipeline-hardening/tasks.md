@@ -38,6 +38,13 @@
 - [x] 7.1 Run `npm test` and `npx tsc --noEmit`, and confirm both pass.
 - [x] 7.2 End-to-end against the real Lemonade server: run one image import of a pump through the gate and battery, and record the fill rate, the failed-pass count and the finish reasons in the change's archive notes. The fill rate is compared against the 10/~60 baseline. The finish reasons answer design.md's open question.
 
+## 8. Inference transport (added after 7.2)
+
+- [x] 8.1 Switch `vlmChat` to streaming (design D9): parse SSE deltas, concatenate `content` verbatim, take `finish_reason` from the last chunk that carries one, count `reasoning_content`, add the `VLM_TIMEOUT_MS` budget via `AbortController`, and retry only errors before the first chunk. Verify with `vlm client` tests using stubbed SSE bodies: content assembled across chunks; finish reason passthrough; empty content with `"length"`; a mid-stream error is not retried; a pre-stream connection error is retried once; the request body carries `stream: true`.
+- [ ] 8.2 Verify against Lemonade that aborting a streaming request frees the slot: start the heel pass, abort it after about 20 s, and check that `/v1/health` reports `is_busy: false` within a few seconds. Record the outcome in the verification notes. If the slot stays busy, pause and revise D9.
+- [ ] 8.3 _(set from the diagnostic heel request; see the verification notes)_
+- [ ] 8.4 Re-run the 7.2 end-to-end import (same photo, scratch DB copy) and record fill rate, failed passes, finish reasons and per-pass wall time next to the first run.
+
 ## Verification notes (7.2)
 
 End-to-end run on 2026-09-25 against Lemonade (`Gemma-4-31B-it-GGUF`, ROCm, `--parallel 1`, ctx 121777). It used the same pump photo as the baseline run and a scratch copy of `app.db`, with the family confirmed as `pump`.

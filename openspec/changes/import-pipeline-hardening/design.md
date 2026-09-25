@@ -74,6 +74,17 @@ Every section and re-ask prompt gets the line `This shoe is a <family> (confirme
 Only the human-confirmed family is carried forward, because it can't anchor the model on a wrong machine answer. Carrying machine answers forward (a skeleton pass) is deliberately left to `progressive-interrogation`.
 *Trade-off*: today `APPLICABILITY` holds one rule (shaft is boot-only), which `selectBattery` already enforces at section level. The per-field filter therefore changes no prompt yet and is plumbing whose value grows with the table. Extending the table (e.g. sandal-only or platform-only fields) is a data change for a later change, not this one.
 
+### D9: Streaming transport (added after the 7.2 end-to-end run)
+The 7.2 run showed that a non-streaming request gets no response headers until generation finishes. Node fetch (undici) aborts after 300 s without headers, so any pass that generates for more than 5 minutes fails as `fetch failed`. The server also keeps generating the abandoned request, and with `--parallel 1` the next pass queues behind it.
+`vlmChat` therefore sends `stream: true` and assembles the answer from the server-sent-event deltas:
+- `content` deltas are concatenated into the stored response. The stored text stays exactly what the model answered, because it's rebuilt byte-for-byte from the stream.
+- `finish_reason` is taken from the last chunk that carries one.
+- `reasoning_content` deltas are counted but not stored.
+
+Headers arrive immediately, so the headers timeout no longer applies. A per-request budget (`VLM_TIMEOUT_MS`, default 15 min) aborts through an `AbortController`. That closes the connection. llama.cpp cancels a streaming generation when its client disconnects, but Lemonade sits in between as a proxy, so whether the abandoned pass actually frees the slot is an assumption that task 8.2 verifies with `is_busy` from `/v1/health`.
+The one transport retry is kept, but only for errors before the first chunk (connection refused or reset). A request that dies mid-stream, or hits the budget, is not retried inside the pass; it becomes a failed pass that the battery retries next time. That stops a slow pass from costing twice its budget.
+*Alternative*: keep non-streaming and raise undici's `headersTimeout` through a custom `Agent`. Rejected because it needs the `undici` package as a dependency, and it still leaves abandoned generations blocking the slot.
+
 ## Risks / Trade-offs
 
 - **[Leading-"no " rule misfires on a real term starting "no " (with a space)]** → vocab terms are kebab-case, so a seeded term never contains a space. Only free-text prose can trigger the rule, and prose that starts with "no" is a negation.

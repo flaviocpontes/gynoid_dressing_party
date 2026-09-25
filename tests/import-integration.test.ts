@@ -336,21 +336,49 @@ describe("acceptance", () => {
   });
 });
 
+/** A server-sent-event body built from chat-completion chunks (strings are sent raw). */
+function sse(chunks: (object | string)[], opts: { failAfter?: number } = {}): ReadableStream<Uint8Array> {
+  const enc = new TextEncoder();
+  let i = 0;
+  return new ReadableStream({
+    pull(ctrl) {
+      if (opts.failAfter !== undefined && i === opts.failAfter) return ctrl.error(new Error("socket hang up"));
+      if (i === chunks.length) {
+        ctrl.enqueue(enc.encode("data: [DONE]\n\n"));
+        return ctrl.close();
+      }
+      const c = chunks[i++];
+      ctrl.enqueue(enc.encode(typeof c === "string" ? c : `data: ${JSON.stringify(c)}\n\n`));
+    },
+  });
+}
+
+const delta = (content: string, extra: object = {}) => ({ choices: [{ delta: { content }, ...extra }] });
+
 describe("vlm client", () => {
-  it("request body carries the image and model id; response text is returned", async () => {
+  it("streams: request carries stream, image and model; content assembles across chunks", async () => {
     const img = path.join(tmp, "shoe.png");
     fs.writeFileSync(img, Buffer.from("89504e47", "hex"));
     let captured: { url: string; body: Record<string, unknown> } | undefined;
     const stub: typeof fetch = async (url, init) => {
       captured = { url: String(url), body: JSON.parse(String(init!.body)) };
-      return new Response(JSON.stringify({ choices: [{ message: { content: '{"upperFamily": "pump"}' }, finish_reason: "stop" }] }), {
-        status: 200,
-      });
+      return new Response(
+        sse([
+          { choices: [{ delta: { reasoning_content: "thinking about the family" } }] },
+          delta('{"upperFamily": '),
+          // a chunk split mid-line must still parse
+          `data: ${JSON.stringify(delta('"pump"}'))}`.slice(0, 20),
+          `data: ${JSON.stringify(delta('"pump"}'))}\n\n`.slice(20),
+          { choices: [{ delta: {}, finish_reason: "stop" }] },
+        ]),
+        { status: 200 },
+      );
     };
     const out = await vlmChat({ prompt: "what family?", imagePath: img }, stub);
-    expect(out).toEqual({ text: '{"upperFamily": "pump"}', finishReason: "stop" });
-    expect(captured!.body.max_tokens).toBe(4096);
+    expect(out).toEqual({ text: '{"upperFamily": "pump"}', finishReason: "stop", reasoningChars: 25 });
     expect(captured!.url).toBe("http://192.168.0.20:13305/v1/chat/completions");
+    expect(captured!.body.stream).toBe(true);
+    expect(captured!.body.max_tokens).toBe(4096);
     expect(captured!.body.model).toBe("Gemma-4-31B-it-GGUF");
     const messages = captured!.body.messages as { role: string; content: unknown }[];
     expect(messages[0].role).toBe("system");
@@ -361,10 +389,38 @@ describe("vlm client", () => {
 
   it("empty content is returned verbatim with its finish reason", async () => {
     const stub: typeof fetch = async () =>
-      new Response(JSON.stringify({ choices: [{ message: { content: "", reasoning_content: "thinking…" }, finish_reason: "length" }] }), {
-        status: 200,
-      });
-    expect(await vlmChat({ prompt: "x" }, stub)).toEqual({ text: "", finishReason: "length" });
+      new Response(sse([{ choices: [{ delta: { reasoning_content: "…" }, finish_reason: "length" }] }]), { status: 200 });
+    expect(await vlmChat({ prompt: "x" }, stub)).toEqual({ text: "", finishReason: "length", reasoningChars: 1 });
+  });
+
+  it("a mid-stream failure is not retried", async () => {
+    let calls = 0;
+    const stub: typeof fetch = async () => {
+      calls++;
+      return new Response(sse([delta("{")], { failAfter: 1 }), { status: 200 });
+    };
+    await expect(vlmChat({ prompt: "x", retryDelayMs: 1 }, stub)).rejects.toThrow("socket hang up");
+    expect(calls).toBe(1);
+  });
+
+  it("a connection error before the stream is retried once", async () => {
+    let calls = 0;
+    const stub: typeof fetch = async () => {
+      if (++calls === 1) throw new TypeError("fetch failed");
+      return new Response(sse([delta("{}", { finish_reason: "stop" })]), { status: 200 });
+    };
+    expect(await vlmChat({ prompt: "x", retryDelayMs: 1 }, stub)).toMatchObject({ text: "{}", finishReason: "stop" });
+    expect(calls).toBe(2);
+  });
+
+  it("the time budget aborts without a retry", async () => {
+    let calls = 0;
+    const hang: typeof fetch = (_u, init) => {
+      calls++;
+      return new Promise((_resolve, reject) => init!.signal!.addEventListener("abort", () => reject(init!.signal!.reason)));
+    };
+    await expect(vlmChat({ prompt: "x", timeoutMs: 20, retryDelayMs: 1 }, hang)).rejects.toThrow();
+    expect(calls).toBe(1);
   });
 
   it("propagates server errors", async () => {
