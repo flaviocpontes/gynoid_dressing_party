@@ -1,7 +1,9 @@
 import { z } from "zod";
 import { shoeDetails } from "@/domain/shoe";
 import { setPath } from "@/lib/field-specs";
-import type { PassNote, Proposal } from "./parse";
+import type { Registry } from "@/domain/registry";
+import { isFailedResponse, parsePassResponse, type PassNote, type Proposal } from "./parse";
+import type { PassKey } from "./battery";
 
 /** The mutable proposal assembly; validated at every mutation. */
 export const workingSheetSchema = z.object({
@@ -17,8 +19,11 @@ export type WorkingSheet = z.infer<typeof workingSheetSchema>;
 
 export const USER = "user";
 
+/** A path is user-owned when the user owns it or anything nested under it (e.g. straps.0.type under straps). */
 function isUserOwned(sheet: WorkingSheet, path: string): boolean {
-  return sheet.provenance[path] === USER;
+  return Object.entries(sheet.provenance).some(
+    ([k, v]) => v === USER && (k === path || k.startsWith(`${path}.`)),
+  );
 }
 
 /**
@@ -51,6 +56,32 @@ export function applyPassToSheet(
       sheet.details = setPath(sheet.details, path, undefined) as WorkingSheet["details"];
       delete sheet.provenance[path];
     }
+  }
+  return sheet;
+}
+
+export type StoredPass = { passKey: string; responseText: string | null };
+
+/**
+ * Rebuild machine proposals from stored responses with the current parser
+ * (pure, inference-free). Identity, the confirmed family, and user-owned
+ * fields (including user clears) survive; machine fields and notes are
+ * dropped and replayed from every successful non-family pass in stored order.
+ */
+export function reparseSheet(input: WorkingSheet, passes: StoredPass[], reg: Registry): WorkingSheet {
+  let sheet = structuredClone(input);
+  for (const [path, owner] of Object.entries(sheet.provenance)) {
+    if (owner === USER || isUserOwned(sheet, path)) continue;
+    if (path !== "upperFamily") {
+      sheet.details = setPath(sheet.details, path, undefined) as WorkingSheet["details"];
+    }
+    delete sheet.provenance[path];
+  }
+  sheet.notes = {};
+  for (const p of passes) {
+    if (p.passKey === "family" || isFailedResponse(p.responseText)) continue;
+    const parsed = parsePassResponse(p.passKey as PassKey, p.responseText ?? "", reg);
+    sheet = applyPassToSheet(sheet, p.passKey, parsed);
   }
   return sheet;
 }
