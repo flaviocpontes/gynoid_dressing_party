@@ -16,7 +16,7 @@ The first interrogation pass of every run SHALL ask only for gross architecture 
 - **THEN** the proposal awaits user confirmation and no section pass runs until the user confirms or corrects it
 
 ### Requirement: Family-gated interrogation battery
-After the family checkpoint, the system SHALL run section interrogation passes (heel, upper and colorway, upper-platform transition, platform, outsole, hardware and straps, adornments, shaft for boot families, sensory), selecting passes via the applicability table for the confirmed family. This SHALL apply to image runs and to intent runs alike. Intent-run passes carry the design intent text instead of an image. Passes SHALL execute one at a time, never as concurrent requests to the inference server, and each pass SHALL be persisted as soon as it settles. Each pass SHALL ask focused questions derived from the sheet template: field labels, vocabulary term families, and scale step anchors for orientation. Each pass SHALL produce proposals for only its section's fields.
+After the family checkpoint, the system SHALL run section interrogation passes (heel, upper and colorway, upper-platform transition, platform, outsole, hardware and straps, adornments, shaft for boot families, sensory), selecting passes via the applicability table for the confirmed family. This SHALL apply to image runs and to intent runs alike. Intent-run passes carry the design intent text instead of an image. Passes SHALL execute one at a time, never as concurrent requests to the inference server, and each pass SHALL be persisted as soon as it settles. Each pass SHALL ask focused questions derived from the sheet template: field labels, vocabulary term families, and scale step anchors for orientation. Every section and re-ask prompt SHALL state the confirmed upper family. Within a section, only fields applicable to the confirmed family SHALL be asked. Each pass SHALL produce proposals for only its section's fields that are applicable to the confirmed family, and answers for any other field SHALL be ignored.
 
 #### Scenario: Pump never gets a shaft pass
 - **WHEN** the confirmed family is "pump" and the battery runs
@@ -33,6 +33,14 @@ After the family checkpoint, the system SHALL run section interrogation passes (
 #### Scenario: Intent run gets the section battery
 - **WHEN** an intent run's family is confirmed as "pump" and the battery runs
 - **THEN** the same section passes as an image pump run execute, each prompt carrying the intent text and no image
+
+#### Scenario: Section prompt states the confirmed family
+- **WHEN** the confirmed family is "pump" and the heel pass is built
+- **THEN** the heel prompt states that the shoe is a pump
+
+#### Scenario: Non-applicable field neither asked nor proposed
+- **WHEN** a section contains a field the applicability table excludes for the confirmed family, and the model answers that field anyway
+- **THEN** the field does not appear in that section's prompt and no proposal is recorded for it
 
 #### Scenario: Passes never overlap
 - **WHEN** the battery runs eight section passes

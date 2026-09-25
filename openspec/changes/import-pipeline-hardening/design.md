@@ -69,11 +69,17 @@ Preflight checks reachability, not model load. A cold model load (40–60 s) is 
 
 *Alternative*: keep vibe and chunk its prompt. Rejected because the battery already exists and is family-gated, and this answers the open question from the original design.
 
+### D8: Confirmed family in every section prompt; per-field applicability on both sides
+Every section and re-ask prompt gets the line `This shoe is a <family> (confirmed).`, placed after the preamble. `sectionFieldLines` (and group row fields) filter with `isApplicable(family, path)`. `parsePassResponse` takes the family and drops proposals for non-applicable paths, recording a note for each. Re-parse passes `run.family`, so replayed passes obey the same rule. Both sides are filtered because the model sometimes volunteers fields it wasn't asked about.
+Only the human-confirmed family is carried forward, because it can't anchor the model on a wrong machine answer. Carrying machine answers forward (a skeleton pass) is deliberately left to `progressive-interrogation`.
+*Trade-off*: today `APPLICABILITY` holds one rule (shaft is boot-only), which `selectBattery` already enforces at section level. The per-field filter therefore changes no prompt yet and is plumbing whose value grows with the table. Extending the table (e.g. sandal-only or platform-only fields) is a data change for a later change, not this one.
+
 ## Risks / Trade-offs
 
 - **[Leading-"no " rule misfires on a real term starting "no " (with a space)]** → vocab terms are kebab-case, so a seeded term never contains a space. Only free-text prose can trigger the rule, and prose that starts with "no" is a negation.
 - **[4096 max_tokens still too small if the model reasons at length]** → the finish reason is now recorded and the failure is retryable. The next real run shows whether to raise it further or disable thinking.
 - **[Intent battery is ~8× the calls of the vibe pass]** → acceptable for a single-user tool on a one-at-a-time server. Progress stays visible because pass rows persist as passes settle.
+- **[Stating the family biases the model toward family-typical answers]** → the family is human-confirmed, and the only bias it adds is toward what is already true. Answers still come from the image or intent.
 - **[Health endpoint is up while the model backend is wedged]** → preflight is a fast-fail for the common down case only. The one existing transport retry still applies per pass, and failures stay retryable.
 - **[Sequential battery inside one server action is long-running]** → unchanged from today. Moving it off the request is the planned worker change.
 
