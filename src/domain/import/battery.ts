@@ -10,7 +10,7 @@ import {
 } from "@/lib/field-specs";
 
 /** Stamped on every stored pass; prompts are snapshotted verbatim anyway. */
-export const TEMPLATE_VERSION = "shoe-import/1";
+export const TEMPLATE_VERSION = "shoe-import/2";
 
 /** Max seeded vocabulary terms listed per field; custom kebab-case terms stay legal. */
 export const VOCAB_CAP = 12;
@@ -129,9 +129,10 @@ function vocabTermsLine(spec: FieldSpec, reg: Registry): string {
 function scaleLines(spec: FieldSpec, reg: Registry): string[] {
   const steps = getScaleSteps(reg, spec.scale ?? "");
   if (!steps.length) return ["    (no scale steps loaded for this field)"];
+  // the id is never followed by a parenthetical, which models copied into answers ("…:9 (high)")
   return steps.map(
     (s) =>
-      `    - ${s.id} (${s.zone}): ${s.phrases.join(", ")}${s.anchors.length ? ` — anchors: ${s.anchors.join("; ")}` : ""}`,
+      `    - ${s.id}: ${s.phrases.join(", ")} [${s.zone} zone]${s.anchors.length ? ` — anchors: ${s.anchors.join("; ")}` : ""}`,
   );
 }
 
@@ -160,9 +161,23 @@ function sectionFieldLines(sec: SectionSpec, reg: Registry): string[] {
   return sec.fields.flatMap((f) => (f.kind === "group" ? groupLines(f, reg) : fieldLine(f, reg)));
 }
 
-function familyPrompt(reg: Registry): string {
+/** What the run interrogates: a photograph, or a free-text design intent. */
+export type PromptSource = { kind: "image" } | { kind: "intent"; text: string };
+
+const IMAGE_SOURCE: PromptSource = { kind: "image" };
+
+function intentBlock(source: PromptSource): string {
+  return source.kind === "intent" ? `\nDesign intent: """${source.text}"""` : "";
+}
+
+function familyPrompt(reg: Registry, source: PromptSource): string {
   const terms = reg.vocabTerms.get("upper_family") ?? [];
-  return `You are determining the gross architecture of a shoe from its photograph — nothing else.
+  const opening =
+    source.kind === "image"
+      ? "You are determining the gross architecture of a shoe from its photograph — nothing else."
+      : "You are determining the gross architecture of a shoe described by a design intent — nothing else." +
+        intentBlock(source);
+  return `${opening}
 Weigh the overall construction: does it read as a boot (the upper rises above the ankle), a sandal (open and strapped), a pump (closed low-vamp upper on a heel), or another family?
 Families: ${terms.join(", ")}.
 Reply with a single JSON object with exactly one key: {"upperFamily": "<family>"} — one committed kebab-case family value.
@@ -184,13 +199,28 @@ ${fieldLine(FAMILY_FIELD, reg).join("\n")}
 ${EDITOR_SECTIONS.flatMap((s) => sectionFieldLines(s, reg)).join("\n")}`;
 }
 
-function reAskPrompt(fieldPath: string, candidates: string[], reg: Registry): string {
+function sectionPrompt(passKey: SectionPassKey, reg: Registry, source: PromptSource): string {
+  const title = PASS_SECTION_TITLES[passKey].toLowerCase();
+  const opening =
+    source.kind === "image"
+      ? `You are interrogating the ${title} of a shoe from its photograph.`
+      : `You are designing the ${title} of a shoe from a design intent, filling a structured design sheet. Commit to concrete decisions that serve the intent; hedge only where the intent is genuinely open.` +
+        intentBlock(source);
+  const sec = sectionFor(passKey);
+  return `${opening}
+${ANSWER_CONTRACT}
+
+## Fields
+${sec ? sectionFieldLines(sec, reg).join("\n") : ""}`;
+}
+
+function reAskPrompt(fieldPath: string, candidates: string[], reg: Registry, source: PromptSource): string {
   const spec = resolveFieldSpec(fieldPath);
   const cand = candidates.length ? `Current candidates under consideration: ${candidates.join(", ")}.` : "";
   const line = spec
     ? fieldLine(spec, reg).join("\n")
     : `- ${fieldPath} — answer with a short kebab-case phrase; never digits or units.`;
-  return `You are re-examining one field of a shoe. ${cand}
+  return `You are re-examining one field of a shoe. ${cand}${intentBlock(source)}
 ${ANSWER_CONTRACT}
 Answer only this field:
 ${line}`;
@@ -199,20 +229,14 @@ ${line}`;
 export function buildPassPrompt(
   passKey: PassKey,
   reg: Registry,
-  opts: { intent?: string; candidates?: string[] } = {},
+  opts: { source?: PromptSource; candidates?: string[] } = {},
 ): { templateVersion: string; prompt: string } {
+  const source = opts.source ?? IMAGE_SOURCE;
   let prompt: string;
-  if (passKey === "family") prompt = familyPrompt(reg);
-  else if (passKey === "vibe") prompt = vibePrompt(opts.intent ?? "", reg);
+  if (passKey === "vibe") prompt = vibePrompt(source.kind === "intent" ? source.text : "", reg);
+  else if (passKey === "family") prompt = familyPrompt(reg, source);
   else if (passKey.startsWith("re-ask:"))
-    prompt = reAskPrompt(passKey.slice("re-ask:".length), opts.candidates ?? [], reg);
-  else {
-    const sec = sectionFor(passKey as SectionPassKey);
-    prompt = `You are interrogating the ${PASS_SECTION_TITLES[passKey as SectionPassKey].toLowerCase()} of a shoe from its photograph.
-${ANSWER_CONTRACT}
-
-## Fields
-${sec ? sectionFieldLines(sec, reg).join("\n") : ""}`;
-  }
+    prompt = reAskPrompt(passKey.slice("re-ask:".length), opts.candidates ?? [], reg, source);
+  else prompt = sectionPrompt(passKey as SectionPassKey, reg, source);
   return { templateVersion: TEMPLATE_VERSION, prompt };
 }

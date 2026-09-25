@@ -7,6 +7,7 @@ import {
   buildPassPrompt,
   selectBattery,
   type PassKey,
+  type PromptSource,
   type SectionPassKey,
 } from "@/domain/import/battery";
 import { isFailedResponse, parsePassResponse, normalizeTerm, type Proposal } from "@/domain/import/parse";
@@ -213,9 +214,11 @@ async function executePass(
   passKey: PassKey,
   reg: Registry,
   vlm: VlmFn,
-  opts: { intent?: string; candidates?: string[] } = {},
+  opts: { candidates?: string[] } = {},
 ): Promise<void> {
-  const { templateVersion, prompt } = buildPassPrompt(passKey, reg, opts);
+  const source: PromptSource =
+    run.sourceType === "intent" ? { kind: "intent", text: run.sourceIntentText ?? "" } : { kind: "image" };
+  const { templateVersion, prompt } = buildPassPrompt(passKey, reg, { ...opts, source });
   let responseText: string;
   let finishReason: string | null = null;
   let parsed: { proposals: Proposal[]; notes: { path: string | null; note: string }[] } = {
@@ -281,7 +284,7 @@ export async function executeBattery(
 export async function executeVibePass(db: Db, runId: string, reg: Registry, vlm: VlmFn): Promise<void> {
   const run = await getRun(db, runId);
   if (!run || run.sourceType !== "intent" || run.status !== "open") return;
-  await executePass(db, run, "vibe", reg, vlm, { intent: run.sourceIntentText ?? "" });
+  await executePass(db, run, "vibe", reg, vlm);
 }
 
 export async function executeReAsk(

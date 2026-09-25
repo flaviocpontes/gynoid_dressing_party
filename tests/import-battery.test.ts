@@ -75,12 +75,36 @@ describe("buildPassPrompt", () => {
   });
 
   it("vibe prompt carries the intent and the family plus every section", () => {
-    const { prompt } = buildPassPrompt("vibe", reg, { intent: "a towering black patent pump" });
+    const { prompt } = buildPassPrompt("vibe", reg, { source: { kind: "intent", text: "a towering black patent pump" } });
     expect(prompt).toContain("a towering black patent pump");
     expect(prompt).toContain("upperFamily");
     expect(prompt).toContain("heel.type");
     expect(prompt).toContain("sensory.stepSound");
     expect(prompt).toContain("shaft.heightStep");
+  });
+
+  it("intent section prompts carry the intent and never mention a photograph", () => {
+    const { prompt } = buildPassPrompt("heel", reg, { source: { kind: "intent", text: "a towering black patent pump" } });
+    expect(prompt).toContain('"""a towering black patent pump"""');
+    expect(prompt).not.toContain("photograph");
+    expect(prompt).toContain("heel.type");
+  });
+
+  it("image section prompts read from the photograph", () => {
+    expect(buildPassPrompt("heel", reg).prompt).toContain("of a shoe from its photograph");
+  });
+
+  it("intent family prompt carries the intent", () => {
+    const { prompt } = buildPassPrompt("family", reg, { source: { kind: "intent", text: "thigh-high lace-up boot" } });
+    expect(prompt).toContain("thigh-high lace-up boot");
+    expect(prompt).not.toContain("photograph");
+  });
+
+  it("no step id is directly followed by a parenthetical", () => {
+    for (const k of ["heel", "platform", "upper"] as const) {
+      expect(buildPassPrompt(k, reg).prompt).not.toMatch(/:\d+ \(/);
+    }
+    expect(buildPassPrompt("heel", reg).prompt).toMatch(/shoes\.heel_height:7: .+ \[high zone\]/);
   });
 
   it("re-ask prompt names the candidates and only one field", () => {
