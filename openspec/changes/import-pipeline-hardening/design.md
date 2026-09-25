@@ -40,7 +40,7 @@ A pure `extractStepRef(answer, scaleId, validIds)` scans the answer for `<scaleI
 The no-numbers rule is unaffected. Step ids are references the parser resolves to registry rows, and compiled prompts still come only from step phrases via `compile.ts`.
 
 ### D4: Sentinels match the whole normalized answer, plus a leading "no " rule
-Normalization is lowercase, trimmed, with trailing `.`/`!` removed. Cannot-discern matches when the normalized answer equals a listed sentinel. Not-present matches when it equals a listed sentinel, or when the raw trimmed answer matches `/^no\s/i`. The hyphenated `no-show` and the word `none-cemented` therefore stay ordinary terms. The existing sentinel lists are kept, but `unclear` and `none` now only match as whole answers.
+Normalization is lowercase, trimmed, with trailing `.`/`!` removed. A sentinel matches when the normalized answer equals it. Multi-word sentinels (`cannot tell`, `not present`, …) also match as a prefix followed by a space, which keeps the existing "cannot tell from this image" scenario working. Not-present additionally matches when the raw trimmed answer matches `/^no\s/i`. Single-word sentinels (`none`, `absent`, `unclear`) match only as the whole answer. The hyphenated `no-show` and the word `none-cemented` therefore stay ordinary terms. The existing sentinel lists are kept, but `unclear` and `none` now only match as whole answers.
 *Alternative*: token-level matching. Rejected because it still misfires on `"clear-sole, none visible"`-style answers. Whole-answer matching fits the answer contract, which asks for the bare sentinel.
 
 ### D5: Merge extracted as a pure function; re-parse replays passes

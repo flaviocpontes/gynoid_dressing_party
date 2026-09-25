@@ -58,9 +58,24 @@ export function normalizeTerm(raw: string, terms?: string[]): string {
   return kebab(s);
 }
 
-function isSentimental(v: string, phrases: string[]): boolean {
-  const low = v.trim().toLowerCase();
-  return phrases.some((p) => low === p || low.startsWith(`${p} `) || low.includes(p));
+/**
+ * Whole-answer sentinel matching: a sentinel equals the normalized answer, and
+ * multi-word sentinels also match as a prefix followed by a space
+ * ("cannot tell from this image"). Single words never match inside a term
+ * ("none-cemented", "unclear-coated leather" stay ordinary answers).
+ */
+function isSentinel(v: string, phrases: string[]): boolean {
+  const low = v.trim().toLowerCase().replace(/[.!]+$/, "").trim();
+  return phrases.some((p) => low === p || (p.includes(" ") && low.startsWith(`${p} `)));
+}
+
+function isCannotDiscern(v: string): boolean {
+  return isSentinel(v, CANNOT_DISCERN);
+}
+
+/** Not-present also covers a leading standalone "no " ("no visible welt"), never "no-show". */
+function isNotPresent(v: string): boolean {
+  return isSentinel(v, NOT_PRESENT) || /^no\s/i.test(v.trim());
 }
 
 type FieldOutcome = { proposal?: Proposal; note?: PassNote };
@@ -84,7 +99,7 @@ function parseFieldValue(spec: FieldSpec, raw: unknown, reg: Registry, path: str
     for (const el of raw) {
       if (typeof el !== "string" || !el.trim()) continue;
       const s = el.trim();
-      if (isSentimental(s, CANNOT_DISCERN)) continue; // hedged cannot-discern elements drop silently
+      if (isCannotDiscern(s)) continue; // hedged cannot-discern elements drop silently
       if (spec.kind === "scale") {
         const ids = new Set(getScaleSteps(reg, spec.scale ?? "").map((st) => st.id));
         if (ids.has(s)) kept.push(s);
@@ -116,10 +131,10 @@ function parseFieldValue(spec: FieldSpec, raw: unknown, reg: Registry, path: str
   const s = raw.trim();
   if (!s) return {};
 
-  if (isSentimental(s, CANNOT_DISCERN)) {
+  if (isCannotDiscern(s)) {
     return { note: { path, note: `cannot-discern: ${path} left unfilled` } };
   }
-  if (isSentimental(s, NOT_PRESENT)) {
+  if (isNotPresent(s)) {
     if (spec.kind === "vocab" || spec.kind === "text") {
       if (ABSENCE_ALLOWED.has(spec.path)) return { proposal: { path, value: { absent: true } } };
       return { note: { path, note: `explicit absence not defined for ${spec.path}; left unfilled` } };

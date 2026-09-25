@@ -78,6 +78,26 @@ describe("parsePassResponse value-state mapping", () => {
     expect(out.notes[0].note).toContain("cannot-discern");
   });
 
+  it("terms containing a sentinel word are ordinary answers", () => {
+    const welt = parsePassResponse("construction", '{"construction.welt": "none-cemented"}', reg);
+    expect(welt.proposals).toEqual([{ path: "construction.welt", value: "none-cemented" }]);
+    const toe = parsePassResponse("silhouette", '{"silhouette.toeShape": "no-show"}', reg);
+    expect(toe.proposals).toEqual([{ path: "silhouette.toeShape", value: "no-show" }]);
+    const mat = parsePassResponse("upper", '{"upper.primaryMaterial": "unclear-coated leather"}', reg);
+    expect(mat.proposals).toEqual([{ path: "upper.primaryMaterial", value: "unclear-coated-leather" }]);
+  });
+
+  it("a leading standalone 'no' reads as not-present on absence-legal paths", () => {
+    const out = parsePassResponse("construction", '{"construction.welt": "no visible welt or stitching"}', reg);
+    expect(out.proposals).toEqual([{ path: "construction.welt", value: { absent: true } }]);
+  });
+
+  it("whole-answer sentinels tolerate case and trailing punctuation", () => {
+    const out = parsePassResponse("heel", '{"heel.type": "Cannot discern."}', reg);
+    expect(out.proposals).toEqual([]);
+    expect(out.notes[0].note).toContain("cannot-discern");
+  });
+
   it("digit-bearing answers are rejected to unfilled with a note", () => {
     const out = parsePassResponse("heel", '{"heel.heightStep": "about 12 centimeters"}', reg);
     expect(out.proposals).toEqual([]);
