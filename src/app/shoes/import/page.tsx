@@ -37,9 +37,9 @@ export default async function ImportEntryPage() {
         </form>
 
         <form action={startImportRunAction} className="rounded border border-neutral-700 bg-neutral-900 p-4">
-          <h2 className="font-medium">From a vibe</h2>
+          <h2 className="font-medium">From a design intent</h2>
           <p className="mt-1 text-sm text-neutral-400">
-            One full-template design pass from your intent text, feeding the same review surface. Accepts as
+            Family pass and section battery from your intent text, feeding the same review surface. Accepts as
             an authored sheet.
           </p>
           <textarea

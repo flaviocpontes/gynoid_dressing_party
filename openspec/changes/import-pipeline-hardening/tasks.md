@@ -31,7 +31,7 @@
 ## 6. Review UI and actions
 
 - [x] 6.1 Add `reparseRunAction`, and wrap the family, battery and re-ask actions to redirect with `?error=inference-unreachable` on `InferenceUnreachableError`. Remove `runVibePassAction`. Verify with `npx tsc --noEmit` clean.
-- [ ] 6.2 Update `/shoes/import/[runId]`: add an error banner naming `LEMONADE_URL`; a "Re-parse" button on open runs; a "failed" badge plus finish reason in the pass log; the intent flow using the family and battery controls; and rename the "Vibe import" and "From a vibe" labels to intent wording. Verify by running `npm run dev`, then: start an intent run with the Lemonade URL pointed at an unreachable port (`LEMONADE_URL=http://127.0.0.1:9`) and confirm the banner shows with no pass rows added; open the accepted image run and confirm the empty heel and platform passes show as failed.
+- [x] 6.2 Update `/shoes/import/[runId]`: add an error banner naming `LEMONADE_URL`; a "Re-parse" button on open runs; a "failed" badge plus finish reason in the pass log; the intent flow using the family and battery controls; and rename the "Vibe import" and "From a vibe" labels to intent wording. Verify by running `npm run dev`, then: start an intent run with the Lemonade URL pointed at an unreachable port (`LEMONADE_URL=http://127.0.0.1:9`) and confirm the banner shows with no pass rows added; open the accepted image run and confirm the empty heel and platform passes show as failed.
 
 ## 7. Verification
 

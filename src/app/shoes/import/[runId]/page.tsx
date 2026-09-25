@@ -15,7 +15,10 @@ import {
   setIdentityAction,
   acceptRunAction,
   discardRunAction,
+  reparseRunAction,
 } from "../actions";
+import { isFailedResponse } from "@/domain/import/parse";
+import { LEMONADE_URL } from "@/lib/vlm";
 
 export const dynamic = "force-dynamic";
 
@@ -170,8 +173,15 @@ function FieldEditor({ runId, entry, reg, sheet, passes }: {
   );
 }
 
-export default async function ImportRunPage({ params }: { params: Promise<{ runId: string }> }) {
+export default async function ImportRunPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ runId: string }>;
+  searchParams: Promise<{ error?: string }>;
+}) {
   const { runId } = await params;
+  const { error } = await searchParams;
   const db = getDb();
   const run = await getRun(db, runId);
   if (!run) notFound();
@@ -184,7 +194,8 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
   const sheetKind = isImage ? "imported" : "authored";
   const familyPass = passes.find((p) => p.passKey === "family");
   const batteryKeys = run.family ? selectBattery(run.family) : [];
-  const passByKey = new Map(passes.filter((p) => !(p.responseText ?? "").startsWith("error:")).map((p) => [p.passKey, p]));
+  const passByKey = new Map(passes.filter((p) => !isFailedResponse(p.responseText)).map((p) => [p.passKey, p]));
+  const attempted = new Set(passes.map((p) => p.passKey));
   const pendingBattery = batteryKeys.filter((k) => !passByKey.has(k));
   const warnings = lintShoe({ upperFamily: sheet.upperFamily, details: sheet.details, sheetKind }, reg);
   const choices = unresolvedChoicePaths(sheet);
@@ -196,7 +207,7 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
     <main className="mx-auto max-w-6xl p-6">
       <div className="flex items-baseline justify-between">
         <h1 className="text-2xl font-bold">
-          {isImage ? "Photo import" : "Vibe import"}
+          {isImage ? "Photo import" : "Intent import"}
           <span className="ml-3 rounded bg-neutral-800 px-2 py-0.5 text-xs font-normal text-neutral-400">
             {run.status}
             {run.status === "open" && (run.family ? ` — family: ${run.family}` : " — awaiting family")}
@@ -204,6 +215,13 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
         </h1>
         <Link href="/shoes/import" className="text-sm text-neutral-400 hover:text-neutral-200">all runs</Link>
       </div>
+
+      {error === "inference-unreachable" && (
+        <section className="mt-4 rounded border border-red-800 bg-red-950/40 p-3 text-sm text-red-300">
+          The inference server at <code>{LEMONADE_URL}</code> is unreachable. No pass was sent — start the server
+          (or check <code>LEMONADE_URL</code>) and try again.
+        </section>
+      )}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[320px_1fr]">
         {/* source + wizard column */}
@@ -232,7 +250,9 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                   <button className="rounded bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white">
                     Run family pass
                   </button>
-                  <p className="mt-1 text-xs text-neutral-500">Pass 0: gross architecture only.</p>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    Pass 0: gross architecture only{isImage ? "" : ", from the intent text"}.
+                  </p>
                 </form>
               )}
 
@@ -265,7 +285,7 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                   <ul className="mt-2 space-y-1 text-xs">
                     {batteryKeys.map((k) => {
                       const p = passByKey.get(k);
-                      const failed = p?.responseText?.startsWith("error:");
+                      const failed = !p && attempted.has(k);
                       return (
                         <li key={k} className="flex items-center justify-between">
                           <span className="text-neutral-400">{k}</span>
@@ -279,6 +299,15 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                 </form>
               )}
 
+              {passes.some((p) => p.passKey !== "family") && (
+                <form action={reparseRunAction} className="mt-3 border-t border-neutral-800 pt-3">
+                  <input type="hidden" name="runId" value={run.id} />
+                  <button className={btn}>Re-parse stored responses</button>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    Re-applies the current parser to every successful pass. No inference; your edits are kept.
+                  </p>
+                </form>
+              )}
             </section>
           )}
 
@@ -290,6 +319,10 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                   <details>
                     <summary className="cursor-pointer text-xs text-neutral-400">
                       {p.passKey} <span className="text-neutral-600">· {p.templateVersion}</span>
+                      {p.finishReason && <span className="text-neutral-600"> · {p.finishReason}</span>}
+                      {isFailedResponse(p.responseText) && (
+                        <span className="ml-1 rounded bg-red-950 px-1 text-red-400">failed</span>
+                      )}
                     </summary>
                     <div className="mt-1 space-y-1">
                       <pre className="max-h-60 overflow-auto rounded bg-neutral-950 p-2 text-[11px] text-neutral-300">{p.promptText}</pre>
