@@ -1,7 +1,7 @@
 ## 1. Parser correctness (pure, `src/domain/import/parse.ts`)
 
 - [x] 1.1 Replace substring sentinel matching with whole-answer matching (lowercase, trim, strip trailing `.`/`!`) plus the raw `/^no\s/i` not-present rule (design D4). Verify with new `tests/import-parse.test.ts` cases: `"none-cemented"` → value, `"no-show"` → value, `"unclear-coated leather"` → value, `"no visible welt or stitching"` → absence on an absence-legal path, `"Cannot discern."` → unfilled. Existing value-state tests still pass.
-- [ ] 1.2 Add `extractStepRef(answer, scaleId, validIds)` and use it in both the string and array branches of scale parsing (design D3). Verify with tests: `"general.smoothness:9 (high)"` → `general.smoothness:9` with no note; `"step shoes.heel_height:7, I think"` → accepted; `"shoes.platform_height:4"` on heel height → no proposal plus a wrong-scale note; `"about 12 centimeters"` → digit-rejection note; two distinct valid ids → no proposal.
+- [x] 1.2 Add `extractStepRef(answer, scaleId, validIds)` and use it in both the string and array branches of scale parsing (design D3). Verify with tests: `"general.smoothness:9 (high)"` → `general.smoothness:9` with no note; `"step shoes.heel_height:7, I think"` → accepted; `"shoes.platform_height:4"` on heel height → no proposal plus a wrong-scale note; `"about 12 centimeters"` → digit-rejection note; two distinct valid ids → no proposal.
 - [ ] 1.3 Add `isFailedResponse(text)` (null, empty or whitespace-only, `error:` prefix, no JSON object → failed) (design D1). Verify with unit tests covering each case, including a fenced `{}` counting as not failed.
 
 ## 2. Pure merge and re-parse (`src/domain/import/merge.ts`)

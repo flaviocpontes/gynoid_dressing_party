@@ -109,6 +109,26 @@ describe("parsePassResponse value-state mapping", () => {
     expect(out.proposals).toEqual([{ path: "heel.heightStep", value: "shoes.heel_height:7" }]);
   });
 
+  it("decorated step references are extracted", () => {
+    const gloss = parsePassResponse("upper", '{"outsole.lacquerGloss": "general.smoothness:9 (high)"}', reg);
+    expect(gloss.proposals).toEqual([{ path: "outsole.lacquerGloss", value: "general.smoothness:9" }]);
+    expect(gloss.notes).toEqual([]);
+    const heel = parsePassResponse("heel", '{"heel.heightStep": "step shoes.heel_height:7, I think"}', reg);
+    expect(heel.proposals).toEqual([{ path: "heel.heightStep", value: "shoes.heel_height:7" }]);
+  });
+
+  it("a step reference from another scale is rejected with a wrong-scale note", () => {
+    const out = parsePassResponse("heel", '{"heel.heightStep": "shoes.platform_height:4"}', reg);
+    expect(out.proposals).toEqual([]);
+    expect(out.notes[0].note).toContain("wrong scale");
+  });
+
+  it("two distinct valid step ids in one answer propose nothing", () => {
+    const out = parsePassResponse("heel", '{"heel.heightStep": "shoes.heel_height:6 or shoes.heel_height:7"}', reg);
+    expect(out.proposals).toEqual([]);
+    expect(out.notes[0].note).toContain("re-ask");
+  });
+
   it("hedged scale answers stay unfilled (sheet scale fields hold one step id)", () => {
     const out = parsePassResponse(
       "heel",

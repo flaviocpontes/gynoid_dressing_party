@@ -80,10 +80,41 @@ function isNotPresent(v: string): boolean {
 
 type FieldOutcome = { proposal?: Proposal; note?: PassNote };
 
+export type StepRefResult =
+  | { kind: "step"; id: string }
+  | { kind: "ambiguous"; ids: string[] }
+  | { kind: "wrong-scale"; token: string }
+  | { kind: "none" };
+
+const STEP_TOKEN = /[a-z_]+(?:\.[a-z_]+)+:\d+/gi;
+
+/**
+ * Find the step reference inside a scale answer, ignoring decoration around it
+ * ("general.smoothness:9 (high)", "step shoes.heel_height:7, I think").
+ * Exactly one distinct valid id of this scale is required.
+ */
+export function extractStepRef(answer: string, scaleId: string, validIds: Set<string>): StepRefResult {
+  const tokens = answer.match(STEP_TOKEN) ?? [];
+  const valid = [...new Set(tokens.filter((t) => validIds.has(t)))];
+  if (valid.length === 1) return { kind: "step", id: valid[0] };
+  if (valid.length > 1) return { kind: "ambiguous", ids: valid };
+  const foreign = tokens.find((t) => !t.startsWith(`${scaleId}:`));
+  if (foreign) return { kind: "wrong-scale", token: foreign };
+  return { kind: "none" };
+}
+
 function parseScaleValue(spec: FieldSpec, raw: string, reg: Registry, path: string): FieldOutcome {
-  const ids = new Set(getScaleSteps(reg, spec.scale ?? "").map((s) => s.id));
+  const scaleId = spec.scale ?? "";
+  const ids = new Set(getScaleSteps(reg, scaleId).map((s) => s.id));
   const v = raw.trim();
-  if (ids.has(v)) return { proposal: { path, value: v } };
+  const ref = extractStepRef(v, scaleId, ids);
+  if (ref.kind === "step") return { proposal: { path, value: ref.id } };
+  if (ref.kind === "ambiguous") {
+    return { note: { path, note: `hedged scale answer for ${path} needs a single step id — re-ask: "${v}"` } };
+  }
+  if (ref.kind === "wrong-scale") {
+    return { note: { path, note: `wrong scale for ${path}: "${ref.token}" is not a step of ${scaleId}` } };
+  }
   if (DIGITS.test(v)) {
     return { note: { path, note: `digit-bearing value rejected for ${path}: "${v}" (answer must be a scale step id)` } };
   }
@@ -102,7 +133,8 @@ function parseFieldValue(spec: FieldSpec, raw: unknown, reg: Registry, path: str
       if (isCannotDiscern(s)) continue; // hedged cannot-discern elements drop silently
       if (spec.kind === "scale") {
         const ids = new Set(getScaleSteps(reg, spec.scale ?? "").map((st) => st.id));
-        if (ids.has(s)) kept.push(s);
+        const ref = extractStepRef(s, spec.scale ?? "", ids);
+        if (ref.kind === "step") kept.push(ref.id);
         continue;
       }
       if (DIGITS.test(s)) {
@@ -112,7 +144,8 @@ function parseFieldValue(spec: FieldSpec, raw: unknown, reg: Registry, path: str
       kept.push(normalizeTerm(s, terms));
     }
     if (spec.kind === "scale") {
-      if (kept.length === 1) return { proposal: { path, value: kept[0] } };
+      const distinct = [...new Set(kept)];
+      if (distinct.length === 1) return { proposal: { path, value: distinct[0] } };
       return {
         note: {
           path,
