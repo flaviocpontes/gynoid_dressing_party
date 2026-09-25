@@ -1,8 +1,6 @@
 import { and, desc, eq, inArray } from "drizzle-orm";
-import { z } from "zod";
 import type { Db } from "@/db/db";
 import { importPasses, importRuns } from "@/db/schema";
-import { shoeDetails } from "@/domain/shoe";
 import { setPath } from "@/lib/field-specs";
 import type { Registry } from "@/domain/registry";
 import {
@@ -12,23 +10,14 @@ import {
   type SectionPassKey,
 } from "@/domain/import/battery";
 import { parsePassResponse, normalizeTerm, type Proposal } from "@/domain/import/parse";
+import { applyPassToSheet, workingSheetSchema, type WorkingSheet } from "@/domain/import/merge";
 
 export type ImportRunRow = typeof importRuns.$inferSelect;
 export type ImportPassRow = typeof importPasses.$inferSelect;
 
 // ---- working sheet -----------------------------------------------------------
 
-/** The mutable proposal assembly; validated at every mutation. */
-export const workingSheetSchema = z.object({
-  slug: z.string().default(""),
-  displayName: z.string().default(""),
-  upperFamily: z.string().nullable().default(null),
-  details: shoeDetails.default({}),
-  provenance: z.record(z.string()).default({}), // path -> passKey ("user" once accepted)
-  notes: z.record(z.string()).default({}), // path -> machine note (rejections etc.)
-});
-
-export type WorkingSheet = z.infer<typeof workingSheetSchema>;
+export { workingSheetSchema, type WorkingSheet };
 
 export function readWorkingSheet(run: ImportRunRow): WorkingSheet {
   const raw = run.workingSheet && run.workingSheet.trim() ? JSON.parse(run.workingSheet) : {};
@@ -206,27 +195,7 @@ async function applyToSheet(
   await withRunLock(runId, async () => {
     const fresh = await getRun(db, runId);
     if (!fresh || fresh.status !== "open") return;
-    const sheet = readWorkingSheet(fresh);
-    for (const p of proposals) {
-      if (p.path === "upperFamily") {
-        sheet.upperFamily = typeof p.value === "string" ? p.value : sheet.upperFamily;
-      } else {
-        sheet.details = setPath(sheet.details, p.path, p.value) as WorkingSheet["details"];
-      }
-      sheet.provenance[p.path] = passKey;
-      delete sheet.notes[p.path];
-    }
-    for (const n of notes) {
-      if (n.path) sheet.notes[n.path] = n.note;
-    }
-    // a re-ask that produced no proposal for its field clears the old proposal
-    if (passKey.startsWith("re-ask:")) {
-      const path = passKey.slice("re-ask:".length);
-      if (!proposals.some((p) => p.path === path)) {
-        sheet.details = setPath(sheet.details, path, undefined) as WorkingSheet["details"];
-        delete sheet.provenance[path];
-      }
-    }
+    const sheet = applyPassToSheet(readWorkingSheet(fresh), passKey, { proposals, notes });
     await writeWorkingSheet(db, runId, sheet);
   });
 }

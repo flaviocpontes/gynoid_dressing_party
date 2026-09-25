@@ -6,7 +6,7 @@
 
 ## 2. Pure merge and re-parse (`src/domain/import/merge.ts`)
 
-- [ ] 2.1 Extract `applyPassToSheet(sheet, passKey, parsed)` from `applyToSheet` in `src/lib/import.ts`, keeping provenance, notes and the re-ask clearing rule, and adding "never overwrite `user` provenance" (design D5). Verify that the existing `tests/import-integration.test.ts` review-mutation and re-ask tests still pass, and that a new unit test shows a machine proposal skips a user-owned path.
+- [x] 2.1 Extract `applyPassToSheet(sheet, passKey, parsed)` from `applyToSheet` in `src/lib/import.ts`, keeping provenance, notes and the re-ask clearing rule, and adding "never overwrite `user` provenance" (design D5). Verify that the existing `tests/import-integration.test.ts` review-mutation and re-ask tests still pass, and that a new unit test shows a machine proposal skips a user-owned path.
 - [ ] 2.2 Implement a pure `reparseSheet(sheet, passes, reg)`: keep identity, family and user-provenance fields; drop machine fields and notes; replay non-failed, non-family passes in `createdAt` order. Verify with unit tests for the three spec scenarios: stored silhouette response recovers 7 fields, a user edit survives, a user-cleared field stays cleared. Build the silhouette fixture from the real stored response shape (nested `"silhouette": {...}` object).
 - [ ] 2.3 Change the `clear` mutation in `mutateField` to remove the value but set provenance to `user`. Verify that the integration test "resolve collapses a choice-set, clear empties…" still passes, and that a new assertion shows provenance `user` after a clear.
 
