@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { extractJsonBlock, normalizeTerm, parsePassResponse } from "@/domain/import/parse";
+import { extractJsonBlock, isFailedResponse, normalizeTerm, parsePassResponse } from "@/domain/import/parse";
 import { emptyRegistry, type Registry, type StepRec } from "@/domain/registry";
 import { registryFromSeed } from "./seed-registry";
 
@@ -31,6 +31,25 @@ describe("extractJsonBlock", () => {
   });
   it("returns null when no object exists", () => {
     expect(extractJsonBlock("no json here")).toBeNull();
+  });
+});
+
+describe("isFailedResponse", () => {
+  it("null, empty, and whitespace-only responses are failures", () => {
+    expect(isFailedResponse(null)).toBe(true);
+    expect(isFailedResponse("")).toBe(true);
+    expect(isFailedResponse("  \n ")).toBe(true);
+  });
+  it("legacy error records are failures", () => {
+    expect(isFailedResponse("error: fetch failed")).toBe(true);
+  });
+  it("responses without a JSON object are failures", () => {
+    expect(isFailedResponse("I cannot help with that")).toBe(true);
+    expect(isFailedResponse("{not json")).toBe(true);
+  });
+  it("any JSON object is a success, even an empty fenced one", () => {
+    expect(isFailedResponse("```json\n{}\n```")).toBe(false);
+    expect(isFailedResponse('{"heel.type": "stiletto"}')).toBe(false);
   });
 });
 

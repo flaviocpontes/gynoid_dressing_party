@@ -40,6 +40,18 @@ export function extractJsonBlock(raw: string): unknown | null {
 }
 
 /**
+ * A pass failed when the request errored (legacy "error:" record), the model
+ * returned nothing, or the response holds no JSON object. Derived from the
+ * stored response so legacy rows classify without migration.
+ */
+export function isFailedResponse(text: string | null | undefined): boolean {
+  if (text == null || !text.trim()) return true;
+  if (text.startsWith("error:")) return true;
+  const parsed = extractJsonBlock(text);
+  return !parsed || typeof parsed !== "object" || Array.isArray(parsed);
+}
+
+/**
  * House term normalization: exact / case-insensitive / kebab-insensitive matches
  * resolve to the canonical vocabulary term; free text becomes kebab-case.
  * No fuzzy (nearest-term) snapping, ever.
