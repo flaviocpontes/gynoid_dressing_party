@@ -141,6 +141,7 @@ export const importPasses = sqliteTable(
     promptText: text("prompt_text").notNull(), // verbatim snapshot
     responseText: text("response_text"), // verbatim model response (or error record)
     proposedFields: text("proposed_fields"), // JSON Proposal[]
+    finishReason: text("finish_reason"), // model-reported finish reason (e.g. "stop", "length"); null on legacy rows
     createdAt: integer("created_at").notNull(),
   },
   (t) => [index("import_passes_run_idx").on(t.runId, t.createdAt)],

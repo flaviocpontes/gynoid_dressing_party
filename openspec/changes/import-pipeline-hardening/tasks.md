@@ -12,7 +12,7 @@
 
 ## 3. Inference client and schema
 
-- [ ] 3.1 Add nullable `finishReason: text("finish_reason")` to `importPasses` in `src/db/schema.ts` and run `npm run db:migrate`. Verify the column exists (`PRAGMA table_info(import_passes)` via a node one-liner) and that existing rows read with null.
+- [x] 3.1 Add nullable `finishReason: text("finish_reason")` to `importPasses` in `src/db/schema.ts` and run `npm run db:migrate`. Verify the column exists (`PRAGMA table_info(import_passes)` via a node one-liner) and that existing rows read with null.
 - [ ] 3.2 Change `vlmChat` to return `{ text, finishReason }`: read `choices[0].finish_reason`, return empty content as `""` instead of throwing, and raise the default `max_tokens` to 4096 (design D2). Update the `VlmFn` type and the test stubs. Verify with the `vlm client` tests (request body, finish reason passthrough, empty content returned, server error still propagates).
 - [ ] 3.3 Add `vlmHealth()` (GET `/v1/health`, 5 s timeout) and `InferenceUnreachableError` (design D6). Verify with unit tests using a stubbed fetch: 200 resolves; network error, timeout and 500 throw `InferenceUnreachableError`.
 
