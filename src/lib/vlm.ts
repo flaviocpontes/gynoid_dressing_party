@@ -85,3 +85,22 @@ export async function vlmChat(req: VlmRequest, fetchImpl: typeof fetch = fetch):
   }
   throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
 }
+
+/** The inference server could not be reached; raised before any pass is sent. */
+export class InferenceUnreachableError extends Error {
+  constructor(detail: string) {
+    super(`inference server unreachable at ${LEMONADE_URL}: ${detail}`);
+    this.name = "InferenceUnreachableError";
+  }
+}
+
+/** Preflight: reachability only (a cold model load is still absorbed by the pass request itself). */
+export async function vlmHealth(fetchImpl: typeof fetch = fetch, timeoutMs = 5000): Promise<void> {
+  let res: Response;
+  try {
+    res = await fetchImpl(`${LEMONADE_URL}/v1/health`, { signal: AbortSignal.timeout(timeoutMs) });
+  } catch (e) {
+    throw new InferenceUnreachableError(e instanceof Error ? e.message : String(e));
+  }
+  if (!res.ok) throw new InferenceUnreachableError(`health check returned ${res.status}`);
+}

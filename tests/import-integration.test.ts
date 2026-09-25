@@ -13,7 +13,7 @@ import {
   mutateField, setIdentity, acceptRunFlow, discardRun, confirmFamily,
   unresolvedChoicePaths,
 } from "../src/lib/import";
-import { vlmChat } from "../src/lib/vlm";
+import { vlmChat, vlmHealth, InferenceUnreachableError } from "../src/lib/vlm";
 import { registryFromSeed } from "./seed-registry";
 
 let db: Db;
@@ -254,5 +254,29 @@ describe("vlm client", () => {
   it("propagates server errors", async () => {
     const stub: typeof fetch = async () => new Response("boom", { status: 500 });
     await expect(vlmChat({ prompt: "x", retryDelayMs: 1 }, stub)).rejects.toThrow("500");
+  });
+});
+
+describe("vlm health preflight", () => {
+  it("resolves on 200", async () => {
+    let url = "";
+    const stub: typeof fetch = async (u) => {
+      url = String(u);
+      return new Response("{}", { status: 200 });
+    };
+    await expect(vlmHealth(stub)).resolves.toBeUndefined();
+    expect(url).toBe("http://192.168.0.20:13305/v1/health");
+  });
+
+  it("network errors, timeouts, and non-2xx throw InferenceUnreachableError", async () => {
+    const down: typeof fetch = async () => {
+      throw new TypeError("fetch failed");
+    };
+    await expect(vlmHealth(down)).rejects.toBeInstanceOf(InferenceUnreachableError);
+    const hang: typeof fetch = (_u, init) =>
+      new Promise((_resolve, reject) => init!.signal!.addEventListener("abort", () => reject(init!.signal!.reason)));
+    await expect(vlmHealth(hang, 20)).rejects.toBeInstanceOf(InferenceUnreachableError);
+    const sick: typeof fetch = async () => new Response("no", { status: 500 });
+    await expect(vlmHealth(sick)).rejects.toThrow("500");
   });
 });
