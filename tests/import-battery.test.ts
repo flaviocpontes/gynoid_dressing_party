@@ -87,13 +87,8 @@ describe("buildPassPrompt", () => {
     expect(prompt.toLowerCase()).toContain("sandal");
   });
 
-  it("vibe prompt carries the intent and the family plus every section", () => {
-    const { prompt } = buildPassPrompt("vibe", reg, { source: { kind: "intent", text: "a towering black patent pump" } });
-    expect(prompt).toContain("a towering black patent pump");
-    expect(prompt).toContain("upperFamily");
-    expect(prompt).toContain("heel.type");
-    expect(prompt).toContain("sensory.stepSound");
-    expect(prompt).toContain("shaft.heightStep");
+  it("vibe passes are retired (key kept only for parsing legacy rows)", () => {
+    expect(() => buildPassPrompt("vibe", reg)).toThrow("retired");
   });
 
   it("intent section prompts carry the intent and never mention a photograph", () => {

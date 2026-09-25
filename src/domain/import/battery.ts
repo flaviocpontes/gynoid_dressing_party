@@ -196,21 +196,6 @@ Reply with a single JSON object with exactly one key: {"upperFamily": "<family>"
 Do not answer about toes, heels, materials, colors, or any section detail.`;
 }
 
-function vibePrompt(intent: string, reg: Registry): string {
-  return `You are designing a shoe from a design intent, filling a structured design sheet. Commit to concrete decisions that serve the intent; hedge only where the intent is genuinely open.
-Design intent: """${intent}"""
-
-Fill in as many fields as the design intent supports — cover every section, and only omit fields the intent truly cannot determine. Do not answer with a single field when more are decidable.
-
-${ANSWER_CONTRACT}
-
-## Identity
-${fieldLine(FAMILY_FIELD, reg).join("\n")}
-
-## Sections
-${EDITOR_SECTIONS.flatMap((s) => sectionFieldLines(s, reg)).join("\n")}`;
-}
-
 function sectionPrompt(passKey: SectionPassKey, reg: Registry, source: PromptSource, family: string | null): string {
   const title = PASS_SECTION_TITLES[passKey].toLowerCase();
   const opening =
@@ -252,8 +237,8 @@ export function buildPassPrompt(
   const source = opts.source ?? IMAGE_SOURCE;
   const family = opts.family ?? null;
   let prompt: string;
-  if (passKey === "vibe") prompt = vibePrompt(source.kind === "intent" ? source.text : "", reg);
-  else if (passKey === "family") prompt = familyPrompt(reg, source);
+  if (passKey === "vibe") throw new Error("vibe passes are retired; the key is kept only to parse legacy rows");
+  if (passKey === "family") prompt = familyPrompt(reg, source);
   else if (passKey.startsWith("re-ask:"))
     prompt = reAskPrompt(passKey.slice("re-ask:".length), opts.candidates ?? [], reg, source, family);
   else prompt = sectionPrompt(passKey as SectionPassKey, reg, source, family);

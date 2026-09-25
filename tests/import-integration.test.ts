@@ -9,7 +9,7 @@ import { lintShoe } from "../src/domain/lint";
 import { getShoeBySlug, listShoes } from "../src/lib/shoes";
 import {
   createRun, getRun, appendPass, listPasses, readWorkingSheet,
-  executeFamilyPass, executeBattery, executeVibePass, executeReAsk,
+  executeFamilyPass, executeBattery, executeReAsk,
   mutateField, setIdentity, acceptRunFlow, discardRun, confirmFamily,
   unresolvedChoicePaths, reparseRun, type VlmFn,
 } from "../src/lib/import";
@@ -31,6 +31,12 @@ beforeEach(() => {
 });
 
 const noPreflight = async () => {};
+
+/** Intent draft through the gate: confirm the family, then every battery pass gets `answer`. */
+async function intentDraft(runId: string, answer: string, family = "pump") {
+  await confirmFamily(db, runId, family);
+  await executeBattery(db, runId, reg, okVlm(answer), noPreflight);
+}
 
 const okVlm = (response: string, finishReason: string | null = "stop") => async () => ({ text: response, finishReason });
 
@@ -116,6 +122,43 @@ describe("family gate", () => {
   });
 });
 
+describe("intent runs", () => {
+  it("pass through the family gate: no section pass before confirmation", async () => {
+    const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a towering black patent stripper platform pump with gold hardware" });
+    await executeFamilyPass(db, run.id, reg, okVlm('{"upperFamily": "pump"}'), noPreflight);
+    const passes = await listPasses(db, run.id);
+    expect(passes.map((p) => p.passKey)).toEqual(["family"]);
+    expect(passes[0].promptText).toContain("stripper platform pump");
+    const got = await getRun(db, run.id);
+    expect(readWorkingSheet(got!).upperFamily).toBe("pump");
+    expect(got!.family).toBeNull();
+    await executeBattery(db, run.id, reg, okVlm("{}"), noPreflight);
+    expect(await listPasses(db, run.id)).toHaveLength(1);
+  });
+
+  it("get the same section battery as an image run, carrying the intent and never an image", async () => {
+    const intent = await createRun(db, { sourceType: "intent", sourceIntentText: "a towering black patent pump" });
+    const image = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
+    const images: (string | undefined)[] = [];
+    const vlm: VlmFn = async ({ imagePath }) => {
+      images.push(imagePath);
+      return { text: "{}", finishReason: "stop" };
+    };
+    await confirmFamily(db, intent.id, "pump");
+    await confirmFamily(db, image.id, "pump");
+    await executeBattery(db, intent.id, reg, vlm, noPreflight);
+    expect(images.every((i) => i === undefined)).toBe(true);
+    await executeBattery(db, image.id, reg, okVlm("{}"), noPreflight);
+    const intentPasses = await listPasses(db, intent.id);
+    const imagePasses = await listPasses(db, image.id);
+    expect(intentPasses.map((p) => p.passKey).sort()).toEqual(imagePasses.map((p) => p.passKey).sort());
+    for (const p of intentPasses) {
+      expect(p.promptText).toContain("a towering black patent pump");
+      expect(p.promptText).not.toContain("photograph");
+    }
+  });
+});
+
 describe("failed-pass retry", () => {
   it("an empty response is recorded with its finish reason and re-executed on the next battery", async () => {
     const run = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
@@ -188,7 +231,7 @@ describe("re-parse", () => {
 describe("review mutations", () => {
   it("resolve collapses a choice-set, clear empties, absent is zod-validated", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "x" });
-    await executeVibePass(db, run.id, reg, okVlm('{"silhouette.toeShape": ["pointed", "almond"]}'));
+    await intentDraft(run.id, '{"silhouette.toeShape": ["pointed", "almond"]}');
     let sheet = readWorkingSheet((await getRun(db, run.id))!);
     expect(unresolvedChoicePaths(sheet)).toEqual(["silhouette.toeShape"]);
 
@@ -213,18 +256,19 @@ describe("review mutations", () => {
 
   it("re-ask appends a pass row and a committed answer replaces the proposal", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a pointed pump" });
-    await executeVibePass(db, run.id, reg, okVlm('{"silhouette.toeShape": ["pointed", "almond"]}'));
+    await intentDraft(run.id, '{"silhouette.toeShape": ["pointed", "almond"]}');
     await executeReAsk(db, run.id, "silhouette.toeShape", reg, okVlm('{"silhouette.toeShape": "pointed"}'), noPreflight);
     const passes = await listPasses(db, run.id);
     expect(passes.map((p) => p.passKey)).toContain("re-ask:silhouette.toeShape");
-    expect(passes[1].promptText).toContain("pointed, almond"); // candidates stamped into the prompt
+    const reAsk = passes.find((p) => p.passKey === "re-ask:silhouette.toeShape")!;
+    expect(reAsk.promptText).toContain("pointed, almond"); // candidates stamped into the prompt
     const sheet = readWorkingSheet((await getRun(db, run.id))!);
     expect((sheet.details as { silhouette?: { toeShape?: string } }).silhouette?.toeShape).toBe("pointed");
   });
 
   it("re-ask that cannot discern clears the proposal to unfilled", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a pointed pump" });
-    await executeVibePass(db, run.id, reg, okVlm('{"silhouette.toeShape": ["pointed", "almond"]}'));
+    await intentDraft(run.id, '{"silhouette.toeShape": ["pointed", "almond"]}');
     await executeReAsk(db, run.id, "silhouette.toeShape", reg, okVlm('{"silhouette.toeShape": "cannot tell from this image"}'), noPreflight);
     const sheet = readWorkingSheet((await getRun(db, run.id))!);
     expect((sheet.details as { silhouette?: { toeShape?: string } }).silhouette?.toeShape).toBeUndefined();
@@ -235,7 +279,7 @@ describe("review mutations", () => {
 describe("acceptance", () => {
   it("blocks on unresolved choice-sets and missing identity", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a pump" });
-    await executeVibePass(db, run.id, reg, okVlm('{"silhouette.toeShape": ["pointed", "almond"], "heel.type": "kitten", "heel.heightStep": "shoes.heel_height:7"}'));
+    await intentDraft(run.id, '{"silhouette.toeShape": ["pointed", "almond"], "heel.type": "kitten", "heel.heightStep": "shoes.heel_height:7"}');
     let res = await acceptRunFlow(db, run.id);
     expect(res.ok).toBe(false);
     expect(res.ok === false ? res.error : "").toContain("silhouette.toeShape");
@@ -273,7 +317,8 @@ describe("acceptance", () => {
 
   it("an intent run accepts as an authored shoe", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a towering pump" });
-    await executeVibePass(db, run.id, reg, okVlm('{"upperFamily": "pump", "heel.type": "stiletto"}'));
+    await executeFamilyPass(db, run.id, reg, okVlm('{"upperFamily": "pump"}'), noPreflight);
+    await intentDraft(run.id, '{"heel.type": "stiletto"}');
     await setIdentity(db, run.id, { slug: "vibe-pump", displayName: "Vibe Pump" });
     const res = await acceptRunFlow(db, run.id);
     expect(res.ok).toBe(true);
@@ -283,7 +328,7 @@ describe("acceptance", () => {
 
   it("a discarded run leaves no shoe", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "x" });
-    await executeVibePass(db, run.id, reg, okVlm('{"heel.type": "stiletto"}'));
+    await intentDraft(run.id, '{"heel.type": "stiletto"}');
     await discardRun(db, run.id);
     const after = await getRun(db, run.id);
     expect(after?.status).toBe("discarded");

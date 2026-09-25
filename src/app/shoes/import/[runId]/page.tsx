@@ -10,7 +10,6 @@ import {
   runFamilyPassAction,
   confirmFamilyAction,
   runBatteryAction,
-  runVibePassAction,
   reAskAction,
   mutateFieldAction,
   setIdentityAction,
@@ -184,7 +183,6 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
   const isImage = run.sourceType === "image";
   const sheetKind = isImage ? "imported" : "authored";
   const familyPass = passes.find((p) => p.passKey === "family");
-  const vibePass = passes.find((p) => p.passKey === "vibe");
   const batteryKeys = run.family ? selectBattery(run.family) : [];
   const passByKey = new Map(passes.filter((p) => !(p.responseText ?? "").startsWith("error:")).map((p) => [p.passKey, p]));
   const pendingBattery = batteryKeys.filter((k) => !passByKey.has(k));
@@ -228,7 +226,7 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
             <section className="rounded border border-neutral-700 bg-neutral-900 p-4">
               <h2 className="text-sm font-medium">Wizard</h2>
 
-              {isImage && !run.family && !familyPass && (
+              {!run.family && !familyPass && (
                 <form action={runFamilyPassAction} className="mt-2">
                   <input type="hidden" name="runId" value={run.id} />
                   <button className="rounded bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white">
@@ -238,7 +236,7 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                 </form>
               )}
 
-              {isImage && !run.family && familyPass && (
+              {!run.family && familyPass && (
                 <div className="mt-2 space-y-2">
                   <p className="text-sm">
                     Proposed family:{" "}
@@ -258,7 +256,7 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                 </div>
               )}
 
-              {isImage && run.family && pendingBattery.length > 0 && (
+              {run.family && pendingBattery.length > 0 && (
                 <form action={runBatteryAction} className="mt-2">
                   <input type="hidden" name="runId" value={run.id} />
                   <button className="rounded bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white">
@@ -281,15 +279,6 @@ export default async function ImportRunPage({ params }: { params: Promise<{ runI
                 </form>
               )}
 
-              {!isImage && !vibePass && (
-                <form action={runVibePassAction} className="mt-2">
-                  <input type="hidden" name="runId" value={run.id} />
-                  <button className="rounded bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white">
-                    Generate draft
-                  </button>
-                  <p className="mt-1 text-xs text-neutral-500">One full-template design pass from the intent.</p>
-                </form>
-              )}
             </section>
           )}
 

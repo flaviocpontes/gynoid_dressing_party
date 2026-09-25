@@ -16,7 +16,6 @@ import {
   confirmFamily,
   executeFamilyPass,
   executeBattery,
-  executeVibePass,
   executeReAsk,
   mutateField,
   setIdentity,
@@ -77,12 +76,6 @@ export async function confirmFamilyAction(formData: FormData) {
 export async function runBatteryAction(formData: FormData) {
   const runId = z.string().min(1).parse(String(formData.get("runId") ?? ""));
   await executeBattery(appDb(), runId, loadRegistrySync(appDb()), vlmChat);
-  refresh(runId);
-}
-
-export async function runVibePassAction(formData: FormData) {
-  const runId = z.string().min(1).parse(String(formData.get("runId") ?? ""));
-  await executeVibePass(appDb(), runId, loadRegistrySync(appDb()), vlmChat);
   refresh(runId);
 }
 

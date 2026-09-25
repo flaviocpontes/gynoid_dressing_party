@@ -226,7 +226,8 @@ async function executePass(
     notes: [],
   };
   try {
-    ({ text: responseText, finishReason } = await vlm({ prompt, imagePath: run.sourceImagePath ?? undefined }));
+    const imagePath = run.sourceType === "image" ? (run.sourceImagePath ?? undefined) : undefined;
+    ({ text: responseText, finishReason } = await vlm({ prompt, imagePath }));
     parsed = parsePassResponse(passKey, responseText, reg, run.family);
   } catch (e) {
     responseText = `error: ${e instanceof Error ? e.message : String(e)}`;
@@ -250,7 +251,7 @@ export async function executeFamilyPass(
   preflight: PreflightFn = () => vlmHealth(),
 ): Promise<void> {
   const run = await getRun(db, runId);
-  if (!run || run.sourceType !== "image" || run.status !== "open") return;
+  if (!run || run.status !== "open") return;
   await preflight();
   await executePass(db, run, "family", reg, vlm);
 }
@@ -278,13 +279,6 @@ export async function executeBattery(
   for (const k of pending) {
     await executePass(db, run, k as SectionPassKey, reg, vlm);
   }
-}
-
-/** Vibe path: intent runs collapse the battery into one full-template text pass. */
-export async function executeVibePass(db: Db, runId: string, reg: Registry, vlm: VlmFn): Promise<void> {
-  const run = await getRun(db, runId);
-  if (!run || run.sourceType !== "intent" || run.status !== "open") return;
-  await executePass(db, run, "vibe", reg, vlm);
 }
 
 export async function executeReAsk(

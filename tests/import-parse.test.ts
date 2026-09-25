@@ -181,6 +181,11 @@ describe("parsePassResponse value-state mapping", () => {
     ]);
   });
 
+  it("legacy vibe rows still parse across every section", () => {
+    const out = parsePassResponse("vibe", '{"upperFamily": "pump", "heel.type": "stiletto", "sensory.lightBehavior": "high-gloss"}', reg);
+    expect(out.proposals.map((p) => p.path)).toEqual(["upperFamily", "heel.type", "sensory.lightBehavior"]);
+  });
+
   it("family pass parses the upperFamily proposal", () => {
     const out = parsePassResponse("family", '{"upperFamily": "pump"}', reg);
     expect(out.proposals).toEqual([{ path: "upperFamily", value: "pump" }]);
