@@ -11,7 +11,7 @@ import {
   createRun, getRun, appendPass, listPasses, readWorkingSheet,
   executeFamilyPass, executeBattery, executeVibePass, executeReAsk,
   mutateField, setIdentity, acceptRunFlow, discardRun, confirmFamily,
-  unresolvedChoicePaths, type VlmFn,
+  unresolvedChoicePaths, reparseRun, type VlmFn,
 } from "../src/lib/import";
 import { vlmChat, vlmHealth, InferenceUnreachableError } from "../src/lib/vlm";
 import { registryFromSeed } from "./seed-registry";
@@ -157,6 +157,31 @@ describe("inference preflight", () => {
     await expect(executeReAsk(db, run.id, "heel.type", reg, vlm, down)).rejects.toBeInstanceOf(InferenceUnreachableError);
     expect(called).toBe(false);
     expect(await listPasses(db, run.id)).toHaveLength(0);
+  });
+});
+
+describe("re-parse", () => {
+  it("recovers lost answers without touching pass rows", async () => {
+    const run = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
+    await confirmFamily(db, run.id, "pump");
+    // a stored pass whose answers an older parser failed to map (proposed_fields recorded empty)
+    await appendPass(db, run.id, {
+      passKey: "silhouette",
+      templateVersion: "shoe-import/1",
+      promptText: "silhouette prompt",
+      responseText: '```json\n{"silhouette": {"toeShape": "round", "vampCoverage": "low-vamp"}}\n```',
+      proposedFields: [],
+    });
+    const before = await listPasses(db, run.id);
+    await reparseRun(db, run.id, reg);
+    const after = await listPasses(db, run.id);
+    expect(after).toEqual(before);
+    const sheet = readWorkingSheet((await getRun(db, run.id))!);
+    expect((sheet.details as { silhouette?: Record<string, string> }).silhouette).toEqual({
+      toeShape: "round",
+      vampCoverage: "low-vamp",
+    });
+    expect(sheet.upperFamily).toBe("pump");
   });
 });
 

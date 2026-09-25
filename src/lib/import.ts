@@ -11,7 +11,7 @@ import {
 } from "@/domain/import/battery";
 import { isFailedResponse, parsePassResponse, normalizeTerm, type Proposal } from "@/domain/import/parse";
 import { vlmHealth } from "@/lib/vlm";
-import { applyPassToSheet, workingSheetSchema, type WorkingSheet } from "@/domain/import/merge";
+import { applyPassToSheet, reparseSheet, workingSheetSchema, type WorkingSheet } from "@/domain/import/merge";
 
 export type ImportRunRow = typeof importRuns.$inferSelect;
 export type ImportPassRow = typeof importPasses.$inferSelect;
@@ -302,6 +302,16 @@ export async function executeReAsk(
   }, current);
   const candidates = Array.isArray(value) ? value : typeof value === "string" ? [value] : [];
   await executePass(db, run, `re-ask:${fieldPath}`, reg, vlm, { candidates });
+}
+
+/** Re-apply the current parser to every stored pass of an open run (no inference, pass rows untouched). */
+export async function reparseRun(db: Db, runId: string, reg: Registry): Promise<void> {
+  await withRunLock(runId, async () => {
+    const run = await getRun(db, runId);
+    if (!run || run.status !== "open") return;
+    const passes = await listPasses(db, runId);
+    await writeWorkingSheet(db, runId, reparseSheet(readWorkingSheet(run), passes, reg));
+  });
 }
 
 // ---- review mutations --------------------------------------------------------
