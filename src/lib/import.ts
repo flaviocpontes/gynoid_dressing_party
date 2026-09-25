@@ -172,7 +172,7 @@ export async function discardRun(db: Db, runId: string): Promise<void> {
 
 // ---- pipeline execution ------------------------------------------------------
 
-export type VlmFn = (req: { prompt: string; imagePath?: string }) => Promise<string>;
+export type VlmFn = (req: { prompt: string; imagePath?: string }) => Promise<{ text: string; finishReason: string | null }>;
 
 // ponytail: in-process per-run lock serializes working-sheet read-modify-write
 // under the parallel battery; a db-level lock if this ever goes multi-process.
@@ -216,7 +216,7 @@ async function executePass(
     notes: [],
   };
   try {
-    responseText = await vlm({ prompt, imagePath: run.sourceImagePath ?? undefined });
+    ({ text: responseText } = await vlm({ prompt, imagePath: run.sourceImagePath ?? undefined }));
     parsed = parsePassResponse(passKey, responseText, reg);
   } catch (e) {
     responseText = `error: ${e instanceof Error ? e.message : String(e)}`;

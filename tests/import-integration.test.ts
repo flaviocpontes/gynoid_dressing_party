@@ -30,7 +30,7 @@ beforeEach(() => {
   });
 });
 
-const okVlm = (response: string) => async () => response;
+const okVlm = (response: string, finishReason: string | null = "stop") => async () => ({ text: response, finishReason });
 
 describe("import run persistence", () => {
   it("round-trips a run with two passes", async () => {
@@ -227,12 +227,13 @@ describe("vlm client", () => {
     let captured: { url: string; body: Record<string, unknown> } | undefined;
     const stub: typeof fetch = async (url, init) => {
       captured = { url: String(url), body: JSON.parse(String(init!.body)) };
-      return new Response(JSON.stringify({ choices: [{ message: { content: '{"upperFamily": "pump"}' } }] }), {
+      return new Response(JSON.stringify({ choices: [{ message: { content: '{"upperFamily": "pump"}' }, finish_reason: "stop" }] }), {
         status: 200,
       });
     };
     const out = await vlmChat({ prompt: "what family?", imagePath: img }, stub);
-    expect(out).toBe('{"upperFamily": "pump"}');
+    expect(out).toEqual({ text: '{"upperFamily": "pump"}', finishReason: "stop" });
+    expect(captured!.body.max_tokens).toBe(4096);
     expect(captured!.url).toBe("http://192.168.0.20:13305/v1/chat/completions");
     expect(captured!.body.model).toBe("Gemma-4-31B-it-GGUF");
     const messages = captured!.body.messages as { role: string; content: unknown }[];
@@ -240,6 +241,14 @@ describe("vlm client", () => {
     const userContent = messages[1].content as { type: string; image_url?: { url: string } }[];
     expect(userContent[0]).toEqual({ type: "text", text: "what family?" });
     expect(userContent[1]!.image_url!.url.startsWith("data:image/png;base64,")).toBe(true);
+  });
+
+  it("empty content is returned verbatim with its finish reason", async () => {
+    const stub: typeof fetch = async () =>
+      new Response(JSON.stringify({ choices: [{ message: { content: "", reasoning_content: "thinking…" }, finish_reason: "length" }] }), {
+        status: 200,
+      });
+    expect(await vlmChat({ prompt: "x" }, stub)).toEqual({ text: "", finishReason: "length" });
   });
 
   it("propagates server errors", async () => {

@@ -35,8 +35,13 @@ function dataUrl(imagePath: string): string {
   return `data:${mime};base64,${buf.toString("base64")}`;
 }
 
-/** Chat completions against the Lemonade server; the only place that knows the server exists. */
-export async function vlmChat(req: VlmRequest, fetchImpl: typeof fetch = fetch): Promise<string> {
+export type VlmResult = { text: string; finishReason: string | null };
+
+/**
+ * Chat completions against the Lemonade server; the only place that knows the server exists.
+ * Empty content comes back verbatim as "" (with its finish reason) so the pass log records it.
+ */
+export async function vlmChat(req: VlmRequest, fetchImpl: typeof fetch = fetch): Promise<VlmResult> {
   const content: unknown[] = [{ type: "text", text: req.prompt }];
   if (req.imagePath) {
     content.push({ type: "image_url", image_url: { url: dataUrl(req.imagePath) } });
@@ -48,7 +53,7 @@ export async function vlmChat(req: VlmRequest, fetchImpl: typeof fetch = fetch):
       { role: "user", content },
     ],
     temperature: req.temperature ?? 0.2,
-    max_tokens: req.maxTokens ?? 2048,
+    max_tokens: req.maxTokens ?? 4096,
   };
   const url = `${LEMONADE_URL}/v1/chat/completions`;
   // ponytail: one retry with backoff — the single-slot server drops concurrent connections
@@ -64,11 +69,15 @@ export async function vlmChat(req: VlmRequest, fetchImpl: typeof fetch = fetch):
         throw new Error(`lemonade ${res.status}: ${(await res.text()).slice(0, 400)}`);
       }
       const json = (await res.json()) as {
-        choices?: { message?: { content?: unknown } }[];
+        choices?: { message?: { content?: unknown }; finish_reason?: unknown }[];
       };
-      const text = json.choices?.[0]?.message?.content;
-      if (typeof text !== "string") throw new Error("lemonade: no message content in response");
-      return text;
+      const choice = json.choices?.[0];
+      if (!choice) throw new Error("lemonade: no choices in response");
+      const content = choice.message?.content;
+      return {
+        text: typeof content === "string" ? content : "",
+        finishReason: typeof choice.finish_reason === "string" ? choice.finish_reason : null,
+      };
     } catch (e) {
       lastErr = e;
       if (attempt === 0) await new Promise((r) => setTimeout(r, req.retryDelayMs ?? 5000));

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { applyPassToSheet, reparseSheet, workingSheetSchema } from "@/domain/import/merge";
+import { applyPassToSheet, reparseSheet, workingSheetSchema, type WorkingSheet } from "@/domain/import/merge";
 import { registryFromSeed } from "./seed-registry";
 
 const blank = () => workingSheetSchema.parse({});
@@ -72,7 +72,7 @@ describe("reparseSheet", () => {
   });
 
   it("drops stale machine values and notes, keeps identity, skips family and failed passes", () => {
-    let sheet = { ...blank(), slug: "keep-me", displayName: "Keep Me", upperFamily: "pump" };
+    let sheet: WorkingSheet = { ...blank(), slug: "keep-me", displayName: "Keep Me", upperFamily: "pump" };
     sheet = applyPassToSheet(sheet, "heel", {
       proposals: [{ path: "heel.type", value: "kitten" }],
       notes: [{ path: "heel.heightStep", note: "old" }],
