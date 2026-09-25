@@ -41,7 +41,7 @@
 ## 8. Inference transport (added after 7.2)
 
 - [x] 8.1 Switch `vlmChat` to streaming (design D9): parse SSE deltas, concatenate `content` verbatim, take `finish_reason` from the last chunk that carries one, count `reasoning_content`, add the `VLM_TIMEOUT_MS` budget via `AbortController`, and retry only errors before the first chunk. Verify with `vlm client` tests using stubbed SSE bodies: content assembled across chunks; finish reason passthrough; empty content with `"length"`; a mid-stream error is not retried; a pre-stream connection error is retried once; the request body carries `stream: true`.
-- [ ] 8.2 Verify against Lemonade that aborting a streaming request frees the slot: start the heel pass, abort it after about 20 s, and check that `/v1/health` reports `is_busy: false` within a few seconds. Record the outcome in the verification notes. If the slot stays busy, pause and revise D9.
+- [x] 8.2 Verify against Lemonade that aborting a streaming request frees the slot: start the heel pass, abort it after about 20 s, and check that `/v1/health` reports `is_busy: false` within a few seconds. Record the outcome in the verification notes. If the slot stays busy, pause and revise D9.
 - [ ] 8.3 _(set from the diagnostic heel request; see the verification notes)_
 - [ ] 8.4 Re-run the 7.2 end-to-end import (same photo, scratch DB copy) and record fill rate, failed passes, finish reasons and per-pass wall time next to the first run.
 
@@ -68,3 +68,11 @@ End-to-end run on 2026-09-25 against Lemonade (`Gemma-4-31B-it-GGUF`, ROCm, `--p
 - **Queue blocking:** `transition` took 525 s even though its prompt is small. The server keeps generating the abandoned heel request after the client times out, and with `--parallel 1` the next request waits behind it.
 - **Possible cross-request leakage:** the `straps` response answers the previous (`transition`) prompt's field. This repeats the earlier pattern where the vibe pass returned the preceding re-ask's answer byte-for-byte. Not diagnosed.
 - **Open question (finish reasons):** still unanswered for the slow passes, because they timed out before any finish reason came back. Raising `max_tokens` to 4096 plausibly turned the earlier fast empty `length` responses into generations longer than 5 minutes.
+
+## Verification notes (8.x diagnostics)
+
+- **Streaming (8.1):** headers arrive in about 90 ms. One heel request with thinking on took 212 s: 1,858 completion tokens at 8.7 tokens/s, of which about 93% was reasoning (6,133 reasoning characters against 224 of answer).
+- **Abort frees the slot (8.2):** a streaming heel request aborted by the 20 s budget. `/v1/health` reported `is_busy: true` at 10 s and `false` at 21 s, one second after the abort. Lemonade propagates the disconnect to llama.cpp.
+- **Cross-request contamination:** after the 7.2 run, heel requests answered sensory field names that are not in the heel prompt (`sensory.stepSound`, `sensory.wearProfile`). This happened with `cache_prompt: false` too (0 cached tokens), and with thinking off. After unloading and reloading the model, the same sensory→heel sequence was clean. The server had entered a bad state that survived until reload, most plausibly from the generations abandoned during 7.2's client timeouts. Aborts now actually stop generation (8.2), which removes that trigger. If contamination reappears, unload and reload the model.
+- **Thinking off:** heel with `chat_template_kwargs.enable_thinking: false` takes 11–30 s instead of 1.5–6.5 minutes, and answers a similar set of fields.
+- **Prompt format problem (not transport):** in every heel request (thinking on or off, clean server), the model skips `heel.type`, `heel.heightStep` and `heel.pitchStep`, and answers `"shoes.pitch": "extremely steep"`. It reads the indented step lines (`- shoes.pitch:3: … [high zone]`) as key–value fields.
