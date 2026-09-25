@@ -11,7 +11,7 @@ import {
   createRun, getRun, appendPass, listPasses, readWorkingSheet,
   executeFamilyPass, executeBattery, executeVibePass, executeReAsk,
   mutateField, setIdentity, acceptRunFlow, discardRun, confirmFamily,
-  unresolvedChoicePaths,
+  unresolvedChoicePaths, type VlmFn,
 } from "../src/lib/import";
 import { vlmChat, vlmHealth, InferenceUnreachableError } from "../src/lib/vlm";
 import { registryFromSeed } from "./seed-registry";
@@ -111,6 +111,31 @@ describe("family gate", () => {
     }
     const sheet = readWorkingSheet((await getRun(db, run.id))!);
     expect(unresolvedChoicePaths(sheet)).toEqual([]);
+  });
+});
+
+describe("failed-pass retry", () => {
+  it("an empty response is recorded with its finish reason and re-executed on the next battery", async () => {
+    const run = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
+    await confirmFamily(db, run.id, "pump");
+    const heelEmpty: VlmFn = async ({ prompt }) =>
+      prompt.includes("- heel.type ") ? { text: "", finishReason: "length" } : { text: "{}", finishReason: "stop" };
+    await executeBattery(db, run.id, reg, heelEmpty);
+    const first = await listPasses(db, run.id);
+    const heel = first.find((p) => p.passKey === "heel")!;
+    expect(heel.responseText).toBe("");
+    expect(heel.finishReason).toBe("length");
+
+    const seen: string[] = [];
+    const recorder: VlmFn = async ({ prompt }) => {
+      seen.push(prompt);
+      return { text: '{"heel.type": "stiletto"}', finishReason: "stop" };
+    };
+    await executeBattery(db, run.id, reg, recorder);
+    expect(seen).toHaveLength(1); // only the failed heel pass runs again
+    const after = await listPasses(db, run.id);
+    expect(after.length).toBe(first.length + 1);
+    expect(after.at(-1)!.passKey).toBe("heel");
   });
 });
 

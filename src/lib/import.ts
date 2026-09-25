@@ -9,7 +9,7 @@ import {
   type PassKey,
   type SectionPassKey,
 } from "@/domain/import/battery";
-import { parsePassResponse, normalizeTerm, type Proposal } from "@/domain/import/parse";
+import { isFailedResponse, parsePassResponse, normalizeTerm, type Proposal } from "@/domain/import/parse";
 import { applyPassToSheet, workingSheetSchema, type WorkingSheet } from "@/domain/import/merge";
 
 export type ImportRunRow = typeof importRuns.$inferSelect;
@@ -110,6 +110,7 @@ export async function appendPass(
     templateVersion: string;
     promptText: string;
     responseText?: string | null;
+    finishReason?: string | null;
     proposedFields?: Proposal[];
   },
 ): Promise<ImportPassRow> {
@@ -123,6 +124,7 @@ export async function appendPass(
       promptText: input.promptText,
       responseText: input.responseText ?? null,
       proposedFields: JSON.stringify(input.proposedFields ?? []),
+      finishReason: input.finishReason ?? null,
       createdAt: Date.now(),
     })
     .returning();
@@ -211,12 +213,13 @@ async function executePass(
 ): Promise<void> {
   const { templateVersion, prompt } = buildPassPrompt(passKey, reg, opts);
   let responseText: string;
+  let finishReason: string | null = null;
   let parsed: { proposals: Proposal[]; notes: { path: string | null; note: string }[] } = {
     proposals: [],
     notes: [],
   };
   try {
-    ({ text: responseText } = await vlm({ prompt, imagePath: run.sourceImagePath ?? undefined }));
+    ({ text: responseText, finishReason } = await vlm({ prompt, imagePath: run.sourceImagePath ?? undefined }));
     parsed = parsePassResponse(passKey, responseText, reg);
   } catch (e) {
     responseText = `error: ${e instanceof Error ? e.message : String(e)}`;
@@ -226,6 +229,7 @@ async function executePass(
     templateVersion,
     promptText: prompt,
     responseText,
+    finishReason,
     proposedFields: parsed.proposals,
   });
   await applyToSheet(db, run.id, passKey, parsed.proposals, parsed.notes);
@@ -243,7 +247,7 @@ export async function executeBattery(db: Db, runId: string, reg: Registry, vlm: 
   if (!run || run.status !== "open" || !run.family) return;
   const existing = new Set(
     (await listPasses(db, runId))
-      .filter((p) => !(p.responseText ?? "").startsWith("error:")) // failures are retryable
+      .filter((p) => !isFailedResponse(p.responseText)) // failed passes (errors, empty, no JSON) are retryable
       .map((p) => p.passKey),
   );
   const pending = selectBattery(run.family).filter((k) => !existing.has(k));
