@@ -42,7 +42,7 @@
 
 - [x] 8.1 Switch `vlmChat` to streaming (design D9): parse SSE deltas, concatenate `content` verbatim, take `finish_reason` from the last chunk that carries one, count `reasoning_content`, add the `VLM_TIMEOUT_MS` budget via `AbortController`, and retry only errors before the first chunk. Verify with `vlm client` tests using stubbed SSE bodies: content assembled across chunks; finish reason passthrough; empty content with `"length"`; a mid-stream error is not retried; a pre-stream connection error is retried once; the request body carries `stream: true`.
 - [x] 8.2 Verify against Lemonade that aborting a streaming request frees the slot: start the heel pass, abort it after about 20 s, and check that `/v1/health` reports `is_busy: false` within a few seconds. Record the outcome in the verification notes. If the slot stays busy, pause and revise D9.
-- [ ] 8.3 _(set from the diagnostic heel request; see the verification notes)_
+- [x] 8.3 Send `chat_template_kwargs: { enable_thinking: false }` on interrogation passes (`INTERROGATOR_THINKING` constant), leave prompt caching at the server default (disabling it did not prevent contamination), and keep `max_tokens` 4096 as a ceiling. Verify with the `vlm client` request-body test.
 - [ ] 8.4 Re-run the 7.2 end-to-end import (same photo, scratch DB copy) and record fill rate, failed passes, finish reasons and per-pass wall time next to the first run.
 
 ## Verification notes (7.2)

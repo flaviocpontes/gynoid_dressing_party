@@ -85,6 +85,9 @@ Headers arrive immediately, so the headers timeout no longer applies. A per-requ
 The one transport retry is kept, but only for errors before the first chunk (connection refused or reset). A request that dies mid-stream, or hits the budget, is not retried inside the pass; it becomes a failed pass that the battery retries next time. That stops a slow pass from costing twice its budget.
 *Alternative*: keep non-streaming and raise undici's `headersTimeout` through a custom `Agent`. Rejected because it needs the `undici` package as a dependency, and it still leaves abandoned generations blocking the slot.
 
+### D10: Thinking off for interrogation passes (from the 8.x diagnostics)
+With thinking on, about 93% of the model's output is reasoning, which makes a pass take minutes and made it vulnerable to the timeout. With thinking off, the same heel prompt answers a similar set of fields in 11–30 s. `vlmChat` sends `chat_template_kwargs: { enable_thinking: false }`, controlled by the `INTERROGATOR_THINKING` constant. This answers the open question: the empty `length` responses were the reasoning budget.
+
 ## Risks / Trade-offs
 
 - **[Leading-"no " rule misfires on a real term starting "no " (with a space)]** → vocab terms are kebab-case, so a seeded term never contains a space. Only free-text prose can trigger the rule, and prose that starts with "no" is a negation.

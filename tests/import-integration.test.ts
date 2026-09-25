@@ -378,6 +378,7 @@ describe("vlm client", () => {
     expect(out).toEqual({ text: '{"upperFamily": "pump"}', finishReason: "stop", reasoningChars: 25 });
     expect(captured!.url).toBe("http://192.168.0.20:13305/v1/chat/completions");
     expect(captured!.body.stream).toBe(true);
+    expect(captured!.body.chat_template_kwargs).toEqual({ enable_thinking: false });
     expect(captured!.body.max_tokens).toBe(4096);
     expect(captured!.body.model).toBe("Gemma-4-31B-it-GGUF");
     const messages = captured!.body.messages as { role: string; content: unknown }[];

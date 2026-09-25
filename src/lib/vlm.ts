@@ -38,6 +38,12 @@ function dataUrl(imagePath: string): string {
 
 export type VlmResult = { text: string; finishReason: string | null; reasoningChars: number };
 
+/**
+ * Gemma reasons for ~93% of its output when thinking is on (diagnostic in import-pipeline-hardening
+ * 8.x): minutes per pass for the same fields. Interrogation passes run with thinking off.
+ */
+export const INTERROGATOR_THINKING = false;
+
 /** Per-request budget; streaming makes it independent of fetch's 300 s headers timeout. */
 export const VLM_TIMEOUT_MS = Number(process.env.VLM_TIMEOUT_MS ?? 15 * 60 * 1000);
 
@@ -95,6 +101,7 @@ export async function vlmChat(req: VlmRequest, fetchImpl: typeof fetch = fetch):
     temperature: req.temperature ?? 0.2,
     max_tokens: req.maxTokens ?? 4096,
     stream: true,
+    chat_template_kwargs: { enable_thinking: INTERROGATOR_THINKING },
   };
   const url = `${LEMONADE_URL}/v1/chat/completions`;
   const signal = AbortSignal.timeout(req.timeoutMs ?? VLM_TIMEOUT_MS);
