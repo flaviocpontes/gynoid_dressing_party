@@ -28,17 +28,22 @@ function isUserOwned(sheet: WorkingSheet, path: string): boolean {
 
 /**
  * Merge one parsed pass into the working sheet (pure). Machine proposals never
- * overwrite a user-owned field; a re-ask that proposes nothing for its field
- * clears the old machine proposal.
+ * overwrite a user-owned field, except a live re-ask on its own field: the user
+ * asked for it explicitly (replay during re-parse passes `liveReAsk: false`, so
+ * a later user edit keeps the final word). A re-ask that proposes nothing for
+ * its field clears the old value.
  */
 export function applyPassToSheet(
   input: WorkingSheet,
   passKey: string,
   parsed: { proposals: Proposal[]; notes: PassNote[] },
+  opts: { liveReAsk?: boolean } = {},
 ): WorkingSheet {
   const sheet = structuredClone(input);
+  const reAskPath = passKey.startsWith("re-ask:") ? passKey.slice("re-ask:".length) : null;
+  const owned = (path: string) => isUserOwned(sheet, path) && !(opts.liveReAsk && path === reAskPath);
   for (const p of parsed.proposals) {
-    if (isUserOwned(sheet, p.path)) continue;
+    if (owned(p.path)) continue;
     if (p.path === "upperFamily") {
       sheet.upperFamily = typeof p.value === "string" ? p.value : sheet.upperFamily;
     } else {
@@ -50,12 +55,9 @@ export function applyPassToSheet(
   for (const n of parsed.notes) {
     if (n.path) sheet.notes[n.path] = n.note;
   }
-  if (passKey.startsWith("re-ask:")) {
-    const path = passKey.slice("re-ask:".length);
-    if (!isUserOwned(sheet, path) && !parsed.proposals.some((p) => p.path === path)) {
-      sheet.details = setPath(sheet.details, path, undefined) as WorkingSheet["details"];
-      delete sheet.provenance[path];
-    }
+  if (reAskPath && !owned(reAskPath) && !parsed.proposals.some((p) => p.path === reAskPath)) {
+    sheet.details = setPath(sheet.details, reAskPath, undefined) as WorkingSheet["details"];
+    delete sheet.provenance[reAskPath];
   }
   return sheet;
 }

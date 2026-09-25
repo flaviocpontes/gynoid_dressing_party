@@ -129,6 +129,7 @@ describe("review mutations", () => {
     await mutateField(db, run.id, { op: "clear", path: "silhouette.toeShape" });
     sheet = readWorkingSheet((await getRun(db, run.id))!);
     expect((sheet.details as { silhouette?: { toeShape?: string } }).silhouette?.toeShape).toBeUndefined();
+    expect(sheet.provenance["silhouette.toeShape"]).toBe("user"); // the clear is user-owned
 
     // absence on an illegal path is rejected by the sheet zod validation
     await expect(

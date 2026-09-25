@@ -195,7 +195,7 @@ async function applyToSheet(
   await withRunLock(runId, async () => {
     const fresh = await getRun(db, runId);
     if (!fresh || fresh.status !== "open") return;
-    const sheet = applyPassToSheet(readWorkingSheet(fresh), passKey, { proposals, notes });
+    const sheet = applyPassToSheet(readWorkingSheet(fresh), passKey, { proposals, notes }, { liveReAsk: true });
     await writeWorkingSheet(db, runId, sheet);
   });
 }
@@ -316,8 +316,9 @@ export async function mutateField(
       delete sheet.notes[mutation.path];
       break;
     case "clear":
+      // the user owns the clear, so re-parse never resurrects the machine value
       sheet.details = setPath(sheet.details, mutation.path, undefined) as WorkingSheet["details"];
-      delete sheet.provenance[mutation.path];
+      sheet.provenance[mutation.path] = "user";
       delete sheet.notes[mutation.path];
       break;
   }

@@ -25,6 +25,17 @@ describe("applyPassToSheet", () => {
     expect(out.provenance["heel.type"]).toBe("user");
   });
 
+  it("a live re-ask overrides user ownership of its own field; replay does not", () => {
+    const sheet = { ...blank(), provenance: { "heel.type": "user" } };
+    const parsed = { proposals: [{ path: "heel.type", value: "stiletto" }], notes: [] };
+    const live = applyPassToSheet(sheet, "re-ask:heel.type", parsed, { liveReAsk: true });
+    expect((live.details as { heel?: { type?: string } }).heel?.type).toBe("stiletto");
+    expect(live.provenance["heel.type"]).toBe("re-ask:heel.type");
+    const replay = applyPassToSheet(sheet, "re-ask:heel.type", parsed);
+    expect((replay.details as { heel?: { type?: string } }).heel?.type).toBeUndefined();
+    expect(replay.provenance["heel.type"]).toBe("user");
+  });
+
   it("a re-ask with no proposal clears the machine value", () => {
     const sheet = applyPassToSheet(blank(), "heel", { proposals: [{ path: "heel.type", value: "block" }], notes: [] });
     const out = applyPassToSheet(sheet, "re-ask:heel.type", { proposals: [], notes: [] });
