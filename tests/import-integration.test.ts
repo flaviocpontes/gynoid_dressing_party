@@ -30,6 +30,8 @@ beforeEach(() => {
   });
 });
 
+const noPreflight = async () => {};
+
 const okVlm = (response: string, finishReason: string | null = "stop") => async () => ({ text: response, finishReason });
 
 describe("import run persistence", () => {
@@ -73,20 +75,20 @@ describe("import run persistence", () => {
 describe("family gate", () => {
   it("family pass proposes the family but battery stays blocked until confirmed", async () => {
     const run = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
-    await executeFamilyPass(db, run.id, reg, okVlm('{"upperFamily": "pump"}'));
+    await executeFamilyPass(db, run.id, reg, okVlm('{"upperFamily": "pump"}'), noPreflight);
     let got = await getRun(db, run.id);
     expect(readWorkingSheet(got!).upperFamily).toBe("pump");
     expect(got!.family).toBeNull(); // not confirmed yet
 
-    await executeBattery(db, run.id, reg, okVlm("{}")); // no-op without confirmation
+    await executeBattery(db, run.id, reg, okVlm("{}"), noPreflight); // no-op without confirmation
     expect((await listPasses(db, run.id)).filter((p) => p.passKey !== "family")).toHaveLength(0);
   });
 
   it("battery runs gated by the confirmed family", async () => {
     const run = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
-    await executeFamilyPass(db, run.id, reg, okVlm('{"upperFamily": "flat"}'));
+    await executeFamilyPass(db, run.id, reg, okVlm('{"upperFamily": "flat"}'), noPreflight);
     await confirmFamily(db, run.id, "pump"); // user corrected to pump
-    await executeBattery(db, run.id, reg, okVlm('{"heel.type": "stiletto"}'));
+    await executeBattery(db, run.id, reg, okVlm('{"heel.type": "stiletto"}'), noPreflight);
     const all = await listPasses(db, run.id);
     const passes = all.map((p) => p.passKey);
     expect(passes.filter((k) => k === "family")).toHaveLength(1); // not re-run
@@ -102,7 +104,7 @@ describe("family gate", () => {
     const boom = async () => {
       throw new Error("server unreachable");
     };
-    await executeBattery(db, run.id, reg, boom);
+    await executeBattery(db, run.id, reg, boom, noPreflight);
     const passes = await listPasses(db, run.id);
     expect(passes.length).toBeGreaterThan(0);
     for (const p of passes) {
@@ -120,7 +122,7 @@ describe("failed-pass retry", () => {
     await confirmFamily(db, run.id, "pump");
     const heelEmpty: VlmFn = async ({ prompt }) =>
       prompt.includes("- heel.type ") ? { text: "", finishReason: "length" } : { text: "{}", finishReason: "stop" };
-    await executeBattery(db, run.id, reg, heelEmpty);
+    await executeBattery(db, run.id, reg, heelEmpty, noPreflight);
     const first = await listPasses(db, run.id);
     const heel = first.find((p) => p.passKey === "heel")!;
     expect(heel.responseText).toBe("");
@@ -131,11 +133,30 @@ describe("failed-pass retry", () => {
       seen.push(prompt);
       return { text: '{"heel.type": "stiletto"}', finishReason: "stop" };
     };
-    await executeBattery(db, run.id, reg, recorder);
+    await executeBattery(db, run.id, reg, recorder, noPreflight);
     expect(seen).toHaveLength(1); // only the failed heel pass runs again
     const after = await listPasses(db, run.id);
     expect(after.length).toBe(first.length + 1);
     expect(after.at(-1)!.passKey).toBe("heel");
+  });
+});
+
+describe("inference preflight", () => {
+  it("an unreachable server stops the battery before any pass row is written", async () => {
+    const run = await createRun(db, { sourceType: "image", sourceImagePath: "data/images/imports/x.png" });
+    await confirmFamily(db, run.id, "pump");
+    const down = async () => {
+      throw new InferenceUnreachableError("fetch failed");
+    };
+    let called = false;
+    const vlm: VlmFn = async () => {
+      called = true;
+      return { text: "{}", finishReason: "stop" };
+    };
+    await expect(executeBattery(db, run.id, reg, vlm, down)).rejects.toBeInstanceOf(InferenceUnreachableError);
+    await expect(executeReAsk(db, run.id, "heel.type", reg, vlm, down)).rejects.toBeInstanceOf(InferenceUnreachableError);
+    expect(called).toBe(false);
+    expect(await listPasses(db, run.id)).toHaveLength(0);
   });
 });
 
@@ -168,7 +189,7 @@ describe("review mutations", () => {
   it("re-ask appends a pass row and a committed answer replaces the proposal", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a pointed pump" });
     await executeVibePass(db, run.id, reg, okVlm('{"silhouette.toeShape": ["pointed", "almond"]}'));
-    await executeReAsk(db, run.id, "silhouette.toeShape", reg, okVlm('{"silhouette.toeShape": "pointed"}'));
+    await executeReAsk(db, run.id, "silhouette.toeShape", reg, okVlm('{"silhouette.toeShape": "pointed"}'), noPreflight);
     const passes = await listPasses(db, run.id);
     expect(passes.map((p) => p.passKey)).toContain("re-ask:silhouette.toeShape");
     expect(passes[1].promptText).toContain("pointed, almond"); // candidates stamped into the prompt
@@ -179,7 +200,7 @@ describe("review mutations", () => {
   it("re-ask that cannot discern clears the proposal to unfilled", async () => {
     const run = await createRun(db, { sourceType: "intent", sourceIntentText: "a pointed pump" });
     await executeVibePass(db, run.id, reg, okVlm('{"silhouette.toeShape": ["pointed", "almond"]}'));
-    await executeReAsk(db, run.id, "silhouette.toeShape", reg, okVlm('{"silhouette.toeShape": "cannot tell from this image"}'));
+    await executeReAsk(db, run.id, "silhouette.toeShape", reg, okVlm('{"silhouette.toeShape": "cannot tell from this image"}'), noPreflight);
     const sheet = readWorkingSheet((await getRun(db, run.id))!);
     expect((sheet.details as { silhouette?: { toeShape?: string } }).silhouette?.toeShape).toBeUndefined();
     expect(sheet.notes["silhouette.toeShape"]).toContain("cannot-discern");

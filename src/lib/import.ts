@@ -10,6 +10,7 @@ import {
   type SectionPassKey,
 } from "@/domain/import/battery";
 import { isFailedResponse, parsePassResponse, normalizeTerm, type Proposal } from "@/domain/import/parse";
+import { vlmHealth } from "@/lib/vlm";
 import { applyPassToSheet, workingSheetSchema, type WorkingSheet } from "@/domain/import/merge";
 
 export type ImportRunRow = typeof importRuns.$inferSelect;
@@ -174,6 +175,9 @@ export async function discardRun(db: Db, runId: string): Promise<void> {
 
 // ---- pipeline execution ------------------------------------------------------
 
+/** Reachability check run before any pass is sent; throws InferenceUnreachableError. */
+export type PreflightFn = () => Promise<void>;
+
 export type VlmFn = (req: { prompt: string; imagePath?: string }) => Promise<{ text: string; finishReason: string | null }>;
 
 // ponytail: in-process per-run lock serializes working-sheet read-modify-write
@@ -235,14 +239,27 @@ async function executePass(
   await applyToSheet(db, run.id, passKey, parsed.proposals, parsed.notes);
 }
 
-export async function executeFamilyPass(db: Db, runId: string, reg: Registry, vlm: VlmFn): Promise<void> {
+export async function executeFamilyPass(
+  db: Db,
+  runId: string,
+  reg: Registry,
+  vlm: VlmFn,
+  preflight: PreflightFn = () => vlmHealth(),
+): Promise<void> {
   const run = await getRun(db, runId);
   if (!run || run.sourceType !== "image" || run.status !== "open") return;
+  await preflight();
   await executePass(db, run, "family", reg, vlm);
 }
 
 /** Battery gated on the confirmed family; runs missing section passes with bounded parallelism. */
-export async function executeBattery(db: Db, runId: string, reg: Registry, vlm: VlmFn): Promise<void> {
+export async function executeBattery(
+  db: Db,
+  runId: string,
+  reg: Registry,
+  vlm: VlmFn,
+  preflight: PreflightFn = () => vlmHealth(),
+): Promise<void> {
   const run = await getRun(db, runId);
   if (!run || run.status !== "open" || !run.family) return;
   const existing = new Set(
@@ -251,6 +268,8 @@ export async function executeBattery(db: Db, runId: string, reg: Registry, vlm: 
       .map((p) => p.passKey),
   );
   const pending = selectBattery(run.family).filter((k) => !existing.has(k));
+  if (!pending.length) return;
+  await preflight();
   // one inference request at a time (user directive — the single-slot server wedges under bursts);
   // passes still persist individually as they settle
   for (const k of pending) {
@@ -271,9 +290,11 @@ export async function executeReAsk(
   fieldPath: string,
   reg: Registry,
   vlm: VlmFn,
+  preflight: PreflightFn = () => vlmHealth(),
 ): Promise<void> {
   const run = await getRun(db, runId);
   if (!run || run.status !== "open") return;
+  await preflight();
   const sheet = readWorkingSheet(run);
   const current = sheet.details ? (sheet.details as Record<string, unknown>) : {};
   const value = fieldPath.split(".").reduce<unknown>((acc, k) => {

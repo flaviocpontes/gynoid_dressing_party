@@ -19,7 +19,7 @@
 ## 4. Pipeline orchestration (`src/lib/import.ts`)
 
 - [x] 4.1 Store `finishReason` in `appendPass`, and switch `executeBattery`'s retry filter to `isFailedResponse`. Verify with an integration test: a stub returning `""` with `"length"` records the row with its finish reason, and a second `executeBattery` re-executes only that pass.
-- [ ] 4.2 Add the injectable `preflight` to `executeFamilyPass`, `executeBattery` and `executeReAsk`, called before any pass. Verify with an integration test: a failing preflight throws `InferenceUnreachableError` and `listPasses` length is unchanged.
+- [x] 4.2 Add the injectable `preflight` to `executeFamilyPass`, `executeBattery` and `executeReAsk`, called before any pass. Verify with an integration test: a failing preflight throws `InferenceUnreachableError` and `listPasses` length is unchanged.
 - [ ] 4.3 Implement `reparseRun(db, runId, reg)` over `reparseSheet`, under the run lock, with a single working-sheet write and no VLM dependency. Verify with an integration test: pass row count and contents are byte-identical before and after, and the working sheet gains the recovered fields.
 
 ## 5. Intent runs through the gate and battery
