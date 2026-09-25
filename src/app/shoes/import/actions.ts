@@ -9,7 +9,7 @@ import { getDb } from "@/db/db";
 import { loadRegistrySync } from "@/domain/registry";
 import { ABSENCE_ALLOWED } from "@/domain/shoe";
 import { resolveFieldSpec } from "@/domain/import/battery";
-import { vlmChat } from "@/lib/vlm";
+import { vlmChat, InferenceUnreachableError } from "@/lib/vlm";
 import {
   createRun,
   getRun,
@@ -17,6 +17,7 @@ import {
   executeFamilyPass,
   executeBattery,
   executeReAsk,
+  reparseRun,
   mutateField,
   setIdentity,
   acceptRunFlow,
@@ -57,10 +58,23 @@ export async function startImportRunAction(formData: FormData) {
   redirect(`/shoes/import/${run.id}`);
 }
 
+/** Run an interrogation; an unreachable server lands back on the run with a visible error. */
+async function interrogate(runId: string, fn: () => Promise<void>) {
+  let unreachable = false;
+  try {
+    await fn();
+  } catch (e) {
+    if (!(e instanceof InferenceUnreachableError)) throw e;
+    unreachable = true;
+  }
+  refresh(runId);
+  // always redirect so a previous error banner clears on success
+  redirect(`/shoes/import/${runId}${unreachable ? "?error=inference-unreachable" : ""}`);
+}
+
 export async function runFamilyPassAction(formData: FormData) {
   const runId = z.string().min(1).parse(String(formData.get("runId") ?? ""));
-  await executeFamilyPass(appDb(), runId, loadRegistrySync(appDb()), vlmChat);
-  refresh(runId);
+  await interrogate(runId, () => executeFamilyPass(appDb(), runId, loadRegistrySync(appDb()), vlmChat));
 }
 
 export async function confirmFamilyAction(formData: FormData) {
@@ -75,14 +89,18 @@ export async function confirmFamilyAction(formData: FormData) {
 
 export async function runBatteryAction(formData: FormData) {
   const runId = z.string().min(1).parse(String(formData.get("runId") ?? ""));
-  await executeBattery(appDb(), runId, loadRegistrySync(appDb()), vlmChat);
-  refresh(runId);
+  await interrogate(runId, () => executeBattery(appDb(), runId, loadRegistrySync(appDb()), vlmChat));
 }
 
 export async function reAskAction(formData: FormData) {
   const runId = z.string().min(1).parse(String(formData.get("runId") ?? ""));
   const fieldPath = z.string().min(1).parse(String(formData.get("path") ?? ""));
-  await executeReAsk(appDb(), runId, fieldPath, loadRegistrySync(appDb()), vlmChat);
+  await interrogate(runId, () => executeReAsk(appDb(), runId, fieldPath, loadRegistrySync(appDb()), vlmChat));
+}
+
+export async function reparseRunAction(formData: FormData) {
+  const runId = z.string().min(1).parse(String(formData.get("runId") ?? ""));
+  await reparseRun(appDb(), runId, loadRegistrySync(appDb()));
   refresh(runId);
 }
 
