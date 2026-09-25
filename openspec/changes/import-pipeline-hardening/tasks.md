@@ -35,5 +35,5 @@
 
 ## 7. Verification
 
-- [ ] 7.1 Run `npm test` and `npx tsc --noEmit`, and confirm both pass.
+- [x] 7.1 Run `npm test` and `npx tsc --noEmit`, and confirm both pass.
 - [ ] 7.2 End-to-end against the real Lemonade server: run one image import of a pump through the gate and battery, and record the fill rate, the failed-pass count and the finish reasons in the change's archive notes. The fill rate is compared against the 10/~60 baseline. The finish reasons answer design.md's open question.
