@@ -70,7 +70,12 @@ export type StoredPass = { passKey: string; responseText: string | null };
  * fields (including user clears) survive; machine fields and notes are
  * dropped and replayed from every successful non-family pass in stored order.
  */
-export function reparseSheet(input: WorkingSheet, passes: StoredPass[], reg: Registry): WorkingSheet {
+export function reparseSheet(
+  input: WorkingSheet,
+  passes: StoredPass[],
+  reg: Registry,
+  family: string | null = null,
+): WorkingSheet {
   let sheet = structuredClone(input);
   for (const [path, owner] of Object.entries(sheet.provenance)) {
     if (owner === USER || isUserOwned(sheet, path)) continue;
@@ -82,7 +87,7 @@ export function reparseSheet(input: WorkingSheet, passes: StoredPass[], reg: Reg
   sheet.notes = {};
   for (const p of passes) {
     if (p.passKey === "family" || isFailedResponse(p.responseText)) continue;
-    const parsed = parsePassResponse(p.passKey as PassKey, p.responseText ?? "", reg);
+    const parsed = parsePassResponse(p.passKey as PassKey, p.responseText ?? "", reg, family);
     sheet = applyPassToSheet(sheet, p.passKey, parsed);
   }
   return sheet;

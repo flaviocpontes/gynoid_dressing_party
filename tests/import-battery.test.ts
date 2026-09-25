@@ -6,7 +6,20 @@ import {
   selectBattery,
   SECTION_PASS_KEYS,
 } from "@/domain/import/battery";
+import { APPLICABILITY } from "@/domain/applicability";
+import { parsePassResponse } from "@/domain/import/parse";
+import { reparseSheet, workingSheetSchema } from "@/domain/import/merge";
 import { registryFromSeed } from "./seed-registry";
+
+/** Temporarily add an applicability rule (the seed table only gates the shaft). */
+function withRule<T>(rule: { paths: string[]; families: string[] }, fn: () => T): T {
+  APPLICABILITY.push(rule);
+  try {
+    return fn();
+  } finally {
+    APPLICABILITY.pop();
+  }
+}
 
 const reg = registryFromSeed();
 
@@ -114,5 +127,28 @@ describe("buildPassPrompt", () => {
     expect(prompt).toContain("pointed, almond");
     expect(prompt).toContain("silhouette.toeShape");
     expect(prompt).not.toContain("heel.type");
+  });
+
+  it("section and re-ask prompts state the confirmed family", () => {
+    expect(buildPassPrompt("heel", reg, { family: "pump" }).prompt).toContain("This shoe is a pump (confirmed).");
+    expect(buildPassPrompt("re-ask:heel.type", reg, { family: "pump" }).prompt).toContain("pump (confirmed)");
+    expect(buildPassPrompt("family", reg).prompt).not.toContain("(confirmed)");
+  });
+
+  it("a field not applicable to the family is neither asked nor proposed", () => {
+    withRule({ paths: ["heel.breastProfile"], families: ["sandal"] }, () => {
+      const pump = buildPassPrompt("heel", reg, { family: "pump" }).prompt;
+      expect(pump).not.toContain("heel.breastProfile");
+      expect(pump).toContain("heel.type");
+      expect(buildPassPrompt("heel", reg, { family: "sandal" }).prompt).toContain("heel.breastProfile");
+
+      const answer = '{"heel.type": "stiletto", "heel.breastProfile": "straight"}';
+      const out = parsePassResponse("heel", answer, reg, "pump");
+      expect(out.proposals).toEqual([{ path: "heel.type", value: "stiletto" }]);
+      expect(out.notes).toEqual([{ path: "heel.breastProfile", note: expect.stringContaining("not applicable to pump") }]);
+
+      const sheet = reparseSheet(workingSheetSchema.parse({}), [{ passKey: "heel", responseText: answer }], reg, "pump");
+      expect((sheet.details as { heel?: Record<string, unknown> }).heel).toEqual({ type: "stiletto" });
+    });
   });
 });

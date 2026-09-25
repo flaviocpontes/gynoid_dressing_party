@@ -2,6 +2,7 @@ import type { Registry } from "@/domain/registry";
 import { getScaleSteps } from "@/domain/registry";
 import { ABSENCE_ALLOWED } from "@/domain/shoe";
 import type { FieldSpec, GroupSpec, SectionField } from "@/lib/field-specs";
+import { isApplicable } from "@/domain/applicability";
 import { fieldsForPass, type PassKey } from "./battery";
 
 export type Proposal = {
@@ -193,12 +194,17 @@ function parseFieldValue(spec: FieldSpec, raw: unknown, reg: Registry, path: str
   return { proposal: { path, value: normalizeTerm(s, terms) } };
 }
 
+function notApplicableNote(path: string, family: string): PassNote {
+  return { path, note: `not applicable to ${family}: answer for ${path} ignored` };
+}
+
 function parseGroup(
   spec: GroupSpec,
   raw: unknown,
   reg: Registry,
   path: string,
   out: { proposals: Proposal[]; notes: PassNote[] },
+  family: string | null,
 ): void {
   if (!Array.isArray(raw)) {
     out.notes.push({ path, note: `expected a row array for ${path}` });
@@ -212,6 +218,10 @@ function parseGroup(
     for (const rf of spec.rowFields) {
       const v = (el as Record<string, unknown>)[rf.path];
       if (v === undefined || v === null || v === "") continue;
+      if (family && !isApplicable(family, `${path}.${rf.path}`)) {
+        out.notes.push(notApplicableNote(`${path}.${rf.path}`, family));
+        continue;
+      }
       const res = parseFieldValue(rf, v, reg, `${path}.${rf.path}`);
       if (res.proposal) {
         row[rf.path] = res.proposal.value;
@@ -244,7 +254,12 @@ function flatten(obj: Record<string, unknown>, prefix = "", out: Record<string, 
  * value-state mapping. Never trusts the JSON: unknown keys ignored,
  * everything validated against specs + registry.
  */
-export function parsePassResponse(passKey: PassKey, rawText: string, reg: Registry): ParsedPass {
+export function parsePassResponse(
+  passKey: PassKey,
+  rawText: string,
+  reg: Registry,
+  family: string | null = null,
+): ParsedPass {
   const out: { proposals: Proposal[]; notes: PassNote[] } = { proposals: [], notes: [] };
   const fields = fieldsForPass(passKey);
   if (!fields.length) return { proposals: [], notes: [{ path: null, note: `unknown pass key ${passKey}` }] };
@@ -256,9 +271,13 @@ export function parsePassResponse(passKey: PassKey, rawText: string, reg: Regist
   const obj = flatten(parsed as Record<string, unknown>);
 
   for (const f of fields) {
+    if (family && !isApplicable(family, f.path)) {
+      if (obj[f.path] !== undefined) out.notes.push(notApplicableNote(f.path, family));
+      continue;
+    }
     if (f.kind === "group") {
       const v = obj[f.path];
-      if (v !== undefined) parseGroup(f, v, reg, f.path, out);
+      if (v !== undefined) parseGroup(f, v, reg, f.path, out, family);
       continue;
     }
     const v = obj[f.path];

@@ -218,7 +218,7 @@ async function executePass(
 ): Promise<void> {
   const source: PromptSource =
     run.sourceType === "intent" ? { kind: "intent", text: run.sourceIntentText ?? "" } : { kind: "image" };
-  const { templateVersion, prompt } = buildPassPrompt(passKey, reg, { ...opts, source });
+  const { templateVersion, prompt } = buildPassPrompt(passKey, reg, { ...opts, source, family: run.family });
   let responseText: string;
   let finishReason: string | null = null;
   let parsed: { proposals: Proposal[]; notes: { path: string | null; note: string }[] } = {
@@ -227,7 +227,7 @@ async function executePass(
   };
   try {
     ({ text: responseText, finishReason } = await vlm({ prompt, imagePath: run.sourceImagePath ?? undefined }));
-    parsed = parsePassResponse(passKey, responseText, reg);
+    parsed = parsePassResponse(passKey, responseText, reg, run.family);
   } catch (e) {
     responseText = `error: ${e instanceof Error ? e.message : String(e)}`;
   }
@@ -313,7 +313,7 @@ export async function reparseRun(db: Db, runId: string, reg: Registry): Promise<
     const run = await getRun(db, runId);
     if (!run || run.status !== "open") return;
     const passes = await listPasses(db, runId);
-    await writeWorkingSheet(db, runId, reparseSheet(readWorkingSheet(run), passes, reg));
+    await writeWorkingSheet(db, runId, reparseSheet(readWorkingSheet(run), passes, reg, run.family));
   });
 }
 

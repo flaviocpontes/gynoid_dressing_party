@@ -149,16 +149,28 @@ function fieldLine(spec: FieldSpec, reg: Registry, indent = ""): string[] {
   return [`${indent}- ${spec.path} — ${spec.label}. A short descriptive kebab-case phrase; never digits or units.`];
 }
 
-function groupLines(spec: GroupSpec, reg: Registry): string[] {
+function groupLines(spec: GroupSpec, reg: Registry, family: string | null): string[] {
+  const rows = spec.rowFields.filter((rf) => applies(family, `${spec.path}.${rf.path}`));
   return [
     `- ${spec.path} — ${spec.label}. Answer with a JSON array of row objects using these keys:`,
-    ...spec.rowFields.flatMap((rf) => fieldLine(rf, reg, "  ")),
+    ...rows.flatMap((rf) => fieldLine(rf, reg, "  ")),
     `  Rows without a committed ${spec.rowFields[0]?.path ?? "type"} are omitted.`,
   ];
 }
 
-function sectionFieldLines(sec: SectionSpec, reg: Registry): string[] {
-  return sec.fields.flatMap((f) => (f.kind === "group" ? groupLines(f, reg) : fieldLine(f, reg)));
+/** Without a confirmed family nothing is filtered (vibe/legacy prompts). */
+function applies(family: string | null, path: string): boolean {
+  return !family || isApplicable(family, path);
+}
+
+function sectionFieldLines(sec: SectionSpec, reg: Registry, family: string | null = null): string[] {
+  return sec.fields
+    .filter((f) => applies(family, f.path))
+    .flatMap((f) => (f.kind === "group" ? groupLines(f, reg, family) : fieldLine(f, reg)));
+}
+
+function familyLine(family: string | null): string {
+  return family ? `\nThis shoe is a ${family} (confirmed).` : "";
 }
 
 /** What the run interrogates: a photograph, or a free-text design intent. */
@@ -199,7 +211,7 @@ ${fieldLine(FAMILY_FIELD, reg).join("\n")}
 ${EDITOR_SECTIONS.flatMap((s) => sectionFieldLines(s, reg)).join("\n")}`;
 }
 
-function sectionPrompt(passKey: SectionPassKey, reg: Registry, source: PromptSource): string {
+function sectionPrompt(passKey: SectionPassKey, reg: Registry, source: PromptSource, family: string | null): string {
   const title = PASS_SECTION_TITLES[passKey].toLowerCase();
   const opening =
     source.kind === "image"
@@ -207,20 +219,26 @@ function sectionPrompt(passKey: SectionPassKey, reg: Registry, source: PromptSou
       : `You are designing the ${title} of a shoe from a design intent, filling a structured design sheet. Commit to concrete decisions that serve the intent; hedge only where the intent is genuinely open.` +
         intentBlock(source);
   const sec = sectionFor(passKey);
-  return `${opening}
+  return `${opening}${familyLine(family)}
 ${ANSWER_CONTRACT}
 
 ## Fields
-${sec ? sectionFieldLines(sec, reg).join("\n") : ""}`;
+${sec ? sectionFieldLines(sec, reg, family).join("\n") : ""}`;
 }
 
-function reAskPrompt(fieldPath: string, candidates: string[], reg: Registry, source: PromptSource): string {
+function reAskPrompt(
+  fieldPath: string,
+  candidates: string[],
+  reg: Registry,
+  source: PromptSource,
+  family: string | null,
+): string {
   const spec = resolveFieldSpec(fieldPath);
   const cand = candidates.length ? `Current candidates under consideration: ${candidates.join(", ")}.` : "";
   const line = spec
     ? fieldLine(spec, reg).join("\n")
     : `- ${fieldPath} — answer with a short kebab-case phrase; never digits or units.`;
-  return `You are re-examining one field of a shoe. ${cand}${intentBlock(source)}
+  return `You are re-examining one field of a shoe. ${cand}${familyLine(family)}${intentBlock(source)}
 ${ANSWER_CONTRACT}
 Answer only this field:
 ${line}`;
@@ -229,14 +247,15 @@ ${line}`;
 export function buildPassPrompt(
   passKey: PassKey,
   reg: Registry,
-  opts: { source?: PromptSource; candidates?: string[] } = {},
+  opts: { source?: PromptSource; candidates?: string[]; family?: string | null } = {},
 ): { templateVersion: string; prompt: string } {
   const source = opts.source ?? IMAGE_SOURCE;
+  const family = opts.family ?? null;
   let prompt: string;
   if (passKey === "vibe") prompt = vibePrompt(source.kind === "intent" ? source.text : "", reg);
   else if (passKey === "family") prompt = familyPrompt(reg, source);
   else if (passKey.startsWith("re-ask:"))
-    prompt = reAskPrompt(passKey.slice("re-ask:".length), opts.candidates ?? [], reg, source);
-  else prompt = sectionPrompt(passKey as SectionPassKey, reg, source);
+    prompt = reAskPrompt(passKey.slice("re-ask:".length), opts.candidates ?? [], reg, source, family);
+  else prompt = sectionPrompt(passKey as SectionPassKey, reg, source, family);
   return { templateVersion: TEMPLATE_VERSION, prompt };
 }
